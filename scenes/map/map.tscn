@@ -1,110 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=8 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
+[ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="3_a2pkv"]
 
-[sub_resource type="Animation" id="Animation_sxf4j"]
-resource_name = "x"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-3, 0, -6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(1.3089969, -1.5707963, -0.5235988)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 0.99999994, 1), Vector3(5, 5, 5)]
-}
+[sub_resource type="Environment" id="Environment_a2pkv"]
 
-[sub_resource type="Animation" id="Animation_tqkkf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 0.99999994, 1)]
-}
+[sub_resource type="BoxMesh" id="BoxMesh_a2pkv"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2pkv"]
-_data = {
-&"RESET": SubResource("Animation_tqkkf"),
-&"x": SubResource("Animation_sxf4j")
-}
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2pkv"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ph54e"]
+[sub_resource type="SphereMesh" id="SphereMesh_a2pkv"]
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_tqkkf")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a2pkv")
+
+[node name="Rooms" type="Node3D" parent="."]
+
+[node name="BaseRoom" parent="Rooms" node_paths=PackedStringArray("west_room", "north_room") instance=ExtResource("3_a2pkv")]
+west_room = NodePath("../BaseRoom2")
+north_room = NodePath("../BaseRoom3")
+
+[node name="BaseRoom2" parent="Rooms" node_paths=PackedStringArray("east_room") instance=ExtResource("3_a2pkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+east_room = NodePath("../BaseRoom")
+
+[node name="BaseRoom3" parent="Rooms" node_paths=PackedStringArray("south_room") instance=ExtResource("3_a2pkv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+south_room = NodePath("../BaseRoom")
+
+[node name="Player" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_a2pkv")
+surface_material_override/0 = SubResource("StandardMaterial3D_a2pkv")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = SubResource("SphereMesh_a2pkv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_sxf4j")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_a2pkv")
-}
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("BoxMesh_ph54e")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -5, 7, 8)
+current = true
