@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1absskdpac15"]
+
+[ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_0ebjn"]
+[ext_resource type="Script" uid="uid://c7ugmud65b1fs" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+
+[node name="MainMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0ebjn")
+script = ExtResource("1_fsom3")
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 283.0
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "PLAY"
+
+[connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
