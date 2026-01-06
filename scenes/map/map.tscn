@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/corridor_1.tscn" id="3_ph54e"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
+ambient_light_source = 2
+ambient_light_color = Color(0.7489836, 0.8332636, 0.92057884, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_a2pkv"]
 
@@ -29,9 +31,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a2pkv")
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+visible = false
 mesh = SubResource("SphereMesh_a2pkv")
 
 [node name="Rooms" type="Node3D" parent="."]
@@ -48,6 +52,8 @@ south_room = NodePath("../BaseRoom")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 east_room = NodePath("../BaseRoom")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_sxf4j")]
+[node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
+
+[connection signal="quitted" from="GUI/MainMenu" to="." method="_on_main_menu_quitted"]

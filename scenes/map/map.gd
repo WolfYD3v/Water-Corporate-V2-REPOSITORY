@@ -36,6 +36,9 @@ func _input(event: InputEvent) -> void:
 			try_change_room(actual_room.south_room_idx)
 			player.rotation.y = deg_to_rad(180.0)
 
+func _on_main_menu_quitted() -> void:
+	print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")
+
 func try_change_room(next_room_direcion_idx: int) -> void:
 	next_room_direcion_idx = clampi(next_room_direcion_idx, 0, 3)
 	if actual_room.check_if_adj_have_room(next_room_direcion_idx):
