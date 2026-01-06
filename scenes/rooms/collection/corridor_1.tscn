@@ -1,5 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcktcqjou1y8n"]
+[gd_scene load_steps=3 format=3 uid="uid://bcktcqjou1y8n"]
 
 [ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="1_6fm3g"]
+[ext_resource type="PackedScene" uid="uid://c00pjl4qub3io" path="res://scenes/mirror/mirror.tscn" id="2_apnsc"]
 
 [node name="Corridor1" instance=ExtResource("1_6fm3g")]
+
+[node name="Mirror" parent="." index="3" instance=ExtResource("2_apnsc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)

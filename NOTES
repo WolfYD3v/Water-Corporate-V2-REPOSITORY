@@ -1,0 +1,27 @@
+HISTOIRE:
+Water Corporate (V2) nous fait incarner Sam. Un jeune homme de 23 ans qui a comme seul but de gagner de la thune.
+Il a accepté un poste chez une entreprise d'Intelligence Artificielle encore méconnue du grand public; Shadow AI. Le travail de Sam dans l'entreprise consiste à gérer la demande en eau des data centers pour refroidir les processeurs qui chauffent tous. Son rôle est important à la croissance de l'entreprise
+Il se retrouve à travailler seul dans la WPS (Water Pumping Section), un endroit sous le sol où il va devoir gérer le système de pompage d'eau.
+Isolé du monde extérieur, Sam va peu à peu faire de plus en plus de mal à la planète.
+A force d'améloirer son matériel, et de permettre à l'IA de devenir plus intelligente, Shadow AI va lui offrir un moyen d'automatiser certaines tâches de son travail grâce à l'IA. La base utilisateur de IA augmente, et le besoin en eau ne cesse d'augmenter.
+Sam va concentrer ses efforts sur une améloiration toujours plus constante de son équipement. En plus de pouvoir automatiser encore plus de tâches, jusqu'à ce que l'IA gère le pompage de l'eau elle-même.
+Résultat des courses, Sam est renvoyé car "plus utile dans les intérêts de l'entreprise", Shadow AI a réussi son objectif, et la planète est dans un mauvais état.
+
+LE TRAVAIL DE SAM:
+    -> Sur son ordinateur de travail, Sam va recevoir une "nodification de quota". Son but, aller activer les pompes à eau pour remplir son quota et être payé;
+    -> Il peut utiliser cet argent pour acheter des améloirations de son matériel de travail, et pomper plus plus vite;
+    -> Le quota demandé augmente au fur et à mesure que l'IA devient de plus en plus "intelligente", dans des délais de plus en plus restrains. Il est donc obligatoire d'améloirer son matériel dès que l'on peut se permettre;
+    -> Et le cycle recommence: Quota d'eau à pomper, aller la pomper, quota atteint dans les temps impartis, augmentation du quota.
+
+    -> Particularités:
+        -> Une jauge de température va être présente sur son ordinateur tout le temps, et si il y a surchauffe des serveurs alors une alerte stressante va être jouée jusqu'à diminution de cette température. Si il prend trop de temps pour pomper, les serveurs brûlent et son salire pour ce quota est retenu (en plus de devoir payer pour les dégâts matériel);
+        -> Au début, Sam améliore ses pompes pour survivre au quota. Ensuite, il installe des modules d'IA pour l'aider. À la fin, l'IA est si performante qu'elle gère les flux d'eau de manière plus précise que l'humain. C'est la métaphore parfaite de la "singularité"; Où l'IA optimise sa propre existence au détriment de l'humain et de la nature;
+        -> D'un travail manuel, à un travail automatisé;
+        -> Système de "Drainage de Nappe". Plus Sam pompe vite pour atteindre son quota, plus le niveau de l'eau dans sa zone baisse. Cela l'oblige alors à acheter du matériel de forage plus profond et plus cher, le forçant à rester chez Shadow AI pour rembourser ses dettes de matériel. C'est le piège de la "fuite en avant" technologique;
+        -> Pour la propagande, des slogans corporate absurdes comme "L'eau de demain est dans nos serveurs" ou "Sacrifier une goutte pour une mer de connaissances" seront sur les affiches;
+        -> Du passage de l'entraînement (grosse consommation fixe) à l'inférence massive (consommation qui explose avec le nombre d'utilisateurs).
+
+ELEMENTS IMPORTANTS:
+    -> Le jeu comportera des affiches comme de propagande qui mettent en avant le progès, ne jamais s'arrêté de TOUS rendre l'IA meilleure, la récompense à la fin vaudra le coup quelque soit le chemin enprunté;
+    -> Le but de Shadow AI, entrer en bourse et rejoindre les autres entreprises d'IA dans leur grande bulle spéculative pour devenir un Empire de l'IA;
+    -> Aussi des informations sur l'état du monde extérieur seront relayées pour montrer les conséquences des actions de Sam et de l'entreprise;
