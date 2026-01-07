@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjs1qisi5re4f"]
+
+[ext_resource type="Script" uid="uid://drymfn1l01ryx" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://dksx52alj2m7v" path="res://assets/sprites/sam_temp.png" id="2_dovo2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_dovo2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lvxji"]
+material = SubResource("StandardMaterial3D_gmlin")
+size = Vector2(1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dovo2"]
+size = Vector3(1, 1.3, 0.1)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_8afob")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+current = true
+
+[node name="FrontMeshInstance" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("QuadMesh_lvxji")
+
+[node name="BackMeshInstance" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.5, 0)
+mesh = SubResource("QuadMesh_lvxji")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58925796, 0)
+shape = SubResource("BoxShape3D_dovo2")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+visible = false
+gizmo_extents = 10.0

@@ -2,7 +2,7 @@ extends Node3D
 class_name Map
 
 @onready var rooms: Node3D = $Rooms
-@onready var player: MeshInstance3D = $Player
+@onready var player: Player = $Player
 
 var actual_room: BaseRoom = null:
 	set(value):
@@ -11,6 +11,7 @@ var actual_room: BaseRoom = null:
 		actual_room = value
 		actual_room.active = true
 		player.position = actual_room.get_player_position_in_room()
+		player.position.y = 0.35
 
 func _ready() -> void:
 	actual_room = rooms.get_child(0)
@@ -21,20 +22,10 @@ func _ready() -> void:
 	
 	actual_room.active = true
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if Input.is_key_pressed(KEY_LEFT):
-			try_change_room(actual_room.west_room_idx)
-			player.rotation.y = deg_to_rad(90.0)
-		if Input.is_key_pressed(KEY_RIGHT):
-			try_change_room(actual_room.east_room_idx)
-			player.rotation.y = deg_to_rad(-90.0)
-		if Input.is_key_pressed(KEY_UP):
-			try_change_room(actual_room.north_room_idx)
-			player.rotation.y = deg_to_rad(0.0)
-		if Input.is_key_pressed(KEY_DOWN):
-			try_change_room(actual_room.south_room_idx)
-			player.rotation.y = deg_to_rad(180.0)
+# FORCE QUIT BABY !!!!!!!!!§§§§!!!!!!!!!!§§§!!!!!!!
+func _input(_event: InputEvent) -> void:
+	if Input.is_key_pressed(KEY_Q):
+		get_tree().quit()
 
 func _on_main_menu_quitted() -> void:
 	print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")

@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://tqewyifqimoo"]
+[gd_scene load_steps=4 format=3 uid="uid://tqewyifqimoo"]
 
 [ext_resource type="Script" uid="uid://73t5n5dnc3bd" path="res://scenes/rooms/base_room.gd" id="1_43ixu"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_43ixu"]
+data = PackedVector3Array(-5, -0.25, 5, -5, -0.25, -5, -5, 0.25, -5, 5, -0.25, -5, -5, -0.25, -5, -5, -0.25, 5, -5, 0.25, -5, -5, -0.25, -5, 5, -0.25, -5, -5, 0.25, -5, -5, 0.25, 5, -5, -0.25, 5, -5, -0.25, 5, -5, 0.25, 5, 5, 0.25, 5, 5, 0.25, 5, -5, 0.25, 5, -5, 0.25, -5, -5, -0.25, 5, 5, -0.25, 5, 5, -0.25, -5, 5, 0.25, 5, 5, -0.25, 5, -5, -0.25, 5, 5, -0.25, -5, 5, -0.25, 5, 5, 0.25, 5, 5, -0.25, -5, 5, 0.25, -5, -5, 0.25, -5, -5, 0.25, -5, 5, 0.25, -5, 5, 0.25, 5, 5, 0.25, 5, 5, 0.25, -5, 5, -0.25, -5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_43ixu"]
 size = Vector3(1, 2, 5)
 
-[node name="BaseRoom" type="Node3D"]
+[node name="BaseRoom" type="StaticBody3D"]
 script = ExtResource("1_43ixu")
 
 [node name="Build" type="CSGCombiner3D" parent="."]
 
 [node name="Baseplate" type="CSGBox3D" parent="Build"]
 size = Vector3(10, 0.5, 10)
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_43ixu")
 
 [node name="PlayerPositionMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

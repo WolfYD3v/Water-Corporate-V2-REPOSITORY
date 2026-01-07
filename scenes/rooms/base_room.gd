@@ -1,4 +1,4 @@
-extends Node3D
+extends StaticBody3D
 class_name BaseRoom
 
 signal change_room(next_room_direction_idx: int)
@@ -7,6 +7,7 @@ signal change_room(next_room_direction_idx: int)
 @export var east_room: BaseRoom = null
 @export var north_room: BaseRoom = null
 @export var south_room: BaseRoom = null
+@onready var collision_shape: CollisionShape3D = $CSGBakedCollisionShape3D
 
 @onready var player_position_marker: Marker3D = $PlayerPositionMarker
 @onready var change_room_areas: Node3D = $ChangeRoomAreas
@@ -25,6 +26,7 @@ var active: bool = false:
 	set(value):
 		active = value
 		visible = value
+		collision_shape.disabled = not(value)
 		if value: process_mode = Node.PROCESS_MODE_INHERIT
 		else: process_mode = Node.PROCESS_MODE_DISABLED
 		for change_room_area: Area3D in change_rooms_areas_activated:
