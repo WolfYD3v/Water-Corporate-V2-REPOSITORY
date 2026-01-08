@@ -20,10 +20,7 @@ var west_room_idx: int = 0
 var east_room_idx: int = 1
 var north_room_idx: int = 2
 var south_room_idx: int = 3
-var next_room_direction_idx: int = -1:
-	set(value):
-		next_room_direction_idx = value
-		print(value)
+var next_room_direction_idx: int = -1
 
 var active: bool = false:
 	set(value):

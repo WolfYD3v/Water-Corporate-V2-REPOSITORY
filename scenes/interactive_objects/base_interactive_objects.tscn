@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy7ejyeswywvd"]
+
+[ext_resource type="Script" uid="uid://b7wfvmflqr5dl" path="res://scenes/interactive_objects/base_interactive_objects.gd" id="1_vrdds"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrdds"]
+
+[node name="BaseInteractiveObjects" type="Node3D"]
+script = ExtResource("1_vrdds")
+
+[node name="PlayerDetectionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDetectionArea"]
+shape = SubResource("BoxShape3D_vrdds")
+
+[connection signal="area_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_entered"]
+[connection signal="area_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_exited"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_exited"]
