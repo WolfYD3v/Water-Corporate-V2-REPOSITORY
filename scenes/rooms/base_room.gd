@@ -20,7 +20,10 @@ var west_room_idx: int = 0
 var east_room_idx: int = 1
 var north_room_idx: int = 2
 var south_room_idx: int = 3
-var next_room_direction_idx: int = -1
+var next_room_direction_idx: int = -1:
+	set(value):
+		next_room_direction_idx = value
+		print(value)
 
 var active: bool = false:
 	set(value):
@@ -66,26 +69,34 @@ func _send_change_room_area_trigger() -> void:
 
 
 
-func _on_west_trigger_area_mouse_entered() -> void:
-	next_room_direction_idx = west_room_idx
+func _on_west_trigger_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = west_room_idx
 
-func _on_west_trigger_area_mouse_exited() -> void:
-	next_room_direction_idx = -1
+func _on_west_trigger_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = -1
 
-func _on_east_trigger_area_mouse_entered() -> void:
-	next_room_direction_idx = east_room_idx
+func _on_east_trigger_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = east_room_idx
 
-func _on_east_trigger_area_mouse_exited() -> void:
-	next_room_direction_idx = -1
+func _on_east_trigger_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = -1
 
-func _on_north_trigger_area_mouse_entered() -> void:
-	next_room_direction_idx = north_room_idx
+func _on_north_trigger_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = north_room_idx
 
-func _on_north_trigger_area_mouse_exited() -> void:
-	next_room_direction_idx = -1
+func _on_north_trigger_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = -1
 
-func _on_south_trigger_area_mouse_entered() -> void:
-	next_room_direction_idx = south_room_idx
+func _on_south_trigger_area_area_entered(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = south_room_idx
 
-func _on_south_trigger_area_mouse_exited() -> void:
-	next_room_direction_idx = -1
+func _on_south_trigger_area_area_exited(area: Area3D) -> void:
+	if area.is_in_group("PlayerMouse"):
+		next_room_direction_idx = -1

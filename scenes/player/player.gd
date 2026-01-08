@@ -5,14 +5,18 @@ class_name Player
 # Thanks to gertkeno for his contribution in the forum
 # Original code edited to match what I wanted to do
 
-@onready var camera: Camera3D = $Camera
-
 @export var free_roam_enable: bool = false
+
+@onready var camera: Camera3D = $Camera
+@onready var player_mouse: Area3D = $PlayerMouseArea
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 var mouse_sensitivity: float = 0.001
+
+func _ready() -> void:
+	if free_roam_enable: player_mouse.queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -41,5 +45,5 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
-			#if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			rotation.y += - event.relative.x * mouse_sensitivity
+			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+				rotation.y += - event.relative.x * mouse_sensitivity
