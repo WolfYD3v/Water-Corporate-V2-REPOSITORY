@@ -3,6 +3,7 @@ class_name Map
 
 @onready var rooms: Node3D = $Rooms
 @onready var player: Player = $Player
+@onready var texture_rect: TextureRect = $GUI/TextureRect
 
 var actual_room: BaseRoom = null:
 	set(value):
@@ -26,6 +27,9 @@ func _ready() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_Q):
 		get_tree().quit()
+
+func _process(_delta: float) -> void:
+	texture_rect.position = get_viewport().get_mouse_position()
 
 func _on_main_menu_quitted() -> void:
 	print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")

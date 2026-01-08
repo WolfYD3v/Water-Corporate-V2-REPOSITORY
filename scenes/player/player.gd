@@ -41,5 +41,5 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
-			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-				rotation.y += - event.relative.x * mouse_sensitivity
+			#if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			rotation.y += - event.relative.x * mouse_sensitivity
