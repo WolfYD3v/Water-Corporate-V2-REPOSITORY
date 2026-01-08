@@ -26,7 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.70710
 
 [node name="Player" parent="." instance=ExtResource("2_jcaow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
-free_roam_enable = true
 
 [node name="Rooms" type="Node3D" parent="."]
 
