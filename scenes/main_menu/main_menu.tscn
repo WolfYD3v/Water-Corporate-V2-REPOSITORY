@@ -327,6 +327,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_wem23"),
 &"MainMenuAnims": SubResource("AnimationLibrary_uqeha")
 }
+speed_scale = 4.0
 
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

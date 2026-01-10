@@ -7,10 +7,18 @@
 [node name="BaseInteractiveObjects" type="Node3D"]
 script = ExtResource("1_vrdds")
 
+[node name="CSGCombinerModel" type="CSGCombiner3D" parent="."]
+
 [node name="PlayerDetectionArea" type="Area3D" parent="."]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="PlayerDetectionArea"]
 shape = SubResource("BoxShape3D_vrdds")
+
+[node name="PlayerObjPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="InteractionTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_entered"]
 [connection signal="area_exited" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_exited"]

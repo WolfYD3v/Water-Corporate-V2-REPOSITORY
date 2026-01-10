@@ -17,7 +17,7 @@ func _ready() -> void:
 func _on_play_button_pressed() -> void:
 	animation_player.play("MainMenuAnims/CloseMenu")
 	await animation_player.animation_finished
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hide()
 	get_tree().paused = false
 	quitted.emit()

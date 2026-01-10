@@ -15,6 +15,9 @@ const JUMP_VELOCITY = 4.5
 
 var mouse_sensitivity: float = 0.001
 
+var can_move: bool = true
+var can_rotate: bool = true
+
 func _ready() -> void:
 	if free_roam_enable: player_mouse.queue_free()
 
@@ -23,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if not free_roam_enable:
+	if not free_roam_enable or not can_move:
 		return
 
 	# Handle jump.
@@ -45,5 +48,5 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
-			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_rotate:
 				rotation.y += - event.relative.x * mouse_sensitivity

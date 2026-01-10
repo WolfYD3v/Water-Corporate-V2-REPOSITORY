@@ -1,8 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjs1qisi5re4f"]
+[gd_scene load_steps=12 format=3 uid="uid://cjs1qisi5re4f"]
 
 [ext_resource type="Script" uid="uid://drymfn1l01ryx" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://dksx52alj2m7v" path="res://assets/sprites/sam_temp.png" id="2_dovo2"]
+[ext_resource type="Shader" uid="uid://8mj7fl5el58c" path="res://assets/shaders/pixalation_shader.gdshader" id="2_lvxji"]
 [ext_resource type="Material" uid="uid://uecjrforgudi" path="res://assets/materials/room_wall_material.tres" id="3_gmlin"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_p47bc"]
+size = Vector2(5, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75vfm"]
+render_priority = 0
+shader = ExtResource("2_lvxji")
+shader_parameter/pixelation = 0.01
+shader_parameter/opacity = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
 transparency = 2
@@ -27,6 +37,12 @@ script = ExtResource("1_8afob")
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 current = true
+
+[node name="PixelationShaderMeshInstance" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6)
+mesh = SubResource("QuadMesh_p47bc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_75vfm")
 
 [node name="FrontMeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
