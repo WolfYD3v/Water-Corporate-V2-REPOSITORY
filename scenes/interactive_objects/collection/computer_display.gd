@@ -4,6 +4,10 @@ class_name ComputerDisplay
 @export_range(1, 45) var max_desktop_icons_number: int = 45
 @export var mails_list: Dictionary[String, String] = {}
 
+@onready var boot_black_fading: ColorRect = $BootBlackFading
+@onready var boot_audio_stream_player: AudioStreamPlayer = $BootAudioStreamPlayer
+@onready var os_logo_texture_rect: TextureRect = $BootBlackFading/OSLogoTextureRect
+
 @onready var desktop_action_bar: Control = $DesktopInterface/DesktopActionBar
 
 @onready var desktop_icons: GridContainer = $DesktopInterface/DesktopIcons
@@ -30,6 +34,8 @@ var water_pump: float = 0.0:
 var heat_bar_tween
 
 func _ready() -> void:
+	boot_black_fading.show()
+	os_logo_texture_rect.hide()
 	GlobalVariables.water_quota_updated.connect(_set_water_quota_display)
 	desktop_action_bar.hide()
 	nodification_bubble.hide()
@@ -40,6 +46,10 @@ func _ready() -> void:
 	GlobalVariables.water_quota = 80.0
 
 func boot() -> void:
+	await get_tree().create_timer(1.5).timeout
+	os_logo_texture_rect.show()
+	await get_tree().create_timer(2.5).timeout
+	boot_audio_stream_player.play()
 	animation_player.play("boot_fade")
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
@@ -94,7 +104,7 @@ func _tween_heat_bar() -> void:
 	if heat_bar_tween:
 		heat_bar_tween.kill()
 	heat_bar_tween = get_tree().create_tween()
-	heat_bar_tween.tween_property(heat_progress_bar, "value", 100.0, GlobalVariables.pumping_time)
+	heat_bar_tween.tween_property(heat_progress_bar, "value", 100.0, GlobalVariables.heating_time)
 
 func _on_pumping_time_timer_timeout() -> void:
 	if water_pump < GlobalVariables.water_quota:
