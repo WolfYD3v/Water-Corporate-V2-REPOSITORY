@@ -4,6 +4,7 @@ class_name Mirror
 @onready var sub_viewport: SubViewport = $SubViewport
 @onready var mirror_mesh_instance: MeshInstance3D = $MirrorMeshInstance
 
+
 var mirror_material: StandardMaterial3D = null
 
 func _ready() -> void:

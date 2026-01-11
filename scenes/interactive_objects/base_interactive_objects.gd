@@ -5,17 +5,12 @@ class_name BaseInteractiveObjects
 @onready var interaction_timer: Timer = $InteractionTimer
 
 @export var key_to_press_to_act: Key = KEY_E
-@export var interaction_timer_waiting_time: float = 0.5
+@export var interaction_timer_waiting_time: float = 0.1
 
-var captured_player_position: Vector3 = Vector3.ZERO:
-	set(value):
-		captured_player_position = value
-		print(value)
+var captured_player_position: Vector3 = Vector3.ZERO
 
 var player_focused: bool = false
-var mouse_focused: bool = false:
-	set(value):
-		mouse_focused = value
+var mouse_focused: bool = false
 var player: Player = null
 
 # Override if a custom ready is needed

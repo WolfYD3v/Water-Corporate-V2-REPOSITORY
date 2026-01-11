@@ -1,8 +1,66 @@
-[gd_scene load_steps=7 format=3 uid="uid://brj1rmddrqfyr"]
+[gd_scene load_steps=10 format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://b15nk2pupsahi" path="res://assets/textures/computer_windows_icon.png" id="3_etlvh"]
+[ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="4_bkr5v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkr5v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbp6s"]
+bg_color = Color(0, 1, 0, 0.5882353)
+
+[sub_resource type="Animation" id="Animation_etlvh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NodificationBubble:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NodificationBubble:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 548)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NodificationBubble:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NodificationBubble:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_jt3x0"]
 resource_name = "nodification_bubble_anim"
@@ -54,44 +112,17 @@ tracks/3/keys = {
 "times": PackedFloat32Array()
 }
 tracks/3/use_blend = true
-
-[sub_resource type="Animation" id="Animation_etlvh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NodificationBubble:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NodificationBubble:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 548)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NodificationBubble:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NodificationBubble:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_etlvh"]
@@ -146,7 +177,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5882353)
+color = Color(0.23921569, 0.59607846, 0, 0.39215687)
 
 [node name="Actions" type="HBoxContainer" parent="DesktopInterface/DesktopActionBar"]
 layout_mode = 1
@@ -160,7 +191,16 @@ alignment = 1
 [node name="WindowButton" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+focus_mode = 0
 icon = ExtResource("3_etlvh")
+flat = true
+expand_icon = true
+
+[node name="OktaMail" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("4_bkr5v")
 flat = true
 expand_icon = true
 
@@ -182,7 +222,120 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.23921569, 0.59607846, 0, 0.5882353)
+color = Color(0.23921569, 0.50980395, 0, 0.78431374)
+
+[node name="Labels" type="VBoxContainer" parent="NodificationBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AppNameRichTextLabel" type="RichTextLabel" parent="NodificationBubble/Labels"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+bbcode_enabled = true
+text = "[b]APP NAME[/b]"
+
+[node name="TextLabel" type="Label" parent="NodificationBubble/Labels"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Text"
+
+[node name="MailClient" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_bottom = -68.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23921569, 0.50980395, 0, 0.78431374)
+
+[node name="OktaMailClientRichTextLabel" type="RichTextLabel" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b]OktaMail Client[/b]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Line" type="ColorRect" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 37.0
+offset_right = -7.0
+offset_bottom = 40.0
+grow_horizontal = 2
+color = Color(0, 1, 0, 1)
+
+[node name="Mails" type="ItemList" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+offset_bottom = -125.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hovered_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hovered_selected_color = Color(0, 1, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkr5v")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nbp6s")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_nbp6s")
+theme_override_styles/hovered_selected = SubResource("StyleBoxFlat_nbp6s")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_nbp6s")
+theme_override_styles/selected = SubResource("StyleBoxFlat_nbp6s")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_nbp6s")
+
+[node name="Line2" type="ColorRect" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 460.0
+offset_right = -7.0
+offset_bottom = 463.0
+grow_horizontal = 2
+color = Color(0, 1, 0, 1)
+
+[node name="MailContent" type="RichTextLabel" parent="MailClient"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 459.0
+offset_bottom = 581.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "mail content"
+fit_content = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -190,3 +343,6 @@ libraries = {
 }
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]
+[connection signal="item_selected" from="MailClient/Mails" to="." method="_on_mails_item_selected"]

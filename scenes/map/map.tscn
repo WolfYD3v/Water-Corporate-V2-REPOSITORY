@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=9 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
 [ext_resource type="PackedScene" uid="uid://cjs1qisi5re4f" path="res://scenes/player/player.tscn" id="2_jcaow"]
 [ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="3_a2pkv"]
 [ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/corridor_1.tscn" id="3_ph54e"]
-[ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="6_jcaow"]
+[ext_resource type="PackedScene" uid="uid://dy5b8yqb0fu1b" path="res://scenes/rooms/collection/living_room.tscn" id="5_sqgf4"]
+[ext_resource type="PackedScene" uid="uid://dq2gc2wfaqdsa" path="res://scenes/interactive_objects/collection/computer.tscn" id="7_04w0f"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
-background_color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+background_mode = 1
+background_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
@@ -25,13 +27,18 @@ environment = SubResource("Environment_a2pkv")
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -5, 7, 8)
 
 [node name="Player" parent="." instance=ExtResource("2_jcaow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 10)
 
 [node name="Rooms" type="Node3D" parent="."]
 
-[node name="BaseRoom" parent="Rooms" node_paths=PackedStringArray("west_room", "north_room") instance=ExtResource("3_a2pkv")]
+[node name="LivingRoom" parent="Rooms" node_paths=PackedStringArray("north_room") instance=ExtResource("5_sqgf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+north_room = NodePath("../BaseRoom")
+
+[node name="BaseRoom" parent="Rooms" node_paths=PackedStringArray("west_room", "north_room", "south_room") instance=ExtResource("3_a2pkv")]
 west_room = NodePath("../Corridor1")
 north_room = NodePath("../BaseRoom3")
+south_room = NodePath("../LivingRoom")
 
 [node name="BaseRoom3" parent="Rooms" node_paths=PackedStringArray("south_room") instance=ExtResource("3_a2pkv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -45,7 +52,7 @@ east_room = NodePath("../BaseRoom")
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
 
-[node name="BaseInteractiveObjects" parent="." instance=ExtResource("6_jcaow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+[node name="Computer" parent="." instance=ExtResource("7_04w0f")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 1, 0)
 
 [connection signal="quitted" from="GUI/MainMenu" to="." method="_on_main_menu_quitted"]

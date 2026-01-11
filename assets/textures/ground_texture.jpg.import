@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bok2heucda3id"
-path.s3tc="res://.godot/imported/room_wall_texture.webp-e6c1c057219952e10050d9e5ca0f3c0d.s3tc.ctex"
+uid="uid://ccojue2k8olaa"
+path.s3tc="res://.godot/imported/ground_texture.jpg-d12b79027291520dd60ffe3b581c1882.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/room_wall_texture.webp"
-dest_files=["res://.godot/imported/room_wall_texture.webp-e6c1c057219952e10050d9e5ca0f3c0d.s3tc.ctex"]
+source_file="res://assets/textures/ground_texture.jpg"
+dest_files=["res://.godot/imported/ground_texture.jpg-d12b79027291520dd60ffe3b581c1882.s3tc.ctex"]
 
 [params]
 
