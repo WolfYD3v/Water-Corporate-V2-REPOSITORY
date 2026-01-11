@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=8 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="3_a2pkv"]
 [ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/corridor_1.tscn" id="3_ph54e"]
 [ext_resource type="PackedScene" uid="uid://dy5b8yqb0fu1b" path="res://scenes/rooms/collection/living_room.tscn" id="5_sqgf4"]
-[ext_resource type="PackedScene" uid="uid://dq2gc2wfaqdsa" path="res://scenes/interactive_objects/collection/computer.tscn" id="7_04w0f"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
 background_mode = 1
@@ -51,8 +50,5 @@ east_room = NodePath("../BaseRoom")
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
-
-[node name="Computer" parent="." instance=ExtResource("7_04w0f")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4, 1, 0)
 
 [connection signal="quitted" from="GUI/MainMenu" to="." method="_on_main_menu_quitted"]

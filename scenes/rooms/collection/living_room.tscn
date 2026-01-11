@@ -108,14 +108,18 @@ shape = SubResource("BoxShape3D_lnlbt")
 [node name="PlayerObjPosition" type="Marker3D" parent="Computer" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.742269e-09, -0.39999992, 0.79999995)
 
-[node name="SubViewport" type="SubViewport" parent="Computer" index="5"]
+[node name="KeyToPressLabel" type="Label3D" parent="Computer" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1054274e-15, 0, 0.5)
+text = "[E] to use"
+
+[node name="SubViewport" type="SubViewport" parent="Computer" index="6"]
 size = Vector2i(1152, 648)
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 
 [node name="ComputerDisplay" parent="Computer/SubViewport" index="0" instance=ExtResource("4_hh52i")]
 
-[node name="InteractionTimer" type="Timer" parent="Computer" index="6"]
+[node name="InteractionTimer" type="Timer" parent="Computer" index="7"]
 one_shot = true
 
 [node name="IndustrialLight" parent="." index="5" instance=ExtResource("5_hh52i")]

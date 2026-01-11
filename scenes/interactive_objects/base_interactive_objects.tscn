@@ -17,6 +17,10 @@ shape = SubResource("BoxShape3D_vrdds")
 [node name="PlayerObjPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
+[node name="KeyToPressLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+text = "[E] to use"
+
 [node name="InteractionTimer" type="Timer" parent="."]
 one_shot = true
 

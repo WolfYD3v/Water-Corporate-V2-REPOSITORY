@@ -3,6 +3,7 @@ class_name BaseInteractiveObjects
 
 @onready var player_obj_position: Marker3D = $PlayerObjPosition
 @onready var interaction_timer: Timer = $InteractionTimer
+@onready var key_to_press_label: Label3D = $KeyToPressLabel
 
 @export var key_to_press_to_act: Key = KEY_E
 @export var interaction_timer_waiting_time: float = 0.1
@@ -10,12 +11,15 @@ class_name BaseInteractiveObjects
 var captured_player_position: Vector3 = Vector3.ZERO
 
 var player_focused: bool = false
-var mouse_focused: bool = false
+var mouse_focused: bool = false:
+	set(value):
+		mouse_focused = value
+		key_to_press_label.visible = value
 var player: Player = null
 
 # Override if a custom ready is needed
 func _ready() -> void:
-	pass
+	key_to_press_label.hide()
 
 # Empty function to override to give a custom behavoir to inheritance scenes 
 func act() -> void:

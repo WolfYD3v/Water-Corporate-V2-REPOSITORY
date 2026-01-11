@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brj1rmddrqfyr"]
+[gd_scene load_steps=11 format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_jt3x0"]
@@ -60,6 +60,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BootBlackFading:color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BootBlackFading:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_jt3x0"]
@@ -125,9 +149,38 @@ tracks/4/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_bkr5v"]
+resource_name = "boot_fade"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BootBlackFading:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BootBlackFading:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_etlvh"]
 _data = {
 &"RESET": SubResource("Animation_etlvh"),
+&"boot_fade": SubResource("Animation_bkr5v"),
 &"nodification_bubble_anim": SubResource("Animation_jt3x0")
 }
 
@@ -335,7 +388,52 @@ grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/normal_font_size = 20
 text = "mail content"
-fit_content = true
+
+[node name="HeatBar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 170.0
+offset_bottom = 280.0
+
+[node name="Background" type="ColorRect" parent="HeatBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23921569, 0.50980395, 0, 0.78431374)
+
+[node name="HeatProgressBar" type="ProgressBar" parent="HeatBar"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 50.0
+offset_bottom = -30.0
+grow_vertical = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="WaterPumpedLabel" type="Label" parent="HeatBar"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0 / 0.0 L"
+vertical_alignment = 1
+
+[node name="BootBlackFading" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -344,5 +442,8 @@ libraries = {
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="PumpingTimeTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]
 [connection signal="item_selected" from="MailClient/Mails" to="." method="_on_mails_item_selected"]
+[connection signal="timeout" from="PumpingTimeTimer" to="." method="_on_pumping_time_timer_timeout"]

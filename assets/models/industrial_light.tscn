@@ -1,6 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://7ye1a0y705n1"]
 
 [ext_resource type="Material" uid="uid://uecjrforgudi" path="res://assets/materials/room_wall_material.tres" id="1_bpmat"]
+[ext_resource type="Material" uid="uid://cwhan65ox72kh" path="res://assets/materials/industrial_light_material.tres" id="2_pu3bu"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pu3bu"]
 _surfaces = [{
@@ -15,12 +16,6 @@ _surfaces = [{
 
 [sub_resource type="BoxMesh" id="BoxMesh_4xlux"]
 size = Vector3(1.8, 0.1, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxgdn"]
-albedo_color = Color(1, 1, 0, 1)
-emission_enabled = true
-emission = Color(1, 1, 0, 1)
-emission_energy_multiplier = 16.0
 
 [node name="IndustrialLight" type="Node3D"]
 
@@ -54,7 +49,7 @@ surface_material_override/0 = ExtResource("1_bpmat")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.18, 0)
 mesh = SubResource("BoxMesh_4xlux")
 skeleton = NodePath("../CSGCombiner3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_kxgdn")
+surface_material_override/0 = ExtResource("2_pu3bu")
 
 [node name="SpotLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1, -0.3, 0)
