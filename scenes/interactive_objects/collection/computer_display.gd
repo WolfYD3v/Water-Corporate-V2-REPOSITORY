@@ -5,7 +5,6 @@ class_name ComputerDisplay
 @export var mails_list: Dictionary[String, String] = {}
 
 @onready var boot_black_fading: ColorRect = $BootBlackFading
-@onready var boot_audio_stream_player: AudioStreamPlayer = $BootAudioStreamPlayer
 @onready var os_logo_texture_rect: TextureRect = $BootBlackFading/OSLogoTextureRect
 
 @onready var desktop_action_bar: Control = $DesktopInterface/DesktopActionBar
@@ -33,7 +32,10 @@ var water_pump: float = 0.0:
 		water_pumped_label.text = str(value) + " / " + str(GlobalVariables.water_quota) + " L"
 var heat_bar_tween
 
+var computer_scene: Computer = null
+
 func _ready() -> void:
+	computer_scene = get_parent().get_parent()
 	boot_black_fading.show()
 	os_logo_texture_rect.hide()
 	GlobalVariables.water_quota_updated.connect(_set_water_quota_display)
@@ -41,6 +43,9 @@ func _ready() -> void:
 	nodification_bubble.hide()
 	heat_bar.hide()
 	mail_client.hide()
+
+func start() -> void:
+	await get_tree().create_timer(1.0).timeout
 	await boot()
 	_list_mails()
 	GlobalVariables.water_quota = 80.0
@@ -49,8 +54,8 @@ func boot() -> void:
 	await get_tree().create_timer(1.5).timeout
 	os_logo_texture_rect.show()
 	await get_tree().create_timer(2.5).timeout
-	boot_audio_stream_player.play()
 	animation_player.play("boot_fade")
+	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 0.5)
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	desktop_action_bar.show()
@@ -81,6 +86,7 @@ func _push_nodification(app_name: String, nod_text: String) -> void:
 	nodification_bubble_app_name_rich_text_label.text = "[b]" + app_name + "[/b]"
 	nodification_bubble_text_label.text = nod_text
 	animation_player.play("nodification_bubble_anim")
+	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 1.0)
 
 
 func _on_window_button_pressed() -> void:
