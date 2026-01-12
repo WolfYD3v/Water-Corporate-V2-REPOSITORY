@@ -29,7 +29,7 @@ func act() -> void:
 		player.rotation.y = rotation.y
 	if not auto_boot:
 		await get_tree().create_timer(1.5).timeout
-		speaker_play_sound("", 0.0, 1.0)
+		speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 1.0) # SON TEMP
 		computer_display.start()
 
 func speaker_play_sound(sound_stream_path: String, volume_db: float = 0.0, pitch_scale: float = 1.0) -> void:

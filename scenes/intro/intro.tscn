@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://4jwk3ra7xx7a"]
+
+[ext_resource type="Script" uid="uid://blei1xfr8if4m" path="res://scenes/intro/intro.gd" id="1_qeukb"]
+[ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="2_iatiw"]
+
+[sub_resource type="Animation" id="Animation_qeukb"]
+resource_name = "intro"
+length = 5.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicAudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 1.7,
+"stream": ExtResource("2_iatiw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iatiw"]
+_data = {
+&"intro": SubResource("Animation_qeukb")
+}
+
+[node name="Intro" type="Node3D"]
+script = ExtResource("1_qeukb")
+
+[node name="Camera" type="Camera3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iatiw")
+}
+
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]

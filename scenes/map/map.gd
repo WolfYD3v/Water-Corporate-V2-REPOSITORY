@@ -4,6 +4,7 @@ class_name Map
 @onready var rooms: Node3D = $Rooms
 @onready var player: Player = $Player
 @onready var gui: CanvasLayer = $GUI
+@onready var intro: Intro = $Intro
 
 const PAUSE_MENU = preload("uid://cch6lt3ytnmwx")
 
@@ -32,6 +33,10 @@ func _input(_event: InputEvent) -> void:
 
 func _on_main_menu_quitted() -> void:
 	gui.add_child(PAUSE_MENU.instantiate())
+	# INTRO SCENE
+	if true:
+		intro.process_mode = Node.PROCESS_MODE_ALWAYS
+		intro.play()
 	print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")
 
 func try_change_room(next_room_direcion_idx: int) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=9 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="3_a2pkv"]
 [ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/corridor_1.tscn" id="3_ph54e"]
 [ext_resource type="PackedScene" uid="uid://dy5b8yqb0fu1b" path="res://scenes/rooms/collection/living_room.tscn" id="5_sqgf4"]
+[ext_resource type="PackedScene" uid="uid://4jwk3ra7xx7a" path="res://scenes/intro/intro.tscn" id="6_04w0f"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
 background_mode = 1
@@ -46,6 +47,8 @@ south_room = NodePath("../BaseRoom")
 [node name="Corridor1" parent="Rooms" node_paths=PackedStringArray("east_room") instance=ExtResource("3_ph54e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
 east_room = NodePath("../BaseRoom")
+
+[node name="Intro" parent="." instance=ExtResource("6_04w0f")]
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
