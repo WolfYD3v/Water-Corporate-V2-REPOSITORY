@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://t0ohqj6oj8r0"]
+
+[ext_resource type="Script" uid="uid://ckyvw2eb0kf0d" path="res://scenes/upgrades_shop/update_card.gd" id="1_u54jl"]
+[ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="2_sjnmo"]
+
+[node name="UpdateCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1002.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u54jl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Texture" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("2_sjnmo")
+expand_mode = 1
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "UPG NAME"
+horizontal_alignment = 1
+
+[node name="Line" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "UPG DESC
+UPG DESC
+UPG DESC
+UPG DESC"
+horizontal_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "UPG PRICE"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]

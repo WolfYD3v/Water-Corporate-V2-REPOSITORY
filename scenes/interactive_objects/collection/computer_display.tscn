@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://brj1rmddrqfyr"]
+[gd_scene load_steps=12 format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://b15nk2pupsahi" path="res://assets/textures/computer_windows_icon.png" id="3_etlvh"]
 [ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="4_bkr5v"]
+[ext_resource type="PackedScene" uid="uid://bwqccmvft3sx4" path="res://scenes/upgrades_shop/upgrades_shop.tscn" id="5_nbp6s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkr5v"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -227,10 +228,16 @@ grow_vertical = 2
 [node name="DesktopIcons" type="GridContainer" parent="DesktopInterface"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 2
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 9
+
+[node name="UpgradesShopButton" type="Button" parent="DesktopInterface/DesktopIcons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+icon = ExtResource("4_bkr5v")
+expand_icon = true
 
 [node name="DesktopActionBar" type="Control" parent="DesktopInterface"]
 custom_minimum_size = Vector2(0, 60)
@@ -269,6 +276,10 @@ focus_mode = 0
 icon = ExtResource("4_bkr5v")
 flat = true
 expand_icon = true
+
+[node name="UpgradesShop" parent="." instance=ExtResource("5_nbp6s")]
+visible = false
+layout_mode = 1
 
 [node name="NodificationBubble" type="Control" parent="."]
 layout_mode = 1
@@ -472,6 +483,7 @@ libraries = {
 
 [node name="PumpingTimeTimer" type="Timer" parent="."]
 
+[connection signal="pressed" from="DesktopInterface/DesktopIcons/UpgradesShopButton" to="." method="_on_upgrades_shop_button_pressed"]
 [connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]
 [connection signal="item_selected" from="MailClient/Mails" to="." method="_on_mails_item_selected"]
 [connection signal="timeout" from="PumpingTimeTimer" to="." method="_on_pumping_time_timer_timeout"]

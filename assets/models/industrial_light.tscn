@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://7ye1a0y705n1"]
+[gd_scene load_steps=8 format=4 uid="uid://7ye1a0y705n1"]
 
 [ext_resource type="Material" uid="uid://uecjrforgudi" path="res://assets/materials/room_wall_material.tres" id="1_bpmat"]
 [ext_resource type="Script" uid="uid://y1w5475dtbwc" path="res://assets/models/industrial_light.gd" id="1_kxgdn"]
+[ext_resource type="AudioStream" uid="uid://dn1pqxde63tbn" path="res://assets/sfxs/very-old-fluorecent-light-95811_industrial_light_sfx.mp3" id="2_iosie"]
 [ext_resource type="Material" uid="uid://cwhan65ox72kh" path="res://assets/materials/industrial_light_material.tres" id="2_pu3bu"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pu3bu"]
@@ -75,5 +76,9 @@ spot_angle = 50.0
 spot_angle_attenuation = 2.0
 
 [node name="SFXAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.3, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1, -0.3, 0)
+stream = ExtResource("2_iosie")
+volume_db = 60.0
+max_db = 6.0
 emission_angle_enabled = true
+emission_angle_filter_attenuation_db = 0.0

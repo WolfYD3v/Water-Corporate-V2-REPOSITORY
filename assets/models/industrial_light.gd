@@ -8,8 +8,6 @@ class_name IndustrialLight
 			flicker()
 @export var min_random_flickering_time: float = 10.0
 @export var max_random_flickering_time: float = 25.0
-@export var turnining_on_sfx: AudioStream = null
-@export var turnining_off_sfx: AudioStream = null
 
 @onready var spot_light: SpotLight3D = $SpotLight
 @onready var sfx_audio_stream_player: AudioStreamPlayer3D = $SFXAudioStreamPlayer
@@ -22,13 +20,13 @@ func _ready() -> void:
 func turn_on() -> void:
 	spot_light.show()
 	light_mesh_instance_2.hide()
-	sfx_audio_stream_player.stream = turnining_on_sfx
+	sfx_audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	sfx_audio_stream_player.play()
 
 func turn_off() -> void:
 	spot_light.hide()
 	light_mesh_instance_2.show()
-	sfx_audio_stream_player.stream = turnining_off_sfx
+	sfx_audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	sfx_audio_stream_player.play()
 
 func flicker() -> void:

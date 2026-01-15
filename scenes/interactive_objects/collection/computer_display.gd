@@ -26,6 +26,8 @@ class_name ComputerDisplay
 
 @onready var pumping_time_timer: Timer = $PumpingTimeTimer
 
+@onready var upgrades_shop: UpgradesShop = $UpgradesShop
+
 var water_pump: float = 0.0:
 	set(value):
 		water_pump = value
@@ -43,7 +45,8 @@ func _ready() -> void:
 	nodification_bubble.hide()
 	heat_bar.hide()
 	mail_client.hide()
-
+	
+	boot_black_fading.hide()
 func start() -> void:
 	await get_tree().create_timer(1.0).timeout
 	await boot()
@@ -115,3 +118,7 @@ func _tween_heat_bar() -> void:
 func _on_pumping_time_timer_timeout() -> void:
 	if water_pump < GlobalVariables.water_quota:
 		print("WATER QUOTA NOT FULL!")
+
+
+func _on_upgrades_shop_button_pressed() -> void:
+	upgrades_shop.show()

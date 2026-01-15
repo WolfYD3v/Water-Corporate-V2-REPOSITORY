@@ -8,6 +8,7 @@ class_name Computer
 @onready var computer_display: ComputerDisplay = $SubViewport/ComputerDisplay
 
 var player_on_computer: bool = false
+var computer_booted: bool = false
 
 func _ready() -> void:
 	key_to_press_label.hide()
@@ -27,7 +28,8 @@ func _input(event: InputEvent) -> void:
 func act() -> void:
 	if player_focused:
 		player.rotation.y = rotation.y
-	if not auto_boot:
+	if not auto_boot and not computer_booted:
+		computer_booted = true
 		await get_tree().create_timer(1.5).timeout
 		speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 1.0) # SON TEMP
 		computer_display.start()

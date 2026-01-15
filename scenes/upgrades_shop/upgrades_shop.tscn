@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwqccmvft3sx4"]
+
+[ext_resource type="Script" uid="uid://dpompfkcpwpru" path="res://scenes/upgrades_shop/upgrades_shop.gd" id="1_84wy3"]
+[ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_de4uu"]
+[ext_resource type="Script" uid="uid://bhekqt3w61pfr" path="res://resources/upgrade/upgrade.gd" id="2_sfw83"]
+[ext_resource type="PackedScene" uid="uid://t0ohqj6oj8r0" path="res://scenes/upgrades_shop/update_card.tscn" id="4_ae0qv"]
+
+[sub_resource type="Resource" id="Resource_sfw83"]
+script = ExtResource("2_sfw83")
+upgrade_name = "Test"
+base_price = 34.0
+metadata/_custom_type_script = "uid://bhekqt3w61pfr"
+
+[node name="UpgradesShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_84wy3")
+upgrades_avaible = Array[ExtResource("2_sfw83")]([SubResource("Resource_sfw83")])
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -409.5
+offset_top = -68.5
+offset_right = 409.5
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "UPGRADES SHOP"
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.2159017, 0.21590173, 0.2159017, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_de4uu")
+expand_mode = 1
+
+[node name="NODES" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoneyLabel" type="Label" parent="NODES"]
+layout_mode = 2
+text = "CASH $"
+horizontal_alignment = 1
+
+[node name="UpgradesCardsContainer" type="HBoxContainer" parent="NODES"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="UpdateCard" parent="NODES/UpgradesCardsContainer" instance=ExtResource("4_ae0qv")]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
