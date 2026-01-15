@@ -72,6 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077819824, 0.003112793, 
 shape = SubResource("BoxShape3D_lnlbt")
 
 [node name="SpeakerAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="6"]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+emission_angle_enabled = true
 
 [node name="SubViewport" type="SubViewport" parent="." index="7"]
 size = Vector2i(1152, 648)

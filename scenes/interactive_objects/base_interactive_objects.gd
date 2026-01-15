@@ -1,9 +1,11 @@
 extends Node3D
 class_name BaseInteractiveObjects
 
+@export var change_player_position: bool = true
+
 @onready var player_obj_position: Marker3D = $PlayerObjPosition
 @onready var interaction_timer: Timer = $InteractionTimer
-@onready var key_to_press_label: Label3D = $KeyToPressLabel
+@onready var key_to_press_label: MeshInstance3D = $KeyToPressLabel
 
 @export var key_to_press_to_act: Key = KEY_E
 @export var interaction_timer_waiting_time: float = 0.1
@@ -31,17 +33,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_key_pressed(key_to_press_to_act) and interaction_timer.is_stopped() and player:
 			interaction_timer.start(interaction_timer_waiting_time)
 			player_focused = not(player_focused)
-			player.can_move = not(player_focused)
-			player.can_rotate = not(player_focused)
+			if change_player_position:
+				player.can_move = not(player_focused)
+				player.can_rotate = not(player_focused)
 			
 			if player_focused and mouse_focused:
-				captured_player_position = player.global_position
-				print("Player in")
-				player.global_position = player_obj_position.global_position
+				if change_player_position:
+					captured_player_position = player.global_position
+					print("Player in")
+					player.global_position = player_obj_position.global_position
 				act()
 			else:
-				print("Player out")
-				player.global_position = captured_player_position
+				if change_player_position:
+					print("Player out")
+					player.global_position = captured_player_position
 
 
 func _on_player_detection_area_area_entered(area: Area3D) -> void:

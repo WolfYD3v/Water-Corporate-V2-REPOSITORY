@@ -1,11 +1,63 @@
-[gd_scene load_steps=5 format=3 uid="uid://4jwk3ra7xx7a"]
+[gd_scene load_steps=7 format=3 uid="uid://4jwk3ra7xx7a"]
 
 [ext_resource type="Script" uid="uid://blei1xfr8if4m" path="res://scenes/intro/intro.gd" id="1_qeukb"]
 [ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="2_iatiw"]
+[ext_resource type="FontFile" uid="uid://caosmfkg8t72b" path="res://assets/fonts/Rubik_Glitch/RubikGlitch-Regular.ttf" id="3_teox7"]
+
+[sub_resource type="Animation" id="Animation_iatiw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/BlackFading:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 2, -0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5307274, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera:fov")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
 
 [sub_resource type="Animation" id="Animation_qeukb"]
 resource_name = "intro"
-length = 5.0
+length = 15.0
 tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -21,9 +73,78 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/BlackFading:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera:fov")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [10.0, 75.0, 75.0, 75.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 2, -0.6), Vector3(0.8, -0.3, 0), Vector3(0.8, -0.29999995, 0), Vector3(-1.5, -0.4, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.34906584, 0), Vector3(0, 4.712389, 0), Vector3(0, 4.712389, 0), Vector3(0, 1.5707964, 0)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.5, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["", 1],
+"method": &"write_text"
+}, {
+"args": ["A game by WolfY_D3v", 3],
+"method": &"write_text"
+}, {
+"args": ["Made with Godot", 3],
+"method": &"write_text"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iatiw"]
 _data = {
+&"RESET": SubResource("Animation_iatiw"),
 &"intro": SubResource("Animation_qeukb")
 }
 
@@ -31,6 +152,9 @@ _data = {
 script = ExtResource("1_qeukb")
 
 [node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, -0.81915206, 1, 2, -0.6)
+current = true
+fov = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -38,3 +162,24 @@ libraries = {
 }
 
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlackFading" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+offset_right = 448.0
+offset_bottom = 0.00012207031
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_teox7")
+theme_override_font_sizes/font_size = 40

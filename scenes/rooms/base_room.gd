@@ -55,13 +55,15 @@ func scan_adj_rooms() -> void:
 		else:
 			change_room_areas.get_child(idx).get_child(0).disabled = true
 		idx += 1
-	print(to_string() +  " adj rooms scanned | RESULT: " + str(adj_rooms_array))
+	print(to_string() + " adj rooms scanned | RESULT: " + str(adj_rooms_array))
 
 func get_player_position_in_room() -> Vector3:
 	return player_position_marker.global_position
 
 func _send_change_room_area_trigger() -> void:
 	if next_room_direction_idx >= 0:
+		print(get(adj_rooms_directions[next_room_direction_idx]))
+		print(next_room_direction_idx)
 		change_room.emit(next_room_direction_idx)
 
 

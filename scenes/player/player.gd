@@ -6,9 +6,11 @@ class_name Player
 # Original code edited to match what I wanted to do
 
 @export var free_roam_enable: bool = false
+@export var debug_top_down_camera_view: bool = false
 
 @onready var camera: Camera3D = $Camera
 @onready var player_mouse: Area3D = $PlayerMouseArea
+@onready var debug_top_down_camera: Camera3D = $DebugTopDownCamera
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -20,6 +22,7 @@ var can_rotate: bool = true
 
 func _ready() -> void:
 	if free_roam_enable: player_mouse.queue_free()
+	if not debug_top_down_camera_view: debug_top_down_camera.queue_free()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

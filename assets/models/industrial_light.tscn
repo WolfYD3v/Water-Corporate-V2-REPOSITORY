@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://7ye1a0y705n1"]
+[gd_scene load_steps=7 format=4 uid="uid://7ye1a0y705n1"]
 
 [ext_resource type="Material" uid="uid://uecjrforgudi" path="res://assets/materials/room_wall_material.tres" id="1_bpmat"]
+[ext_resource type="Script" uid="uid://y1w5475dtbwc" path="res://assets/models/industrial_light.gd" id="1_kxgdn"]
 [ext_resource type="Material" uid="uid://cwhan65ox72kh" path="res://assets/materials/industrial_light_material.tres" id="2_pu3bu"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pu3bu"]
@@ -17,7 +18,12 @@ _surfaces = [{
 [sub_resource type="BoxMesh" id="BoxMesh_4xlux"]
 size = Vector3(1.8, 0.1, 0.3)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxgdn"]
+albedo_color = Color(0, 0, 0, 1)
+emission = Color(0.44752336, 0.4475239, 0, 1)
+
 [node name="IndustrialLight" type="Node3D"]
+script = ExtResource("1_kxgdn")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 visible = false
@@ -51,6 +57,13 @@ mesh = SubResource("BoxMesh_4xlux")
 skeleton = NodePath("../CSGCombiner3D")
 surface_material_override/0 = ExtResource("2_pu3bu")
 
+[node name="LightMeshInstance2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.2, 0)
+visible = false
+mesh = SubResource("BoxMesh_4xlux")
+skeleton = NodePath("../CSGCombiner3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_kxgdn")
+
 [node name="SpotLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 1, -0.3, 0)
 light_color = Color(1, 1, 0, 1)
@@ -60,3 +73,7 @@ spot_range = 25.0
 spot_attenuation = 2.0
 spot_angle = 50.0
 spot_angle_attenuation = 2.0
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.3, 0)
+emission_angle_enabled = true

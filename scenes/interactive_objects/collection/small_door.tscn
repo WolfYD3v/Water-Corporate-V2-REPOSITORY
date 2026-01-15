@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy38l5utu1puw"]
+
+[ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="1_r4kns"]
+[ext_resource type="PackedScene" uid="uid://xqe6feyuj6ig" path="res://assets/models/small_iron_door.tscn" id="2_m1560"]
+[ext_resource type="Script" uid="uid://b6o0m71iqbmsq" path="res://scenes/interactive_objects/collection/small_door.gd" id="2_r4kns"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4kns"]
+size = Vector3(2.4, 1.4, 13)
+
+[node name="SmallDoor" instance=ExtResource("1_r4kns")]
+script = ExtResource("2_r4kns")
+change_player_position = false
+
+[node name="CSGCombinerModel" parent="." index="0"]
+visible = false
+
+[node name="SmallIronDoor" parent="." index="1" instance=ExtResource("2_m1560")]
+
+[node name="PlayerDetectionArea" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
+
+[node name="CollisionShape" parent="PlayerDetectionArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077819824, 0.003112793, -4.119171)
+shape = SubResource("BoxShape3D_r4kns")

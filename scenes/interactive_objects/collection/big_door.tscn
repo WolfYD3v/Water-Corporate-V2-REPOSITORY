@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b88fqwn2pdxka"]
+
+[ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="1_b24hm"]
+
+[node name="BigDoor" instance=ExtResource("1_b24hm")]

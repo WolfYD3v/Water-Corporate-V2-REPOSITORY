@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cemeydk4f2mbd"]
+
+[ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="1_i6c02"]
+[ext_resource type="PackedScene" uid="uid://buv5hhsnkuhxu" path="res://assets/models/corridor_arch_model.tscn" id="2_hsvnr"]
+[ext_resource type="PackedScene" uid="uid://7ye1a0y705n1" path="res://assets/models/industrial_light.tscn" id="3_h8k8n"]
+
+[node name="HorizontalCorridor" instance=ExtResource("1_i6c02")]
+
+[node name="CorridorArchModel" parent="Build" index="2" instance=ExtResource("2_hsvnr")]
+transform = Transform3D(-4.371139e-08, 0, -0.9012283, 0, 1, 0, 1, 0, -3.939394e-08, 1.5, 2.3999999, 0.08324611)
+
+[node name="IndustrialLight" parent="." index="4" instance=ExtResource("3_h8k8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90000015, 4.2, -3)
+
+[node name="IndustrialLight2" parent="." index="5" instance=ExtResource("3_h8k8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90000015, 4.2, 3)

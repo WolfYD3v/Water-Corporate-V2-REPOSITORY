@@ -1,12 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=18 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
 [ext_resource type="PackedScene" uid="uid://cjs1qisi5re4f" path="res://scenes/player/player.tscn" id="2_jcaow"]
-[ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="3_a2pkv"]
-[ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/corridor_1.tscn" id="3_ph54e"]
+[ext_resource type="Texture2D" uid="uid://4am1hv62dlkx" path="res://assets/sprites/directions.jpeg" id="3_mrjnl"]
+[ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/vertical_corridor.tscn" id="3_ph54e"]
 [ext_resource type="PackedScene" uid="uid://dy5b8yqb0fu1b" path="res://scenes/rooms/collection/living_room.tscn" id="5_sqgf4"]
 [ext_resource type="PackedScene" uid="uid://4jwk3ra7xx7a" path="res://scenes/intro/intro.tscn" id="6_04w0f"]
+[ext_resource type="PackedScene" uid="uid://cpjjdl1f25wk4" path="res://scenes/rooms/collection/4_doors_room.tscn" id="6_sqgf4"]
+[ext_resource type="PackedScene" uid="uid://cp1qy610lrj2d" path="res://scenes/rooms/collection/3_doors_room.tscn" id="6_vvrx0"]
+[ext_resource type="PackedScene" uid="uid://ceur2eowjl8vq" path="res://scenes/rooms/collection/1_doors_room.tscn" id="7_f17u5"]
+[ext_resource type="PackedScene" uid="uid://cemeydk4f2mbd" path="res://scenes/rooms/collection/horizontal_corridor.tscn" id="8_f17u5"]
+[ext_resource type="PackedScene" uid="uid://y8vitftxyvtm" path="res://scenes/rooms/collection/intersection_corridor.tscn" id="9_x2kg6"]
+[ext_resource type="PackedScene" uid="uid://cynegevfjnj7s" path="res://scenes/rooms/collection/reception_room.tscn" id="10_cumk7"]
+[ext_resource type="PackedScene" uid="uid://clfsofvdkok67" path="res://scenes/rooms/collection/2_doors_room.tscn" id="11_cumk7"]
+[ext_resource type="PackedScene" uid="uid://di1muj33di57g" path="res://scenes/rooms/collection/water_pumping_room.tscn" id="12_mgs8m"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
 background_mode = 1
@@ -14,44 +22,179 @@ background_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
-fog_depth_curve = 0.10153164
+fog_depth_curve = 0.4506252
 fog_depth_end = 15.0
 
-[node name="Map" type="Node3D"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mgs8m"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Map" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
+starting_room = NodePath("Rooms/LivingRoom(5,1)")
+play_intro = false
+play_starting_dialog = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a2pkv")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, -5, 7, 8)
-
 [node name="Player" parent="." instance=ExtResource("2_jcaow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 10)
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, -6.556708e-07, 15, 0, -15, -6.556708e-07, 69.5134, 21, 0)
+texture = ExtResource("3_mrjnl")
+
 [node name="Rooms" type="Node3D" parent="."]
 
-[node name="LivingRoom" parent="Rooms" node_paths=PackedStringArray("north_room") instance=ExtResource("5_sqgf4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
-north_room = NodePath("../BaseRoom")
+[node name="1DoorsRoom(1,5)" parent="Rooms" node_paths=PackedStringArray("east_room") instance=ExtResource("7_f17u5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -40, 0, -30)
+east_room = NodePath("../IntersectionCorridorRoom(2,5)")
 
-[node name="BaseRoom" parent="Rooms" node_paths=PackedStringArray("west_room", "north_room", "south_room") instance=ExtResource("3_a2pkv")]
-west_room = NodePath("../Corridor1")
-north_room = NodePath("../BaseRoom3")
-south_room = NodePath("../LivingRoom")
+[node name="1DoorsRoom(2,1)" parent="Rooms" node_paths=PackedStringArray("north_room") instance=ExtResource("7_f17u5")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0, 10)
+north_room = NodePath("../3DoorsRoom(2,2)")
 
-[node name="BaseRoom3" parent="Rooms" node_paths=PackedStringArray("south_room") instance=ExtResource("3_a2pkv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-south_room = NodePath("../BaseRoom")
+[node name="3DoorsRoom(2,2)" parent="Rooms" node_paths=PackedStringArray("east_room", "north_room", "south_room") instance=ExtResource("6_vvrx0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -30, 0, 0)
+east_room = NodePath("../VerticalCorridor(3,2)")
+north_room = NodePath("../HorizontalCorridor(2,3)")
+south_room = NodePath("../1DoorsRoom(2,1)")
 
-[node name="Corridor1" parent="Rooms" node_paths=PackedStringArray("east_room") instance=ExtResource("3_ph54e")]
+[node name="HorizontalCorridor(2,3)" parent="Rooms" node_paths=PackedStringArray("north_room", "south_room") instance=ExtResource("8_f17u5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -10)
+north_room = NodePath("../HorizontalCorridor(2,4)")
+south_room = NodePath("../3DoorsRoom(2,2)")
+
+[node name="HorizontalCorridor(2,4)" parent="Rooms" node_paths=PackedStringArray("north_room", "south_room") instance=ExtResource("8_f17u5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -20)
+north_room = NodePath("../IntersectionCorridorRoom(2,5)")
+south_room = NodePath("../HorizontalCorridor(2,3)")
+
+[node name="IntersectionCorridorRoom(2,5)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room", "north_room", "south_room") instance=ExtResource("9_x2kg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -30)
+west_room = NodePath("../1DoorsRoom(1,5)")
+east_room = NodePath("../VerticalCorridor(3,5)")
+north_room = NodePath("../ReceptionRoom(2,6)")
+south_room = NodePath("../HorizontalCorridor(2,4)")
+
+[node name="ReceptionRoom(2,6)" parent="Rooms" node_paths=PackedStringArray("south_room") instance=ExtResource("10_cumk7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -40)
+south_room = NodePath("../IntersectionCorridorRoom(2,5)")
+
+[node name="VerticalCorridor(3,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+west_room = NodePath("../3DoorsRoom(2,2)")
+east_room = NodePath("../VerticalCorridor(4,2)")
+
+[node name="VerticalCorridor(3,5)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -30)
+west_room = NodePath("../IntersectionCorridorRoom(2,5)")
+east_room = NodePath("../VerticalCorridor(4,5)")
+
+[node name="VerticalCorridor(4,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
-east_room = NodePath("../BaseRoom")
+west_room = NodePath("../VerticalCorridor(3,2)")
+east_room = NodePath("../4DoorsRoom(5,2)")
+
+[node name="VerticalCorridor(4,5)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -30)
+west_room = NodePath("../VerticalCorridor(3,5)")
+east_room = NodePath("../VerticalCorridor(5,5)")
+
+[node name="LivingRoom(5,1)" parent="Rooms" node_paths=PackedStringArray("north_room") instance=ExtResource("5_sqgf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+north_room = NodePath("../4DoorsRoom(5,2)")
+
+[node name="4DoorsRoom(5,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room", "north_room", "south_room") instance=ExtResource("6_sqgf4")]
+west_room = NodePath("../VerticalCorridor(4,2)")
+east_room = NodePath("../VerticalCorridor(6,2)")
+north_room = NodePath("../3DoorsRoom(5,3)")
+south_room = NodePath("../LivingRoom(5,1)")
+
+[node name="3DoorsRoom(5,3)" parent="Rooms" node_paths=PackedStringArray("north_room", "south_room") instance=ExtResource("6_vvrx0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+north_room = NodePath("../2DoorsRoom(5,4)")
+south_room = NodePath("../4DoorsRoom(5,2)")
+
+[node name="2DoorsRoom(5,4)" parent="Rooms" node_paths=PackedStringArray("east_room", "south_room") instance=ExtResource("11_cumk7")]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, -20)
+east_room = NodePath("../3DoorsRoom(6,4)")
+south_room = NodePath("../3DoorsRoom(5,3)")
+
+[node name="VerticalCorridor(5,5)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -30)
+west_room = NodePath("../VerticalCorridor(4,5)")
+east_room = NodePath("../2DoorsRoom(6,5)")
+
+[node name="VerticalCorridor(6,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+west_room = NodePath("../4DoorsRoom(5,2)")
+east_room = NodePath("../VerticalCorridor(7,2)")
+
+[node name="3DoorsRoom(6,4)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room", "north_room") instance=ExtResource("6_vvrx0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 0, -20)
+west_room = NodePath("../2DoorsRoom(5,4)")
+east_room = NodePath("../VerticalCorridor(7,4)")
+north_room = NodePath("../2DoorsRoom(6,5)")
+
+[node name="2DoorsRoom(6,5)" parent="Rooms" node_paths=PackedStringArray("west_room", "south_room") instance=ExtResource("11_cumk7")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 10, 0, -30)
+west_room = NodePath("../VerticalCorridor(5,5)")
+south_room = NodePath("../3DoorsRoom(6,4)")
+
+[node name="VerticalCorridor(7,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+west_room = NodePath("../VerticalCorridor(6,2)")
+east_room = NodePath("../2DoorsRoom(8, 2)")
+
+[node name="VerticalCorridor(7,4)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+west_room = NodePath("../3DoorsRoom(6,4)")
+east_room = NodePath("../2DoorsRoom(8,4)")
+
+[node name="2DoorsRoom(8, 2)" parent="Rooms" node_paths=PackedStringArray("west_room", "north_room") instance=ExtResource("11_cumk7")]
+transform = Transform3D(-2.1855695e-07, 0, -1, 0, 1, 0, 1, 0, -2.1855695e-07, 30, 0, 0)
+west_room = NodePath("../VerticalCorridor(7,2)")
+north_room = NodePath("../WaterPumpingsRoom(8,3)")
+
+[node name="WaterPumpingsRoom(8,3)" parent="Rooms" node_paths=PackedStringArray("north_room", "south_room") instance=ExtResource("12_mgs8m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -10)
+north_room = NodePath("../2DoorsRoom(8,4)")
+south_room = NodePath("../2DoorsRoom(8, 2)")
+
+[node name="2DoorsRoom(8,4)" parent="Rooms" node_paths=PackedStringArray("west_room", "south_room") instance=ExtResource("11_cumk7")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 30, 0, -20)
+west_room = NodePath("../VerticalCorridor(7,4)")
+south_room = NodePath("../WaterPumpingsRoom(8,3)")
 
 [node name="Intro" parent="." instance=ExtResource("6_04w0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+
+[node name="Camera" parent="Intro" index="0"]
+transform = Transform3D(-0.81915194, 0, 0.5735764, 0, 1, 0, -0.5735764, 0, -0.81915194, 1, 2, -0.6)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
 
+[node name="TextureRect" type="TextureRect" parent="GUI"]
+custom_minimum_size = Vector2(300, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_mgs8m")
+expand_mode = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(500, 500)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 86, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/Camera3D"]
+light_energy = 16.0
+spot_range = 115.0
+
 [connection signal="quitted" from="GUI/MainMenu" to="." method="_on_main_menu_quitted"]
+
+[editable path="Intro"]

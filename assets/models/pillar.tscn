@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c55c7xjr6sgnx"]
+
+[ext_resource type="Material" uid="uid://dml26ddugh5sj" path="res://assets/materials/yellow_concrete_material.tres" id="1_wwqjk"]
+
+[node name="Pillar" type="CSGBox3D"]
+size = Vector3(1, 7, 1)
+material = ExtResource("1_wwqjk")

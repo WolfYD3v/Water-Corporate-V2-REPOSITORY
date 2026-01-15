@@ -1,8 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy7ejyeswywvd"]
+[gd_scene load_steps=4 format=3 uid="uid://cy7ejyeswywvd"]
 
 [ext_resource type="Script" uid="uid://b7wfvmflqr5dl" path="res://scenes/interactive_objects/base_interactive_objects.gd" id="1_vrdds"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vrdds"]
+
+[sub_resource type="TextMesh" id="TextMesh_vrdds"]
+text = "[E] to use"
+font_size = 20
+depth = 0.01
 
 [node name="BaseInteractiveObjects" type="Node3D"]
 script = ExtResource("1_vrdds")
@@ -17,9 +22,9 @@ shape = SubResource("BoxShape3D_vrdds")
 [node name="PlayerObjPosition" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="KeyToPressLabel" type="Label3D" parent="."]
+[node name="KeyToPressLabel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-text = "[E] to use"
+mesh = SubResource("TextMesh_vrdds")
 
 [node name="InteractionTimer" type="Timer" parent="."]
 one_shot = true
