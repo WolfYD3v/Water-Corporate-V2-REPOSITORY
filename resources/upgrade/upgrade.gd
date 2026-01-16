@@ -14,7 +14,7 @@ var _automation_enable: bool = false
 func level_up() -> void:
 	if _level + 1 <= max_upgrade_level:
 		_level += 1
-		base_price *= price_augmentation_rate
+		base_price = snappedf(base_price * price_augmentation_rate, 0.01)
 
 func get_level() -> int:
 	return _level

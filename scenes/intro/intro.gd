@@ -16,11 +16,13 @@ enum TEXT_LABEL_POSITIONS {
 }
 
 func _ready() -> void:
+	hide()
 	black_fading.hide()
 	#process_mode = Node.PROCESS_MODE_ALWAYS
 	#play()
 
 func play() -> void:
+	show()
 	black_fading.show()
 	get_tree().paused = true
 	animation_player.play("intro")

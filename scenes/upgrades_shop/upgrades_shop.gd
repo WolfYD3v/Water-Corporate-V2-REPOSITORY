@@ -4,14 +4,12 @@ class_name UpgradesShop
 @export var upgrades_avaible: Array[Upgrade] = []
 
 @onready var upgrades_cards_container: HBoxContainer = $NODES/UpgradesCardsContainer
-@onready var money_label: Label = $NODES/MoneyLabel
+@onready var money_rich_text_label: RichTextLabel = $NODES/MoneyRichTextLabel
 
 func _ready() -> void:
 	MoneyManager.money_updated.connect(update_money_display)
 	update_money_display()
 	hide()
-	
-	show()
 	
 	var upg_card_idx: int = 0
 	for upg_card: UpgradeCard in upgrades_cards_container.get_children():
@@ -19,4 +17,8 @@ func _ready() -> void:
 		upg_card_idx += 1
 
 func update_money_display() -> void:
-	money_label.text = str(MoneyManager.send_money()) + " $"
+	money_rich_text_label.text = "[b][u]" + str(MoneyManager.send_money()) + " $" + "[/u][/b]"
+
+
+func _on_close_button_pressed() -> void:
+	hide()

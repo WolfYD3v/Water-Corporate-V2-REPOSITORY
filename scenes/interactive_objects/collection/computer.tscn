@@ -16,7 +16,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="QuadMesh" id="QuadMesh_uotha"]
-size = Vector2(1.55, 0.8)
+size = Vector2(1.6, 0.8)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_uotha"]
 viewport_path = NodePath("SubViewport")
@@ -24,6 +24,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnlbt"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_uotha")
+emission = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lnlbt"]
 size = Vector3(2.4, 1.4, 4.7616577)
@@ -31,6 +32,8 @@ size = Vector3(2.4, 1.4, 4.7616577)
 [node name="Computer" instance=ExtResource("1_uotha")]
 script = ExtResource("2_26xa3")
 auto_boot = true
+change_player_position = false
+interaction_timer_waiting_time = 0.5
 
 [node name="CSGCombinerModel" parent="." index="0"]
 visible = false
@@ -71,11 +74,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077819824, 0.003112793, 0)
 shape = SubResource("BoxShape3D_lnlbt")
 
+[node name="KeyToPressLabel" parent="." index="5"]
+visible = false
+
 [node name="SpeakerAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="6"]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 emission_angle_enabled = true
 
-[node name="SubViewport" type="SubViewport" parent="." index="7"]
+[node name="SubViewport" type="SubViewport" parent="." index="8"]
+physics_object_picking = true
 size = Vector2i(1152, 648)
+render_target_update_mode = 4
 
 [node name="ComputerDisplay" parent="SubViewport" index="0" instance=ExtResource("2_lnlbt")]
+
+[node name="GUI" type="CanvasLayer" parent="." index="9"]

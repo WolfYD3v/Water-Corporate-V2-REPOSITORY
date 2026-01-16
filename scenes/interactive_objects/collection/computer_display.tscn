@@ -1,16 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
+[ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_osdv1"]
 [ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_jt3x0"]
 [ext_resource type="Texture2D" uid="uid://b15nk2pupsahi" path="res://assets/textures/computer_windows_icon.png" id="3_etlvh"]
+[ext_resource type="Texture2D" uid="uid://bxqsdb0wm4ev8" path="res://assets/textures/computer_demon_upgrade_icon.png" id="4_5souu"]
 [ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="4_bkr5v"]
 [ext_resource type="PackedScene" uid="uid://bwqccmvft3sx4" path="res://scenes/upgrades_shop/upgrades_shop.tscn" id="5_nbp6s"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkr5v"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbp6s"]
-bg_color = Color(0, 1, 0, 0.5882353)
 
 [sub_resource type="Animation" id="Animation_etlvh"]
 length = 0.001
@@ -205,6 +201,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_osdv1")
 script = ExtResource("1_jt3x0")
 
 [node name="Wallpaper" type="TextureRect" parent="."]
@@ -225,6 +222,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="DesktopInterface"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
 [node name="DesktopIcons" type="GridContainer" parent="DesktopInterface"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -236,7 +238,11 @@ columns = 9
 [node name="UpgradesShopButton" type="Button" parent="DesktopInterface/DesktopIcons"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-icon = ExtResource("4_bkr5v")
+text = "Demon Upgrade"
+icon = ExtResource("4_5souu")
+autowrap_mode = 3
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="DesktopActionBar" type="Control" parent="DesktopInterface"]
@@ -259,27 +265,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 alignment = 1
 
 [node name="WindowButton" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
 icon = ExtResource("3_etlvh")
 flat = true
 expand_icon = true
 
+[node name="Line" type="ColorRect" parent="DesktopInterface/DesktopActionBar/Actions"]
+custom_minimum_size = Vector2(5, 52)
+layout_mode = 2
+size_flags_vertical = 4
+color = Color(0, 0.7019608, 0, 0.39215687)
+
 [node name="OktaMail" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
 icon = ExtResource("4_bkr5v")
 flat = true
 expand_icon = true
-
-[node name="UpgradesShop" parent="." instance=ExtResource("5_nbp6s")]
-visible = false
-layout_mode = 1
 
 [node name="NodificationBubble" type="Control" parent="."]
 layout_mode = 1
@@ -312,16 +321,17 @@ grow_vertical = 2
 [node name="AppNameRichTextLabel" type="RichTextLabel" parent="NodificationBubble/Labels"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
 bbcode_enabled = true
 text = "[b]APP NAME[/b]"
 
 [node name="TextLabel" type="Label" parent="NodificationBubble/Labels"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 15
 text = "Text"
+autowrap_mode = 3
 
 [node name="MailClient" type="Control" parent="."]
 layout_mode = 1
@@ -329,7 +339,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -295.0
+offset_left = -391.0
 offset_bottom = -68.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -349,7 +359,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 39.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
@@ -374,43 +383,32 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 42.0
-offset_bottom = -125.0
+offset_bottom = -246.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_hovered_color = Color(0, 1, 0, 1)
-theme_override_colors/font_hovered_selected_color = Color(0, 1, 0, 1)
-theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/panel = SubResource("StyleBoxFlat_bkr5v")
-theme_override_styles/focus = SubResource("StyleBoxFlat_nbp6s")
-theme_override_styles/hovered = SubResource("StyleBoxFlat_nbp6s")
-theme_override_styles/hovered_selected = SubResource("StyleBoxFlat_nbp6s")
-theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_nbp6s")
-theme_override_styles/selected = SubResource("StyleBoxFlat_nbp6s")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_nbp6s")
 
 [node name="Line2" type="ColorRect" parent="MailClient"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 6.0
-offset_top = 460.0
+offset_top = 337.0
 offset_right = -7.0
-offset_bottom = 463.0
+offset_bottom = 340.0
 grow_horizontal = 2
-color = Color(0, 1, 0, 1)
+color = Color(0, 0.28235295, 0, 1)
 
 [node name="MailContent" type="RichTextLabel" parent="MailClient"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 459.0
-offset_bottom = 581.0
+offset_top = 336.0
+offset_bottom = 580.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/normal_font_size = 20
+theme_override_colors/default_color = Color(9.926968e-07, 0.28199652, 0, 1)
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 22
 text = "mail content"
 
 [node name="HeatBar" type="Control" parent="."]
@@ -448,6 +446,11 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "0.0 / 0.0 L"
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="UpgradesShop" parent="." instance=ExtResource("5_nbp6s")]
+visible = false
+layout_mode = 1
 
 [node name="BootBlackFading" type="ColorRect" parent="."]
 visible = false

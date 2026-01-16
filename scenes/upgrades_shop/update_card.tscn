@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://t0ohqj6oj8r0"]
+[gd_scene load_steps=8 format=3 uid="uid://t0ohqj6oj8r0"]
 
 [ext_resource type="Script" uid="uid://ckyvw2eb0kf0d" path="res://scenes/upgrades_shop/update_card.gd" id="1_u54jl"]
-[ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="2_sjnmo"]
+[ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_xxkok"]
+[ext_resource type="Texture2D" uid="uid://bxqsdb0wm4ev8" path="res://assets/textures/computer_demon_upgrade_icon.png" id="3_xxkok"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxkok"]
+bg_color = Color(0.19607843, 0.50980395, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrlv7"]
+bg_color = Color(0.15686275, 0.43137255, 0, 0.8627451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2us2"]
+bg_color = Color(0.09411765, 0.28627452, 0, 0.5882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy6xv"]
+bg_color = Color(0.15686275, 0.43137255, 0, 0.8627451)
 
 [node name="UpdateCard" type="Control"]
 layout_mode = 3
@@ -11,9 +24,11 @@ anchor_bottom = 1.0
 offset_right = -1002.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_xxkok")
 script = ExtResource("1_u54jl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,33 +37,45 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Texture" type="TextureRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(130, 130)
 layout_mode = 2
-texture = ExtResource("2_sjnmo")
+size_flags_vertical = 4
+texture = ExtResource("3_xxkok")
 expand_mode = 1
 
-[node name="NameLabel" type="Label" parent="VBoxContainer"]
+[node name="NameRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "UPG NAME"
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 17
+bbcode_enabled = true
+text = "[b]UPG NAME[/b]"
+fit_content = true
 horizontal_alignment = 1
 
 [node name="Line" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
+color = Color(0, 1, 0, 1)
 
 [node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "UPG DESC
 UPG DESC
 UPG DESC
 UPG DESC"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PriceLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_vertical = 10
+theme_override_font_sizes/font_size = 18
 text = "UPG PRICE"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="BuyButton" type="Button" parent="."]
 layout_mode = 1
@@ -57,5 +84,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_xxkok")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xxkok")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rrlv7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_m2us2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_cy6xv")
 
 [connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]

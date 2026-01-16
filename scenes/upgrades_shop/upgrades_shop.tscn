@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwqccmvft3sx4"]
 
 [ext_resource type="Script" uid="uid://dpompfkcpwpru" path="res://scenes/upgrades_shop/upgrades_shop.gd" id="1_84wy3"]
-[ext_resource type="Texture2D" uid="uid://c50ktuodw3dko" path="res://assets/textures/computer_wallpaper.jpg" id="2_de4uu"]
+[ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_ae0qv"]
 [ext_resource type="Script" uid="uid://bhekqt3w61pfr" path="res://resources/upgrade/upgrade.gd" id="2_sfw83"]
 [ext_resource type="PackedScene" uid="uid://t0ohqj6oj8r0" path="res://scenes/upgrades_shop/update_card.tscn" id="4_ae0qv"]
 
@@ -18,36 +18,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ae0qv")
 script = ExtResource("1_84wy3")
 upgrades_avaible = Array[ExtResource("2_sfw83")]([SubResource("Resource_sfw83")])
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -409.5
-offset_top = -68.5
-offset_right = 409.5
-offset_bottom = 68.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 100
-text = "UPGRADES SHOP"
-
-[node name="Background" type="TextureRect" parent="."]
-modulate = Color(0.2159017, 0.21590173, 0.2159017, 1)
+[node name="Background" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_de4uu")
-expand_mode = 1
+color = Color(0.23921569, 0.59607846, 0, 0.5882353)
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
 
 [node name="NODES" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -56,15 +48,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="MoneyLabel" type="Label" parent="NODES"]
+[node name="MoneyRichTextLabel" type="RichTextLabel" parent="NODES"]
+custom_minimum_size = Vector2(1152, 0)
 layout_mode = 2
-text = "CASH $"
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b][u]CASH $[/u][/b]"
+fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 
 [node name="UpgradesCardsContainer" type="HBoxContainer" parent="NODES"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 alignment = 1
 
 [node name="UpdateCard" parent="NODES/UpgradesCardsContainer" instance=ExtResource("4_ae0qv")]
@@ -72,3 +72,6 @@ custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
+description = "It's a test upgrade, that does nothing than update numbers. No machines are affected by the upgrade for now, cause' there are no machines in the game yet"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

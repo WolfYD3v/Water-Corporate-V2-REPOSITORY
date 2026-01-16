@@ -40,13 +40,17 @@ func _ready() -> void:
 	computer_scene = get_parent().get_parent()
 	boot_black_fading.show()
 	os_logo_texture_rect.hide()
+	desktop_icons.hide()
 	GlobalVariables.water_quota_updated.connect(_set_water_quota_display)
+	MoneyManager.balance_is_negative.connect(_low_balance_detected)
 	desktop_action_bar.hide()
 	nodification_bubble.hide()
 	heat_bar.hide()
 	mail_client.hide()
 	
 	boot_black_fading.hide()
+	boot()
+
 func start() -> void:
 	await get_tree().create_timer(1.0).timeout
 	await boot()
@@ -64,6 +68,8 @@ func boot() -> void:
 	desktop_action_bar.show()
 	await get_tree().create_timer(0.2).timeout
 	mail_client.show()
+	await get_tree().create_timer(0.1).timeout
+	desktop_icons.show()
 	await get_tree().create_timer(0.2).timeout
 	heat_bar.show()
 	await get_tree().create_timer(0.2).timeout
@@ -101,7 +107,7 @@ func _on_mails_item_selected(index: int) -> void:
 	mail_content.text = mails_list[mails.get_item_text(index)]
 
 func _set_water_quota_display() -> void:
-	_add_mail("CHARACTER", "Water requested", "Our data center need " + str(GlobalVariables.water_quota) + " L more in " + str(GlobalVariables.pumping_time) + " seconds." + "\n" + "\n" + "Your Manager.")
+	_add_mail("Data Center Team", "Water requested", "Our data center need " + str(GlobalVariables.water_quota) + " L more in " + str(GlobalVariables.pumping_time) + " seconds." + "\n" + "\n" + "Your Manager.")
 	
 	water_pump = 0.0
 	heat_progress_bar.value = 0.0
@@ -122,3 +128,6 @@ func _on_pumping_time_timer_timeout() -> void:
 
 func _on_upgrades_shop_button_pressed() -> void:
 	upgrades_shop.show()
+
+func _low_balance_detected() -> void:
+	_add_mail("Management Team", "Low balance detected", "It looks like your balance is negative." + "\n" + "Current amount of money: " + str(MoneyManager.send_money()) + "$. Pump water to get paid, and hopefully having a positive balance." + "\n" + "We put our entire trust in you in your success.")
