@@ -5,7 +5,10 @@ class_name IndustrialLight
 	set(value):
 		can_flicker = value
 		if value:
+			#turn_on()
 			flicker()
+		else:
+			turn_off()
 @export var min_random_flickering_time: float = 10.0
 @export var max_random_flickering_time: float = 25.0
 
@@ -30,7 +33,9 @@ func turn_off() -> void:
 	sfx_audio_stream_player.play()
 
 func flicker() -> void:
-	await get_tree().create_timer(randf_range(min_random_flickering_time, max_random_flickering_time)).timeout
+	await get_tree().create_timer(
+		randf_range(min_random_flickering_time, max_random_flickering_time)
+	).timeout
 	for loop: int in range(randi_range(1, 3)):
 		turn_off()
 		await get_tree().create_timer(0.1).timeout
@@ -38,4 +43,5 @@ func flicker() -> void:
 		await get_tree().create_timer(0.2).timeout
 	await get_tree().create_timer(0.3).timeout
 	
-	flicker()
+	if can_flicker: flicker()
+	else: turn_off()

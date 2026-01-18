@@ -21,8 +21,9 @@ class_name ComputerDisplay
 @onready var mail_content: RichTextLabel = $MailClient/MailContent
 
 @onready var heat_bar: Control = $HeatBar
-@onready var heat_progress_bar: ProgressBar = $HeatBar/HeatProgressBar
+@onready var heat_progress_bar: ProgressBar = $HeatBar/BarsContainer/HeatProgressBar
 @onready var water_pumped_label: Label = $HeatBar/WaterPumpedLabel
+@onready var pumping_time_progress_bar: ProgressBar = $HeatBar/BarsContainer/PumpingTimeProgressBar
 
 @onready var pumping_time_timer: Timer = $PumpingTimeTimer
 
@@ -33,6 +34,7 @@ var water_pump: float = 0.0:
 		water_pump = value
 		water_pumped_label.text = str(value) + " / " + str(GlobalVariables.water_quota) + " L"
 var heat_bar_tween
+var pumping_time_bar_tween
 
 var computer_scene: Computer = null
 
@@ -111,23 +113,43 @@ func _set_water_quota_display() -> void:
 	
 	water_pump = 0.0
 	heat_progress_bar.value = 0.0
+	heat_progress_bar.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	pumping_time_progress_bar.value = GlobalVariables.heating_time
 	
 	_tween_heat_bar()
-	pumping_time_timer.start(GlobalVariables.pumping_time)
+	_tween_pumping_time_bar()
+	pumping_time_timer.start(35.0)
 
+# CHANGE THIS FUNCTION!!!!!
 func _tween_heat_bar() -> void:
 	if heat_bar_tween:
 		heat_bar_tween.kill()
 	heat_bar_tween = get_tree().create_tween()
-	heat_bar_tween.tween_property(heat_progress_bar, "value", 100.0, GlobalVariables.heating_time)
+	heat_bar_tween.tween_property(heat_progress_bar, "value", 100.0, 35.0)
+
+func _tween_pumping_time_bar() -> void:
+	if pumping_time_bar_tween:
+		pumping_time_bar_tween.kill()
+	pumping_time_bar_tween = get_tree().create_tween()
+	pumping_time_bar_tween.tween_property(pumping_time_progress_bar, "value", 0.0, GlobalVariables.heating_time)
 
 func _on_pumping_time_timer_timeout() -> void:
 	if water_pump < GlobalVariables.water_quota:
 		print("WATER QUOTA NOT FULL!")
-
 
 func _on_upgrades_shop_button_pressed() -> void:
 	upgrades_shop.show()
 
 func _low_balance_detected() -> void:
 	_add_mail("Management Team", "Low balance detected", "It looks like your balance is negative." + "\n" + "Current amount of money: " + str(MoneyManager.send_money()) + "$. Pump water to get paid, and hopefully having a positive balance." + "\n" + "We put our entire trust in you in your success.")
+
+
+func _on_heat_progress_bar_value_changed(value: float) -> void:
+	if value >= 90.0:
+		heat_progress_bar.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		if not AlertManager.is_alerting():
+			AlertManager.alert()
+	else:
+		heat_progress_bar.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		if AlertManager.is_alerting():
+			AlertManager.stop()

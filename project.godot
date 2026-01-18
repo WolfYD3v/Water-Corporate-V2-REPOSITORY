@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalVariables="*res://globals/global_variables.gd"
 UpgradesData="*res://globals/upgrades_data.gd"
 MoneyManager="*res://globals/money_manager.gd"
+AlertManager="*res://globals/alert_manager.gd"
 
 [display]
 

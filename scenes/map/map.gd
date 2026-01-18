@@ -27,6 +27,9 @@ var actual_room: BaseRoom = null:
 		player.global_position.y = 0.35
 
 func _ready() -> void:
+	AlertManager.list_nodes_for_alert_from(self)
+	#await AlertManager.scan_finished
+	
 	actual_room = starting_room
 	
 	for room: BaseRoom in rooms.get_children():

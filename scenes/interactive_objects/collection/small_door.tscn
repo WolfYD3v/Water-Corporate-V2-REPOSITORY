@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy38l5utu1puw"]
+[gd_scene load_steps=6 format=3 uid="uid://dy38l5utu1puw"]
 
 [ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="1_r4kns"]
 [ext_resource type="PackedScene" uid="uid://xqe6feyuj6ig" path="res://assets/models/small_iron_door.tscn" id="2_m1560"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4kns"]
 size = Vector3(2.4, 1.4, 13)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4kns"]
 
 [node name="SmallDoor" instance=ExtResource("1_r4kns")]
 script = ExtResource("2_r4kns")
@@ -22,3 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 [node name="CollisionShape" parent="PlayerDetectionArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077819824, 0.003112793, -4.119171)
 shape = SubResource("BoxShape3D_r4kns")
+
+[node name="KeyToPressLabel" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r4kns")

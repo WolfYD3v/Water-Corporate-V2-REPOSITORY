@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw2oivdeahsas"]
+
+[ext_resource type="Material" uid="uid://bgvjmtrf5ogie" path="res://assets/materials/wps_banner_material.tres" id="1_fph21"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_or06p"]
+material = ExtResource("1_fph21")
+size = Vector2(4, 1)
+
+[node name="WpsBanner" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_or06p")

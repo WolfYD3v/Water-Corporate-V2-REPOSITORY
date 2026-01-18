@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bft2yb2f71vj3"]
+
+[ext_resource type="Texture2D" uid="uid://e2kkct46loaa" path="res://assets/textures/speaker_grid_texture.jpeg" id="1_2dumm"]
+
+[resource]
+albedo_color = Color(0.23753911, 0.23753914, 0.23753911, 1)
+albedo_texture = ExtResource("1_2dumm")
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_triplanar = true

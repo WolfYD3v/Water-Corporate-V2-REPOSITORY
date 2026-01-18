@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://brj1rmddrqfyr"]
+[gd_scene load_steps=13 format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
 [ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_osdv1"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bxqsdb0wm4ev8" path="res://assets/textures/computer_demon_upgrade_icon.png" id="4_5souu"]
 [ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="4_bkr5v"]
 [ext_resource type="PackedScene" uid="uid://bwqccmvft3sx4" path="res://scenes/upgrades_shop/upgrades_shop.tscn" id="5_nbp6s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5souu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Animation" id="Animation_etlvh"]
 length = 0.001
@@ -425,13 +428,38 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23921569, 0.50980395, 0, 0.78431374)
 
-[node name="HeatProgressBar" type="ProgressBar" parent="HeatBar"]
+[node name="BarsContainer" type="HBoxContainer" parent="HeatBar"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 50.0
 offset_bottom = -30.0
+grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="HeatProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+fill_mode = 3
+
+[node name="PumpingTimeProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+fill_mode = 3
+show_percentage = false
+
+[node name="UselessBarButNeededOK" type="ProgressBar" parent="HeatBar/BarsContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_5souu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5souu")
 fill_mode = 3
 show_percentage = false
 
@@ -489,4 +517,5 @@ libraries = {
 [connection signal="pressed" from="DesktopInterface/DesktopIcons/UpgradesShopButton" to="." method="_on_upgrades_shop_button_pressed"]
 [connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]
 [connection signal="item_selected" from="MailClient/Mails" to="." method="_on_mails_item_selected"]
+[connection signal="value_changed" from="HeatBar/BarsContainer/HeatProgressBar" to="." method="_on_heat_progress_bar_value_changed"]
 [connection signal="timeout" from="PumpingTimeTimer" to="." method="_on_pumping_time_timer_timeout"]
