@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://tv80lgxxkd2e"]
+
+[ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="1_dhcsv"]
+[ext_resource type="Script" uid="uid://j3xjdp0q3vei" path="res://scenes/machines/base_machine.gd" id="2_8n3n8"]
+
+[node name="BaseMachine" instance=ExtResource("1_dhcsv")]
+script = ExtResource("2_8n3n8")
+action = 0
