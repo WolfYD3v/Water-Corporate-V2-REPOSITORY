@@ -60,11 +60,18 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 shape = SubResource("BoxShape3D_43ixu")
 debug_color = Color(0.46666667, 0, 0.22745098, 1)
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="area_entered" from="ChangeRoomAreas/WestTriggerArea" to="." method="_on_west_trigger_area_area_entered"]
 [connection signal="area_exited" from="ChangeRoomAreas/WestTriggerArea" to="." method="_on_west_trigger_area_area_exited"]
+[connection signal="body_exited" from="ChangeRoomAreas/WestTriggerArea" to="." method="_on_west_trigger_area_body_exited"]
 [connection signal="area_entered" from="ChangeRoomAreas/EastTriggerArea" to="." method="_on_east_trigger_area_area_entered"]
 [connection signal="area_exited" from="ChangeRoomAreas/EastTriggerArea" to="." method="_on_east_trigger_area_area_exited"]
+[connection signal="body_exited" from="ChangeRoomAreas/EastTriggerArea" to="." method="_on_east_trigger_area_body_exited"]
 [connection signal="area_entered" from="ChangeRoomAreas/NorthTriggerArea" to="." method="_on_north_trigger_area_area_entered"]
 [connection signal="area_exited" from="ChangeRoomAreas/NorthTriggerArea" to="." method="_on_north_trigger_area_area_exited"]
+[connection signal="body_exited" from="ChangeRoomAreas/NorthTriggerArea" to="." method="_on_north_trigger_area_body_exited"]
 [connection signal="area_entered" from="ChangeRoomAreas/SouthTriggerArea" to="." method="_on_south_trigger_area_area_entered"]
 [connection signal="area_exited" from="ChangeRoomAreas/SouthTriggerArea" to="." method="_on_south_trigger_area_area_exited"]
+[connection signal="body_entered" from="ChangeRoomAreas/SouthTriggerArea" to="." method="_on_south_trigger_area_body_entered"]

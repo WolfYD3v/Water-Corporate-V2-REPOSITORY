@@ -7,6 +7,7 @@ signal change_room(next_room_direction_idx: int)
 @export var east_room: BaseRoom = null
 @export var north_room: BaseRoom = null
 @export var south_room: BaseRoom = null
+
 @onready var collision_shape: CollisionShape3D = $CSGBakedCollisionShape3D
 
 @onready var player_position_marker: Marker3D = $PlayerPositionMarker
@@ -26,11 +27,13 @@ var active: bool = false:
 	set(value):
 		active = value
 		visible = value
-		collision_shape.disabled = not(value)
-		if value: process_mode = Node.PROCESS_MODE_INHERIT
-		else: process_mode = Node.PROCESS_MODE_DISABLED
+		collision_shape.set_deferred("disabled", not(value))
+		set_process(value)
+		#if value: set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+		#else: set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		for change_room_area: Area3D in change_rooms_areas_activated:
-			change_room_area.get_child(0).disabled = not(value)
+			change_room_area.get_child(0).set_deferred("disabled", not(value))
+		$Timer.start(0.1)
 
 func _ready() -> void:
 	hide()
@@ -55,15 +58,15 @@ func scan_adj_rooms() -> void:
 		else:
 			change_room_areas.get_child(idx).get_child(0).disabled = true
 		idx += 1
-	print(to_string() + " adj rooms scanned | RESULT: " + str(adj_rooms_array))
+	#print(to_string() + " adj rooms scanned | RESULT: " + str(adj_rooms_array))
 
 func get_player_position_in_room() -> Vector3:
 	return player_position_marker.global_position
 
 func _send_change_room_area_trigger() -> void:
-	if next_room_direction_idx >= 0:
-		print(get(adj_rooms_directions[next_room_direction_idx]))
-		print(next_room_direction_idx)
+	if next_room_direction_idx >= 0 and $Timer.is_stopped():
+		print(to_string() + str(next_room_direction_idx))
+		await get_tree().create_timer(0.1).timeout
 		change_room.emit(next_room_direction_idx)
 
 
@@ -99,3 +102,20 @@ func _on_south_trigger_area_area_entered(area: Area3D) -> void:
 func _on_south_trigger_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = -1
+
+
+func _on_west_trigger_area_body_exited(body: Node3D) -> void:
+	if body is Player and $Timer.is_stopped():
+		change_room.emit(west_room_idx)
+
+func _on_east_trigger_area_body_exited(body: Node3D) -> void:
+	if body is Player and $Timer.is_stopped():
+		change_room.emit(east_room_idx)
+
+func _on_north_trigger_area_body_exited(body: Node3D) -> void:
+	if body is Player and $Timer.is_stopped():
+		change_room.emit(north_room_idx)
+
+func _on_south_trigger_area_body_entered(body: Node3D) -> void:
+	if body is Player and $Timer.is_stopped():
+		change_room.emit(south_room_idx)

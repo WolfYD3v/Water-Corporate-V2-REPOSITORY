@@ -21,10 +21,14 @@ var actual_room: BaseRoom = null:
 			actual_room.active = false
 		actual_room = value
 		actual_room.active = true
+		
 		set_adj_rooms_active_status(true)
 		
-		player.global_position = actual_room.get_player_position_in_room()
-		player.global_position.y = 0.35
+		if not player.free_roam_enable:
+			player.position = actual_room.get_player_position_in_room()
+			print(value)
+			print(player.position)
+			player.global_position.y = 0.35
 
 func _ready() -> void:
 	AlertManager.list_nodes_for_alert_from(self)
@@ -61,13 +65,15 @@ func _on_main_menu_quitted() -> void:
 		print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")
 
 func try_change_room(next_room_direcion_idx: int) -> void:
+	print(to_string() + str(next_room_direcion_idx))
 	#next_room_direcion_idx = clampi(next_room_direcion_idx, 0, 3)
 	set_adj_rooms_active_status(false)
 	if actual_room.check_if_adj_have_room(next_room_direcion_idx):
 		actual_room = actual_room.adj_rooms_array[next_room_direcion_idx]
 
 func set_adj_rooms_active_status(value: bool = true) -> void:
-	for ww: String in actual_room.adj_rooms_directions:
-		if actual_room.get(ww):
-			var roo: BaseRoom = actual_room.get(ww)
-			roo.active = value
+	for _adj_room_direction: String in actual_room.adj_rooms_directions:
+		if actual_room.get(_adj_room_direction):
+			var _adj_room: BaseRoom = actual_room.get(_adj_room_direction)
+			_adj_room.visible = value
+			_adj_room.set_process(value)
