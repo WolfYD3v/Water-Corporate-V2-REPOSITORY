@@ -22,13 +22,14 @@ var actual_room: BaseRoom = null:
 		actual_room = value
 		actual_room.active = true
 		
-		set_adj_rooms_active_status(true)
-		
 		if not player.free_roam_enable:
-			player.position = actual_room.get_player_position_in_room()
-			print(value)
-			print(player.position)
-			player.global_position.y = 0.35
+			player.change_position(Vector3(
+				actual_room.get_player_position_in_room().x,
+				0.35,
+				actual_room.get_player_position_in_room().z
+			))
+		
+		set_adj_rooms_active_status(true)
 
 func _ready() -> void:
 	AlertManager.list_nodes_for_alert_from(self)

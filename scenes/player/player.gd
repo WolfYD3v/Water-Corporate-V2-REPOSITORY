@@ -11,6 +11,7 @@ class_name Player
 @onready var camera: Camera3D = $Camera
 @onready var player_mouse: Area3D = $PlayerMouseArea
 @onready var debug_top_down_camera: Camera3D = $DebugTopDownCamera
+@onready var walking_sfx_audio_stream_player_3d: AudioStreamPlayer3D = $WalkingSFXAudioStreamPlayer3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -19,6 +20,8 @@ var mouse_sensitivity: float = 0.001
 
 var can_move: bool = true
 var can_rotate: bool = true
+
+var _tween
 
 func _ready() -> void:
 	if free_roam_enable: player_mouse.queue_free()
@@ -53,3 +56,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_rotate:
 				rotation.y += - event.relative.x * mouse_sensitivity
+
+func change_position(new_position: Vector3) -> void:
+	if can_move or can_rotate:
+		can_move = false
+		can_rotate = false
+		
+		if _tween:
+			_tween.kill()
+		_tween = get_tree().create_tween()
+		_tween.tween_property(self, "position", new_position, 3.5)
+		
+		while _tween.is_running():
+			walking_sfx_audio_stream_player_3d.pitch_scale = randf_range(0.95, 1.05)
+			walking_sfx_audio_stream_player_3d.play()
+			await walking_sfx_audio_stream_player_3d.finished
+		
+		can_move = true
+		can_rotate = true

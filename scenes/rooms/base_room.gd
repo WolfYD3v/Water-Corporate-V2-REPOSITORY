@@ -105,17 +105,17 @@ func _on_south_trigger_area_area_exited(area: Area3D) -> void:
 
 
 func _on_west_trigger_area_body_exited(body: Node3D) -> void:
-	if body is Player and $Timer.is_stopped():
+	if body is Player and $Timer.is_stopped() and body.free_roam_enable:
 		change_room.emit(west_room_idx)
 
 func _on_east_trigger_area_body_exited(body: Node3D) -> void:
-	if body is Player and $Timer.is_stopped():
+	if body is Player and $Timer.is_stopped() and body.free_roam_enable:
 		change_room.emit(east_room_idx)
 
 func _on_north_trigger_area_body_exited(body: Node3D) -> void:
-	if body is Player and $Timer.is_stopped():
+	if body is Player and $Timer.is_stopped() and body.free_roam_enable:
 		change_room.emit(north_room_idx)
 
 func _on_south_trigger_area_body_entered(body: Node3D) -> void:
-	if body is Player and $Timer.is_stopped():
+	if body is Player and $Timer.is_stopped() and body.free_roam_enable:
 		change_room.emit(south_room_idx)
