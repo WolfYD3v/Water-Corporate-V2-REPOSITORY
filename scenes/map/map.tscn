@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cynegevfjnj7s" path="res://scenes/rooms/collection/reception_room.tscn" id="10_cumk7"]
 [ext_resource type="PackedScene" uid="uid://clfsofvdkok67" path="res://scenes/rooms/collection/2_doors_room.tscn" id="11_cumk7"]
 [ext_resource type="PackedScene" uid="uid://di1muj33di57g" path="res://scenes/rooms/collection/water_pumping_room.tscn" id="12_mgs8m"]
+[ext_resource type="PackedScene" uid="uid://dmpqoa63q0ibt" path="res://scenes/dialog_scene/dialog_scene.tscn" id="15_rqo2c"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
 background_mode = 1
@@ -25,9 +26,6 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
 fog_depth_curve = 0.4506252
 fog_depth_end = 15.0
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_mgs8m"]
-viewport_path = NodePath("SubViewport")
 
 [node name="Map" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
@@ -176,15 +174,10 @@ transform = Transform3D(-0.81915194, 0, 0.5735764, 0, 1, 0, -0.5735764, 0, -0.81
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
-
-[node name="TextureRect" type="TextureRect" parent="GUI"]
+[node name="DialogScene" parent="GUI" instance=ExtResource("15_rqo2c")]
 visible = false
-custom_minimum_size = Vector2(300, 300)
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("ViewportTexture_mgs8m")
-expand_mode = 1
+
+[node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true

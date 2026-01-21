@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmpqoa63q0ibt"]
+
+[ext_resource type="Script" uid="uid://c6uhtmqahrg3c" path="res://scenes/dialog_scene/dialog_scene.gd" id="1_bmcln"]
+[ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_phpd2"]
+
+[node name="DialogScene" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -144.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_phpd2")
+script = ExtResource("1_bmcln")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "xxxxxxxxxxxxxxx
+cc"
+horizontal_alignment = 1
+vertical_alignment = 2

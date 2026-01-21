@@ -12,6 +12,7 @@ class_name Map
 @onready var gui: CanvasLayer = $GUI
 @onready var intro: Intro = $Intro
 @onready var main_menu: MainMenu = $GUI/MainMenu
+@onready var dialog_scene: DialogScene = $GUI/DialogScene
 
 const PAUSE_MENU = preload("uid://cch6lt3ytnmwx")
 
@@ -46,6 +47,14 @@ func _ready() -> void:
 	
 	actual_room.active = true
 	set_adj_rooms_active_status(true)
+	
+	dialog_scene.play_dialog(
+		{
+			"ee": "eeee",
+			"zzzz": "dfefdf",
+			"ererrr": "vnnvnvnv"
+		}
+	)
 
 # FORCE QUIT BABY !!!!!!!!!§§§§!!!!!!!!!!§§§!!!!!!!
 func _input(_event: InputEvent) -> void:
