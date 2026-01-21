@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://blei1xfr8if4m" path="res://scenes/intro/intro.gd" id="1_qeukb"]
 [ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="2_iatiw"]
-[ext_resource type="FontFile" uid="uid://caosmfkg8t72b" path="res://assets/fonts/Rubik_Glitch/RubikGlitch-Regular.ttf" id="3_teox7"]
+[ext_resource type="FontFile" uid="uid://docala5lt2gue" path="res://assets/fonts/Special_Elite/SpecialElite-Regular.ttf" id="3_teox7"]
 
 [sub_resource type="Animation" id="Animation_iatiw"]
 length = 0.001
@@ -153,7 +153,6 @@ script = ExtResource("1_qeukb")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(-0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, -0.81915206, 1, 2, -0.6)
-current = true
 fov = 20.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -27,15 +27,18 @@ var actual_room: BaseRoom = null:
 				actual_room.get_player_position_in_room().x,
 				0.35,
 				actual_room.get_player_position_in_room().z
-			))
+			), allow_player_walking_sequence)
 		
 		set_adj_rooms_active_status(true)
+var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
 	AlertManager.list_nodes_for_alert_from(self)
 	#await AlertManager.scan_finished
 	
+	allow_player_walking_sequence = false
 	actual_room = starting_room
+	allow_player_walking_sequence = true
 	
 	for room: BaseRoom in rooms.get_children():
 		room.change_room.connect(try_change_room)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://blut77notulrs"]
+[gd_scene load_steps=7 format=4 uid="uid://blut77notulrs"]
 
 [ext_resource type="Script" uid="uid://cprnc3ggmmquk" path="res://assets/models/speaker.gd" id="1_47s1w"]
 [ext_resource type="Material" uid="uid://bcqhrbato66i3" path="res://assets/materials/metalic_material.tres" id="1_wofjl"]
 [ext_resource type="Material" uid="uid://bft2yb2f71vj3" path="res://assets/materials/speaker_grid_material.tres" id="2_47s1w"]
+[ext_resource type="AudioStream" uid="uid://bnjn25jn13vd3" path="res://assets/sfxs/ALRMElec_Alarme evacuation 1 (ID 3411)_LaSonotheque.fr_alarm.wav" id="4_lm2xf"]
+[ext_resource type="AudioStream" uid="uid://cal5cpv3h3us4" path="res://assets/sfxs/Alarm_voice_over.mp3" id="5_1w1px"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_wofjl"]
 _surfaces = [{
@@ -26,6 +28,7 @@ _surfaces = [{
 }]
 
 [node name="Speaker" type="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 script = ExtResource("1_47s1w")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
@@ -57,8 +60,16 @@ material = ExtResource("2_47s1w")
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_wofjl")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="AlarmSoundAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0.4)
+stream = ExtResource("4_lm2xf")
+volume_db = -10.0
 emission_angle_enabled = true
-emission_angle_filter_attenuation_db = 0.0
+attenuation_filter_db = -35.0
+
+[node name="AlarVoiceOverAudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0.4)
+stream = ExtResource("5_1w1px")
+volume_db = -5.0
+emission_angle_enabled = true
 attenuation_filter_db = -35.0

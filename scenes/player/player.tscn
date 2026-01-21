@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjs1qisi5re4f"]
+[gd_scene load_steps=18 format=3 uid="uid://cjs1qisi5re4f"]
 
 [ext_resource type="Script" uid="uid://drymfn1l01ryx" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://dksx52alj2m7v" path="res://assets/sprites/sam_temp.png" id="2_dovo2"]
@@ -38,6 +38,67 @@ size = Vector3(2, 2.5, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvxji"]
 albedo_color = Color(0, 1, 1, 1)
 
+[sub_resource type="Animation" id="Animation_p47bc"]
+resource_name = "move_camera"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.2628018, 0.297687, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(0, 0.8, 0), Vector3(0, 0.8, 0), Vector3(0, 0.65, 0), Vector3(0, 0.65, 0), Vector3(0, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.26666668, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.17453294), Vector3(0, 0, -0.05235988), Vector3(0, 0, 0.19198622), Vector3(0, 0, 0.19198622), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_75vfm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0owmy"]
+_data = {
+&"RESET": SubResource("Animation_75vfm"),
+&"move_camera": SubResource("Animation_p47bc")
+}
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_8afob")
 
@@ -46,7 +107,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6
 current = true
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 1, 0)
 current = true
 
 [node name="PixelationShaderMeshInstance" type="MeshInstance3D" parent="Camera"]
@@ -86,7 +147,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lvxji")
 [node name="WalkingSFXAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 stream = ExtResource("5_p47bc")
+volume_db = -10.0
 max_db = 6.0
+pitch_scale = 2.5
 emission_angle_enabled = true
 emission_angle_degrees = 25.0
 emission_angle_filter_attenuation_db = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_0owmy")
+}

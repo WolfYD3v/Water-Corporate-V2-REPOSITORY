@@ -1,5 +1,6 @@
 Game font(s) used:
-"Rubik Glitch" [ https://fonts.google.com/specimen/Rubik+Glitch?categoryFilters=Feeling:%2FExpressive%2FInnovative ]
+"Special Elite" [ https://fonts.google.com/specimen/Special+Elite?categoryFilters=Feeling:%2FExpressive%2FInnovative ]
+BY Astigmatic [ https://fonts.google.com/?query=Astigmatic ]
 
 Computer wallpaper:
 https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F1336632.jpg&f=1&nofb=1&ipt=5b4ad5bc897c51b7dcc5344dbc9d93ac299f7d3f377be739818a81f05beb2b97
@@ -14,3 +15,20 @@ Industrial light sfx (edited):
 https://pixabay.com/sound-effects/household-very-old-fluorecent-light-95811/
 BY Tairblenn (Freesound) [ https://pixabay.com/users/freesound_community-46691455/ ]
 Editing software used -> Audacity
+
+Player walking sfx (edited):
+https://pixabay.com/fr/sound-effects/films-et-effets-sp%c3%a9ciaux-walking-sound-effect-272246/
+BY u_3x9ga8wevj [ https://pixabay.com/fr/users/u_3x9ga8wevj-47448190/ ]
+Editing software used -> Audacity
+
+Alarm sound (edited):
+https://lasonotheque.org/alarme-evacuation-1-s3411.html
+BY Axeline T [ null ]
+Editing software used -> Audacity
+
+Alarm voice over:
+Made with Narakeet [ https://www.narakeet.com/app/text-to-audio/?projectId=7fcf600c-58b1-414e-84ef-81a880751ddf ]
+Text used:
+	Critical overheating detected in the Data Center. Immediate water pumping must be initiated to prevent severe infrastructure damage.
+	Performing this action constitutes a violation of our internal policies.
+Gemini conversation done: https://gemini.google.com/share/8726c3c3a8bb

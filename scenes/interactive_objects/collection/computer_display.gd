@@ -64,7 +64,7 @@ func boot() -> void:
 	os_logo_texture_rect.show()
 	await get_tree().create_timer(2.5).timeout
 	animation_player.play("boot_fade")
-	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 0.5)
+	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", -25.0, 0.5)
 	await animation_player.animation_finished
 	await get_tree().create_timer(0.5).timeout
 	desktop_action_bar.show()
@@ -97,7 +97,7 @@ func _push_nodification(app_name: String, nod_text: String) -> void:
 	nodification_bubble_app_name_rich_text_label.text = "[b]" + app_name + "[/b]"
 	nodification_bubble_text_label.text = nod_text
 	animation_player.play("nodification_bubble_anim")
-	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", 0.0, 1.0)
+	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", -25.0, 1.0)
 
 
 func _on_window_button_pressed() -> void:
@@ -145,7 +145,9 @@ func _low_balance_detected() -> void:
 
 
 func _on_heat_progress_bar_value_changed(value: float) -> void:
-	if value >= 90.0:
+	if value >= 100.0:
+		get_tree().quit()
+	elif value >= 75.0:
 		heat_progress_bar.modulate = Color(1.0, 0.0, 0.0, 1.0)
 		if not AlertManager.is_alerting():
 			AlertManager.alert()

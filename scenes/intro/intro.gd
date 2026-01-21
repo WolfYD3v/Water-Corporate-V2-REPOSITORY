@@ -7,6 +7,7 @@ signal finished
 @onready var camera: Camera3D = $Camera
 @onready var black_fading: ColorRect = $CanvasLayer/BlackFading
 @onready var text_label: Label = $CanvasLayer/TextLabel
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 enum TEXT_LABEL_POSITIONS {
 	TOP_LEFT = 1,
@@ -17,12 +18,16 @@ enum TEXT_LABEL_POSITIONS {
 
 func _ready() -> void:
 	hide()
+	canvas_layer.hide()
 	black_fading.hide()
+	
+	print(camera.current)
 	#process_mode = Node.PROCESS_MODE_ALWAYS
 	#play()
 
 func play() -> void:
 	show()
+	canvas_layer.show()
 	black_fading.show()
 	get_tree().paused = true
 	animation_player.play("intro")

@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1absskdpac15"]
+[gd_scene load_steps=11 format=3 uid="uid://d1absskdpac15"]
 
 [ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_0ebjn"]
 [ext_resource type="Script" uid="uid://c7ugmud65b1fs" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="3_ob46e"]
+[ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="4_uqeha"]
+[ext_resource type="AudioStream" uid="uid://crpjepqp6vy2v" path="res://assets/sfxs/walking-sound-effect-272246.mp3" id="5_wem23"]
 
 [sub_resource type="Animation" id="Animation_uqeha"]
 length = 0.001
@@ -77,6 +80,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AmbianceAudioStreamPlayer:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wem23"]
 _data = {
@@ -135,6 +150,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AmbianceAudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6.5, 7.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -80.0, -80.0]
 }
 
 [sub_resource type="Animation" id="Animation_0ebjn"]
@@ -229,6 +256,18 @@ tracks/6/keys = {
 "method": &"set_buttons_disable"
 }]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AmbianceAudioStreamPlayer:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uqeha"]
 _data = {
@@ -272,19 +311,31 @@ theme_override_constants/separation = 30
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
 text = "PLAY"
+icon = ExtResource("3_ob46e")
+expand_icon = true
 
 [node name="CreditsButton" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
 text = "CREDITS"
+icon = ExtResource("3_ob46e")
+expand_icon = true
 
 [node name="QuitButton" type="Button" parent="Buttons"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
 text = "QUIT"
+icon = ExtResource("3_ob46e")
+expand_icon = true
 
 [node name="GameNameArea" type="ColorRect" parent="."]
 clip_contents = true
@@ -309,6 +360,7 @@ theme_override_font_sizes/font_size = 100
 text = "Water
 Corporate"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -317,5 +369,15 @@ libraries = {
 }
 speed_scale = 4.0
 
+[node name="AmbianceAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_uqeha")
+volume_db = -80.0
+
+[node name="ButtonClickedSFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wem23")
+volume_db = 24.0
+pitch_scale = 0.5
+
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

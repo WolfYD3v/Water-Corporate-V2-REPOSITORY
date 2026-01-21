@@ -1,11 +1,13 @@
 extends Node3D
 class_name Speaker
 
-@onready var audio_stream_player: AudioStreamPlayer3D = $AudioStreamPlayer
+@onready var alarm_sound_audio_stream_player: AudioStreamPlayer3D = $AlarmSoundAudioStreamPlayer
+@onready var alar_voice_over_audio_stream_player: AudioStreamPlayer3D = $AlarVoiceOverAudioStreamPlayer
 
-func play_sound(sound_path: String) -> void:
-	audio_stream_player.stream = load(sound_path)
-	audio_stream_player.play()
+func play_sound() -> void:
+	alarm_sound_audio_stream_player.play()
+	alar_voice_over_audio_stream_player.play()
 
 func stop() -> void:
-	audio_stream_player.stop()
+	alarm_sound_audio_stream_player.stop()
+	alar_voice_over_audio_stream_player.stop()
