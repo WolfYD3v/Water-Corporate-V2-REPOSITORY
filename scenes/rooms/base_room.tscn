@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://tqewyifqimoo"]
+[gd_scene load_steps=8 format=3 uid="uid://tqewyifqimoo"]
 
 [ext_resource type="Script" uid="uid://73t5n5dnc3bd" path="res://scenes/rooms/base_room.gd" id="1_43ixu"]
 [ext_resource type="Material" uid="uid://b62mh30laios8" path="res://assets/materials/room_ground_material.tres" id="2_4x8xk"]
 [ext_resource type="Material" uid="uid://ourrjakdf21i" path="res://assets/materials/room_roof_material.tres" id="3_oxyh5"]
+[ext_resource type="Material" uid="uid://dxs84had7u0g3" path="res://assets/materials/transparent_material.tres" id="4_ativ4"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_43ixu"]
 data = PackedVector3Array(-5, -0.25, 5, -5, -0.25, -5, -5, 0.25, -5, 5, -0.25, -5, -5, -0.25, -5, -5, -0.25, 5, -5, 0.25, -5, -5, -0.25, -5, 5, -0.25, -5, -5, 0.25, -5, -5, 0.25, 5, -5, -0.25, 5, -5, -0.25, 5, -5, 0.25, 5, 5, 0.25, 5, 5, 0.25, 5, -5, 0.25, 5, -5, 0.25, -5, -5, -0.25, 5, 5, -0.25, 5, 5, -0.25, -5, 5, 0.25, 5, 5, -0.25, 5, -5, -0.25, 5, 5, -0.25, -5, 5, -0.25, 5, 5, 0.25, 5, 5, -0.25, -5, 5, 0.25, -5, -5, 0.25, -5, -5, 0.25, -5, 5, 0.25, -5, 5, 0.25, 5, 5, 0.25, 5, 5, 0.25, -5, 5, -0.25, -5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_43ixu"]
-size = Vector3(1, 10, 5)
+size = Vector3(1, 10, 2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ativ4"]
+size = Vector3(0.5, 10, 4)
 
 [node name="BaseRoom" type="StaticBody3D"]
 script = ExtResource("1_43ixu")
@@ -39,12 +43,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 shape = SubResource("BoxShape3D_43ixu")
 debug_color = Color(0.46666667, 0, 0.22745098, 1)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChangeRoomAreas/WestTriggerArea"]
+mesh = SubResource("BoxMesh_ativ4")
+surface_material_override/0 = ExtResource("4_ativ4")
+
 [node name="EastTriggerArea" type="Area3D" parent="ChangeRoomAreas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="ChangeRoomAreas/EastTriggerArea"]
 shape = SubResource("BoxShape3D_43ixu")
 debug_color = Color(0.46666667, 0, 0.22745098, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChangeRoomAreas/EastTriggerArea"]
+mesh = SubResource("BoxMesh_ativ4")
+surface_material_override/0 = ExtResource("4_ativ4")
 
 [node name="NorthTriggerArea" type="Area3D" parent="ChangeRoomAreas"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -5)
@@ -53,12 +65,20 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 shape = SubResource("BoxShape3D_43ixu")
 debug_color = Color(0.46666667, 0, 0.22745098, 1)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChangeRoomAreas/NorthTriggerArea"]
+mesh = SubResource("BoxMesh_ativ4")
+surface_material_override/0 = ExtResource("4_ativ4")
+
 [node name="SouthTriggerArea" type="Area3D" parent="ChangeRoomAreas"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 5)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="ChangeRoomAreas/SouthTriggerArea"]
 shape = SubResource("BoxShape3D_43ixu")
 debug_color = Color(0.46666667, 0, 0.22745098, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChangeRoomAreas/SouthTriggerArea"]
+mesh = SubResource("BoxMesh_ativ4")
+surface_material_override/0 = ExtResource("4_ativ4")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

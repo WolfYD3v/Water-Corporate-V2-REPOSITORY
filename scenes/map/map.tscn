@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=19 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://clfsofvdkok67" path="res://scenes/rooms/collection/2_doors_room.tscn" id="11_cumk7"]
 [ext_resource type="PackedScene" uid="uid://di1muj33di57g" path="res://scenes/rooms/collection/water_pumping_room.tscn" id="12_mgs8m"]
 [ext_resource type="PackedScene" uid="uid://dmpqoa63q0ibt" path="res://scenes/dialog_scene/dialog_scene.tscn" id="15_rqo2c"]
+[ext_resource type="PackedScene" uid="uid://5oxf1ihj1mcd" path="res://scenes/context_introduction/context_introduction.tscn" id="16_e07uo"]
 
 [sub_resource type="Environment" id="Environment_a2pkv"]
 background_mode = 1
 background_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
@@ -29,15 +29,14 @@ fog_depth_end = 15.0
 
 [node name="Map" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
-starting_room = NodePath("Rooms/LivingRoom(5,1)")
+starting_room = NodePath("Rooms/ReceptionRoom(2,6)")
 play_intro = false
-play_starting_dialog = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a2pkv")
 
 [node name="Player" parent="." instance=ExtResource("2_jcaow")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 10)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0.35, -40)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(-6.5567076e-07, 14.999999, 6.5567076e-07, 0, -6.5567076e-07, 14.999999, 14.999999, 6.5567076e-07, 2.866028e-14, 69.5134, 21, 0)
@@ -176,6 +175,10 @@ transform = Transform3D(-0.81915194, 0, 0.5735764, 0, 1, 0, -0.5735764, 0, -0.81
 
 [node name="DialogScene" parent="GUI" instance=ExtResource("15_rqo2c")]
 visible = false
+
+[node name="ContextIntroduction" parent="GUI" instance=ExtResource("16_e07uo")]
+visible = false
+context_lines = Array[String](["aaeze", "zezeze", "zezez", "ez", "zzeze"])
 
 [node name="MainMenu" parent="GUI" instance=ExtResource("1_sxf4j")]
 

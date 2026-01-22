@@ -57,6 +57,9 @@ func scan_adj_rooms() -> void:
 			change_room_areas.get_child(idx).get_child(0).disabled = false
 		else:
 			change_room_areas.get_child(idx).get_child(0).disabled = true
+		
+		change_room_areas.get_child(idx).get_child(1).visible = false
+		
 		idx += 1
 	#print(to_string() + " adj rooms scanned | RESULT: " + str(adj_rooms_array))
 
@@ -74,34 +77,42 @@ func _send_change_room_area_trigger() -> void:
 func _on_west_trigger_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = west_room_idx
+		change_room_areas.get_child(0).get_child(1).visible = true
 
 func _on_west_trigger_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = -1
+		change_room_areas.get_child(0).get_child(1).visible = false
 
 func _on_east_trigger_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = east_room_idx
+		change_room_areas.get_child(1).get_child(1).visible = true
 
 func _on_east_trigger_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = -1
+		change_room_areas.get_child(1).get_child(1).visible = false
 
 func _on_north_trigger_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = north_room_idx
+		change_room_areas.get_child(2).get_child(1).visible = true
 
 func _on_north_trigger_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = -1
+		change_room_areas.get_child(2).get_child(1).visible = false
 
 func _on_south_trigger_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = south_room_idx
+		change_room_areas.get_child(3).get_child(1).visible = true
 
 func _on_south_trigger_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		next_room_direction_idx = -1
+		change_room_areas.get_child(3).get_child(1).visible = false
 
 
 func _on_west_trigger_area_body_exited(body: Node3D) -> void:

@@ -4,6 +4,7 @@ class_name Map
 @export var starting_room: BaseRoom = null
 
 @export_category("SCENES ACTIVATION")
+@export var play_context: bool = true
 @export var play_intro: bool = true
 @export var play_starting_dialog: bool = true
 
@@ -13,6 +14,7 @@ class_name Map
 @onready var intro: Intro = $Intro
 @onready var main_menu: MainMenu = $GUI/MainMenu
 @onready var dialog_scene: DialogScene = $GUI/DialogScene
+@onready var context_introduction: ContextIntroduction = $GUI/ContextIntroduction
 
 const PAUSE_MENU = preload("uid://cch6lt3ytnmwx")
 
@@ -47,14 +49,6 @@ func _ready() -> void:
 	
 	actual_room.active = true
 	set_adj_rooms_active_status(true)
-	
-	dialog_scene.play_dialog(
-		{
-			"ee": "eeee",
-			"zzzz": "dfefdf",
-			"ererrr": "vnnvnvnv"
-		}
-	)
 
 # FORCE QUIT BABY !!!!!!!!!§§§§!!!!!!!!!!§§§!!!!!!!
 func _input(_event: InputEvent) -> void:
@@ -66,6 +60,12 @@ func _on_main_menu_quitted() -> void:
 	
 	main_menu.hide()
 	
+	# CONTEXT
+	if play_context:
+		context_introduction.play()
+		await context_introduction.finished
+	else: context_introduction.queue_free()
+	
 	# INTRO SCENE
 	if play_intro:
 		intro.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -75,7 +75,7 @@ func _on_main_menu_quitted() -> void:
 		intro.queue_free()
 		intro = null
 	if play_starting_dialog:
-		print("DEV_TIP -> Jouer dialogue ici (condition(s) pour ?)")
+		tutorial()
 
 func try_change_room(next_room_direcion_idx: int) -> void:
 	print(to_string() + str(next_room_direcion_idx))
@@ -90,3 +90,13 @@ func set_adj_rooms_active_status(value: bool = true) -> void:
 			var _adj_room: BaseRoom = actual_room.get(_adj_room_direction)
 			_adj_room.visible = value
 			_adj_room.set_process(value)
+
+func tutorial() -> void:
+	player.can_move = false
+	player.can_rotate = false
+	
+	dialog_scene.play_dialog("tutorial")
+	await dialog_scene.ended
+	
+	player.can_move = true
+	player.can_rotate = true
