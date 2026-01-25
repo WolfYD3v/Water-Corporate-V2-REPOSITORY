@@ -31,8 +31,7 @@ size = Vector3(2.4, 1.4, 4.7616577)
 
 [node name="Computer" instance=ExtResource("1_uotha")]
 script = ExtResource("2_26xa3")
-auto_boot = true
-change_player_position = false
+auto_boot = false
 interaction_timer_waiting_time = 0.5
 
 [node name="CSGCombinerModel" parent="." index="0"]

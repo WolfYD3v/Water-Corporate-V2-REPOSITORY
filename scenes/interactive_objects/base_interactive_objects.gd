@@ -33,20 +33,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.is_key_pressed(key_to_press_to_act) and interaction_timer.is_stopped() and player:
 			interaction_timer.start(interaction_timer_waiting_time)
 			player_focused = not(player_focused)
-			if change_player_position:
-				player.can_move = not(player_focused)
-				player.can_rotate = not(player_focused)
+			player.can_move = not(player.can_move)
+			player.can_rotate = not(player.can_rotate)
+			
+			print(player.can_move)
+			print(player.can_rotate)
 			
 			if player_focused and mouse_focused:
+				key_to_press_label.visible = false
 				if change_player_position:
-					captured_player_position = player.global_position
+					captured_player_position = player.position
 					print("Player in")
-					player.global_position = player_obj_position.global_position
+					await player.change_position(Vector3(
+						player_obj_position.global_position.x,
+						0.35,
+						player_obj_position.global_position.z
+					), true, true)
+					player.can_move = not(player.can_move)
+					player.can_rotate = not(player.can_rotate)
 				act()
 			else:
+				key_to_press_label.visible = true
 				if change_player_position:
 					print("Player out")
-					player.global_position = captured_player_position
+					player.change_position(captured_player_position)
 
 
 func _on_player_detection_area_area_entered(area: Area3D) -> void:

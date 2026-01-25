@@ -34,33 +34,30 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if not free_roam_enable or not can_move:
-		return
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	move_and_slide()
+	#if free_roam_enable and can_move:
+#
+		## Handle jump.
+		#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			#velocity.y = JUMP_VELOCITY
+#
+		#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		#var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		#if direction:
+			#velocity.x = direction.x * SPEED
+			#velocity.z = direction.z * SPEED
+		#else:
+			#velocity.x = move_toward(velocity.x, 0, SPEED)
+			#velocity.z = move_toward(velocity.z, 0, SPEED)
+#
+		#move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and can_rotate:
 				rotation.y += - event.relative.x * mouse_sensitivity
 
-func change_position(new_position: Vector3, allow_player_walking_sequence: bool = true) -> void:
-	if can_move or can_rotate:
+func change_position(new_position: Vector3, allow_player_walking_sequence: bool = true, forced: bool = false) -> void:
+	if can_move or can_rotate or forced:
 		can_move = false
 		can_rotate = false
 		
@@ -72,6 +69,7 @@ func change_position(new_position: Vector3, allow_player_walking_sequence: bool 
 			
 			while _tween.is_running():
 				if not animation_player.is_playing():
+					animation_player.speed_scale = randf_range(0.9, 1.1)
 					animation_player.play("move_camera")
 				walking_sfx_audio_stream_player_3d.pitch_scale = randf_range(2.3, 2.7)
 				walking_sfx_audio_stream_player_3d.play()

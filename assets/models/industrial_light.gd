@@ -9,8 +9,8 @@ class_name IndustrialLight
 			flicker()
 		else:
 			turn_off()
-@export var min_random_flickering_time: float = 10.0
-@export var max_random_flickering_time: float = 25.0
+@export var min_random_flickering_time: float = 50.0
+@export var max_random_flickering_time: float = 150.0
 
 @onready var spot_light: SpotLight3D = $SpotLight
 @onready var sfx_audio_stream_player: AudioStreamPlayer3D = $SFXAudioStreamPlayer

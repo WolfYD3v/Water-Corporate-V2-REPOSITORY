@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dtcegswic53v5"]
+
+[ext_resource type="Shader" uid="uid://brxijkltyl4qj" path="res://assets/shaders/water_shader.gdshader" id="1_dt00y"]
+
+[sub_resource type="Gradient" id="Gradient_gdjkl"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_o7d0r"]
+color_ramp = SubResource("Gradient_gdjkl")
+seamless = true
+invert = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dt00y")
+shader_parameter/Noise = SubResource("NoiseTexture3D_o7d0r")
+shader_parameter/Color = Color(0, 0.2772423, 0.26900208, 1)

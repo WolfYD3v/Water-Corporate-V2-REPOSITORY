@@ -1,7 +1,12 @@
 extends Node
 
 signal water_quota_updated
+signal water_pumped_updated
 
+var water_pumped: float = 0.0:
+	set(value):
+		water_pumped = value
+		water_pumped_updated.emit()
 var water_quota: float = 10.0:
 	set(value):
 		water_quota = value

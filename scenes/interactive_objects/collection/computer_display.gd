@@ -29,10 +29,6 @@ class_name ComputerDisplay
 
 @onready var upgrades_shop: UpgradesShop = $UpgradesShop
 
-var water_pump: float = 0.0:
-	set(value):
-		water_pump = value
-		water_pumped_label.text = str(value) + " / " + str(GlobalVariables.water_quota) + " L"
 var heat_bar_tween
 var pumping_time_bar_tween
 
@@ -44,6 +40,7 @@ func _ready() -> void:
 	os_logo_texture_rect.hide()
 	desktop_icons.hide()
 	GlobalVariables.water_quota_updated.connect(_set_water_quota_display)
+	GlobalVariables.water_pumped_updated.connect(_set_water_pumped_display)
 	MoneyManager.balance_is_negative.connect(_low_balance_detected)
 	desktop_action_bar.hide()
 	nodification_bubble.hide()
@@ -57,7 +54,7 @@ func start() -> void:
 	await get_tree().create_timer(1.0).timeout
 	await boot()
 	_list_mails()
-	GlobalVariables.water_quota = 80.0
+	#GlobalVariables.water_quota = 80.0
 
 func boot() -> void:
 	await get_tree().create_timer(1.5).timeout
@@ -111,7 +108,7 @@ func _on_mails_item_selected(index: int) -> void:
 func _set_water_quota_display() -> void:
 	_add_mail("Data Center Team", "Water requested", "Our data center need " + str(GlobalVariables.water_quota) + " L more in " + str(GlobalVariables.pumping_time) + " seconds." + "\n" + "\n" + "Your Manager.")
 	
-	water_pump = 0.0
+	GlobalVariables.water_pumped = 0.0
 	heat_progress_bar.value = 0.0
 	heat_progress_bar.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	pumping_time_progress_bar.value = GlobalVariables.heating_time
@@ -119,6 +116,9 @@ func _set_water_quota_display() -> void:
 	_tween_heat_bar()
 	_tween_pumping_time_bar()
 	pumping_time_timer.start(35.0)
+
+func _set_water_pumped_display() -> void:
+	water_pumped_label.text = str(GlobalVariables.water_pumped) + " / " + str(GlobalVariables.water_quota) + " L"
 
 # CHANGE THIS FUNCTION!!!!!
 func _tween_heat_bar() -> void:
@@ -134,8 +134,10 @@ func _tween_pumping_time_bar() -> void:
 	pumping_time_bar_tween.tween_property(pumping_time_progress_bar, "value", 0.0, GlobalVariables.heating_time)
 
 func _on_pumping_time_timer_timeout() -> void:
-	if water_pump < GlobalVariables.water_quota:
+	if GlobalVariables.water_pumped < GlobalVariables.water_quota:
 		print("WATER QUOTA NOT FULL!")
+	else:
+		print("YOU DID A SHITTY JOB MY FRIEND")
 
 func _on_upgrades_shop_button_pressed() -> void:
 	upgrades_shop.show()

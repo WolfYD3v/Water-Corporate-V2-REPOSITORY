@@ -30,7 +30,9 @@ fog_depth_end = 15.0
 [node name="Map" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
 starting_room = NodePath("Rooms/ReceptionRoom(2,6)")
+play_context = false
 play_intro = false
+play_starting_dialog = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a2pkv")
@@ -39,7 +41,7 @@ environment = SubResource("Environment_a2pkv")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0.35, -40)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-6.5567076e-07, 14.999999, 6.5567076e-07, 0, -6.5567076e-07, 14.999999, 14.999999, 6.5567076e-07, 2.866028e-14, 69.5134, 21, 0)
+transform = Transform3D(14.999999, 0, 0, 0, -6.5567076e-07, 14.999999, 0, -14.999999, -6.5567076e-07, 69.5134, 21, 0)
 texture = ExtResource("3_mrjnl")
 
 [node name="Rooms" type="Node3D" parent="."]

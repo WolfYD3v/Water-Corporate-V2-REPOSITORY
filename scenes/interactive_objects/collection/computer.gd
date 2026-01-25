@@ -19,6 +19,7 @@ func _ready() -> void:
 		computer_display.start()
 
 func _input(_event: InputEvent) -> void:
+	if not mouse_focused: return
 	if Input.is_key_pressed(key_to_press_to_act) and interaction_timer.is_stopped():
 		interaction_timer.start(interaction_timer_waiting_time)
 		player_on_computer = not(player_on_computer)
@@ -31,16 +32,6 @@ func _input(_event: InputEvent) -> void:
 			computer_display.reparent(gui, true)
 			computer_display = get_node("GUI/ComputerDisplay")
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-func move_computer_display(current_location: Node, new_location: Node) -> void:
-	print(current_location.get_children())
-	var temp_computer_display = current_location.get_child(0)
-	print(temp_computer_display)
-	current_location.remove_child(temp_computer_display)
-	new_location.add_child(temp_computer_display)
-	#await get_tree().create_timer(1.0).timeout
-	computer_display = new_location.get_child(0)
-	print(new_location.get_children())
 
 func act() -> void:
 	if player_focused:

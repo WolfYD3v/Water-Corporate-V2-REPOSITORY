@@ -1,5 +1,7 @@
 extends Node
 
+signal upgrade_value_changed(upgrade_name: String, upgrade_value: int)
+
 enum UPGRADES {
 	TEST
 }
@@ -13,3 +15,7 @@ func get_upgrade_data(upgrade_name: String) -> int:
 
 func override_or_add_upgrade_data(upgrade_name: String, new_value: int) -> void:
 	_upgrades_data.set(upgrade_name, new_value)
+	upgrade_value_changed.emit(upgrade_name, new_value)
+
+func get_upgrades_list() -> Array:
+	return _upgrades_data.keys()
