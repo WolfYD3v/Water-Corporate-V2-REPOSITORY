@@ -110,8 +110,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, -0.2)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.8, 4.6, -1)
 
 [node name="PumpingStation" parent="." index="8" instance=ExtResource("9_wboce")]
-transform = Transform3D(1.9670124e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.9670124e-07, 4.3, 1.4000001, 0)
-player_interaction_allow = false
+transform = Transform3D(1.9670124e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.9670124e-07, 4.3, 1.1750001, 0)
+
+[node name="PlayerObjPosition" parent="PumpingStation" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7484581e-08, 0, 0.6566663)
 
 [node name="Screen" parent="PumpingStation" index="5"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4dscw")
@@ -120,3 +122,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4dscw")
 texture = SubResource("ViewportTexture_ak8a1")
 
 [editable path="PumpingStation"]
+[editable path="PumpingStation/ScreenSubViewport/Interface"]

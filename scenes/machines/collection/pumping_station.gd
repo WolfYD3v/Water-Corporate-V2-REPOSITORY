@@ -39,6 +39,8 @@ var do_something: bool = false:
 		print("STATUS: ", str(STATUS.keys()[status]))
 
 func _ready() -> void:
+	player_interaction_allow = true
+	
 	UpgradesData.upgrade_value_changed.connect(change_values_temp)
 	key_to_press_label.hide()
 	

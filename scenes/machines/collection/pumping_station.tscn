@@ -61,7 +61,7 @@ size = Vector2(5, 5)
 
 [node name="PumpingStation" instance=ExtResource("1_ivj6n")]
 script = ExtResource("2_k7vsu")
-player_interaction_allow = true
+player_interaction_allow = false
 allowed_upgrades = Array[String]([])
 
 [node name="CSGCombinerModel" parent="." index="0"]
