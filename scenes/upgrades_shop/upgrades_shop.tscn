@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://bhekqt3w61pfr" path="res://resources/upgrade/upgrade.gd" id="2_sfw83"]
 [ext_resource type="PackedScene" uid="uid://t0ohqj6oj8r0" path="res://scenes/upgrades_shop/update_card.tscn" id="4_ae0qv"]
 
-[sub_resource type="Resource" id="Resource_sfw83"]
+[sub_resource type="Resource" id="Resource_ae0qv"]
 script = ExtResource("2_sfw83")
-upgrade_name = "Test"
-base_price = 34.0
+upgrade_name = "Pumping Speed"
+base_price = 30.0
 metadata/_custom_type_script = "uid://bhekqt3w61pfr"
 
 [node name="UpgradesShop" type="Control"]
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ae0qv")
 script = ExtResource("1_84wy3")
-upgrades_avaible = Array[ExtResource("2_sfw83")]([SubResource("Resource_sfw83")])
+upgrades_avaible = Array[ExtResource("2_sfw83")]([SubResource("Resource_ae0qv")])
 
 [node name="Background" type="ColorRect" parent="."]
 visible = false

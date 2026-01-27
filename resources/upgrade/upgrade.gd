@@ -2,7 +2,7 @@ extends Resource
 class_name Upgrade
 
 @export var upgrade_name: String = ""
-@export var upgrade_scope: UpgradesData.UPGRADES = UpgradesData.UPGRADES.TEST
+@export var upgrade_scope: UpgradesData.UPGRADES = UpgradesData.UPGRADES.PUMPING_SPEED
 @export var max_upgrade_level: int = 25
 @export var unlock_automatition_upgrade_level: int = 15
 @export var base_price: float = 0.0

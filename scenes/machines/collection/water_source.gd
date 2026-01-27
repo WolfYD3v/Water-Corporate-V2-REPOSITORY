@@ -6,7 +6,12 @@ class_name WaterSource
 
 var filled_water_mesh_y_position: float = 0.8
 var empty_water_mesh_y_position: float = -1.9
-var water_level_value: float = 1.0
+var water_level_value: float = 1.0:
+	set(value):
+		water_level_value = value
+		empty = water_level_value <= 0.0
+
+var empty: bool = false
 
 func _ready() -> void:
 	reset_water()
@@ -22,7 +27,7 @@ func reset_water() -> void:
 # LIEN DE LA CONVERSATION - https://gemini.google.com/share/e695fe10f073
 func lower_water_level() -> void:
 	water_level_value = clampf(
-		water_level_value - 0.005,
+		water_level_value - 0.3,
 		0.0,
 		1.0
 	)
@@ -31,3 +36,6 @@ func lower_water_level() -> void:
 	# TEMP
 	if water_level_value <= 0.0:
 		reset_water()
+
+func is_empty() -> bool:
+	return empty

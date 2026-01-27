@@ -32,7 +32,7 @@ func _on_buy_button_pressed() -> void:
 
 func update_data() -> void:
 	UpgradesData.override_or_add_upgrade_data(
-		UpgradesData.UPGRADES.keys()[linked_upgrade.upgrade_scope],
+		linked_upgrade.upgrade_scope,
 		linked_upgrade.get_level()
 	)
 	print(UpgradesData._upgrades_data)

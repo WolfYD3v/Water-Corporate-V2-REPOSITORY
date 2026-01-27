@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://dmvobm82bnlw5"]
+[gd_scene load_steps=23 format=3 uid="uid://dmvobm82bnlw5"]
 
 [ext_resource type="PackedScene" uid="uid://d1absskdpac15" path="res://scenes/main_menu/main_menu.tscn" id="1_sxf4j"]
 [ext_resource type="Script" uid="uid://ctpagbbajdbcv" path="res://scenes/map/map.gd" id="1_tqkkf"]
+[ext_resource type="Environment" uid="uid://cigmti4rn0g0b" path="res://assets/environments/map_environment.tres" id="2_58ndj"]
 [ext_resource type="PackedScene" uid="uid://cjs1qisi5re4f" path="res://scenes/player/player.tscn" id="2_jcaow"]
 [ext_resource type="Texture2D" uid="uid://4am1hv62dlkx" path="res://assets/sprites/directions.jpeg" id="3_mrjnl"]
 [ext_resource type="PackedScene" uid="uid://bcktcqjou1y8n" path="res://scenes/rooms/collection/vertical_corridor.tscn" id="3_ph54e"]
@@ -13,19 +14,29 @@
 [ext_resource type="PackedScene" uid="uid://cemeydk4f2mbd" path="res://scenes/rooms/collection/horizontal_corridor.tscn" id="8_f17u5"]
 [ext_resource type="PackedScene" uid="uid://y8vitftxyvtm" path="res://scenes/rooms/collection/intersection_corridor.tscn" id="9_x2kg6"]
 [ext_resource type="PackedScene" uid="uid://cynegevfjnj7s" path="res://scenes/rooms/collection/reception_room.tscn" id="10_cumk7"]
+[ext_resource type="FontFile" uid="uid://docala5lt2gue" path="res://assets/fonts/Special_Elite/SpecialElite-Regular.ttf" id="10_nykyp"]
 [ext_resource type="PackedScene" uid="uid://clfsofvdkok67" path="res://scenes/rooms/collection/2_doors_room.tscn" id="11_cumk7"]
 [ext_resource type="PackedScene" uid="uid://di1muj33di57g" path="res://scenes/rooms/collection/water_pumping_room.tscn" id="12_mgs8m"]
 [ext_resource type="PackedScene" uid="uid://dmpqoa63q0ibt" path="res://scenes/dialog_scene/dialog_scene.tscn" id="15_rqo2c"]
 [ext_resource type="PackedScene" uid="uid://5oxf1ihj1mcd" path="res://scenes/context_introduction/context_introduction.tscn" id="16_e07uo"]
 
-[sub_resource type="Environment" id="Environment_a2pkv"]
-background_mode = 1
-background_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
-fog_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
-fog_density = 1.0
-fog_depth_curve = 0.4506252
-fog_depth_end = 15.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uclq6"]
+
+[sub_resource type="TextMesh" id="TextMesh_30ska"]
+material = SubResource("StandardMaterial3D_uclq6")
+text = "Click when gray appear to move"
+font = ExtResource("10_nykyp")
+font_size = 60
+autowrap_mode = 3
+width = 650.0
+
+[sub_resource type="TextMesh" id="TextMesh_tmgcv"]
+material = SubResource("StandardMaterial3D_uclq6")
+text = "Move your mouse to look around"
+font = ExtResource("10_nykyp")
+font_size = 60
+autowrap_mode = 3
+width = 600.0
 
 [node name="Map" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
@@ -35,10 +46,10 @@ play_intro = false
 play_starting_dialog = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_a2pkv")
+environment = ExtResource("2_58ndj")
 
 [node name="Player" parent="." instance=ExtResource("2_jcaow")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -30, 0.35, -40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0.35, -40)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(14.999999, 0, 0, 0, -6.5567076e-07, 14.999999, 0, -14.999999, -6.5567076e-07, 69.5134, 21, 0)
@@ -80,6 +91,17 @@ south_room = NodePath("../HorizontalCorridor(2,4)")
 [node name="ReceptionRoom(2,6)" parent="Rooms" node_paths=PackedStringArray("south_room") instance=ExtResource("10_cumk7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -40)
 south_room = NodePath("../IntersectionCorridorRoom(2,5)")
+
+[node name="Tutorial" type="Node3D" parent="Rooms/ReceptionRoom(2,6)"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Walk" type="MeshInstance3D" parent="Rooms/ReceptionRoom(2,6)/Tutorial"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.4000001, 3.2999992)
+mesh = SubResource("TextMesh_30ska")
+
+[node name="LookAround" type="MeshInstance3D" parent="Rooms/ReceptionRoom(2,6)/Tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4000001, -3.7000008)
+mesh = SubResource("TextMesh_tmgcv")
 
 [node name="VerticalCorridor(3,2)" parent="Rooms" node_paths=PackedStringArray("west_room", "east_room") instance=ExtResource("3_ph54e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)

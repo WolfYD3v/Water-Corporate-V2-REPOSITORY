@@ -17,7 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15686275, 0.37254903, 0, 0.78431374)
+color = Color(0.26062545, 0.581946, 7.70092e-07, 0.78431374)
 
 [node name="NODES" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -48,7 +48,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
-value = 45.0
 fill_mode = 3
 
 [node name="WaterPumpLabel" type="Label" parent="NODES/Sections/WaterPumpSection"]
@@ -66,7 +65,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 3
-value = 93.12
+value = 100.0
 fill_mode = 3
 
 [node name="PowerBankLabel" type="Label" parent="NODES/Sections/PowerBankSection"]

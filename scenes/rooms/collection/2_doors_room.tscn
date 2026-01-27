@@ -93,4 +93,7 @@ shape = SubResource("ConcavePolygonShape3D_1iifk")
 mesh = SubResource("ArrayMesh_y7jw4")
 
 [node name="IndustrialLight" parent="." index="6" instance=ExtResource("8_58a3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, -2.2)
+
+[node name="IndustrialLight2" parent="." index="7" instance=ExtResource("8_58a3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, 1.8)

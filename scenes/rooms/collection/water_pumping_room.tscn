@@ -104,12 +104,15 @@ shape = SubResource("ConcavePolygonShape3D_l7sau")
 mesh = SubResource("ArrayMesh_wboce")
 
 [node name="IndustrialLight" parent="." index="6" instance=ExtResource("8_rvfhx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, 1.8)
 
-[node name="IndustrialLight2" parent="." index="7" instance=ExtResource("8_rvfhx")]
+[node name="IndustrialLight3" parent="." index="7" instance=ExtResource("8_rvfhx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.6, -2.2)
+
+[node name="IndustrialLight2" parent="." index="8" instance=ExtResource("8_rvfhx")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.8, 4.6, -1)
 
-[node name="PumpingStation" parent="." index="8" instance=ExtResource("9_wboce")]
+[node name="PumpingStation" parent="." index="9" instance=ExtResource("9_wboce")]
 transform = Transform3D(1.9670124e-07, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.9670124e-07, 4.3, 1.1750001, 0)
 
 [node name="PlayerObjPosition" parent="PumpingStation" index="3"]

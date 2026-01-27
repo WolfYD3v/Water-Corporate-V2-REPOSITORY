@@ -16,6 +16,8 @@ class_name Map
 @onready var dialog_scene: DialogScene = $GUI/DialogScene
 @onready var context_introduction: ContextIntroduction = $GUI/ContextIntroduction
 
+@onready var tutorial_node: Node3D = $"Rooms/ReceptionRoom(2,6)/Tutorial"
+
 const PAUSE_MENU = preload("uid://cch6lt3ytnmwx")
 
 var actual_room: BaseRoom = null:
@@ -36,6 +38,7 @@ var actual_room: BaseRoom = null:
 var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
+	tutorial_node.hide()
 	AlertManager.list_nodes_for_alert_from(self)
 	#await AlertManager.scan_finished
 	
@@ -59,6 +62,7 @@ func _on_main_menu_quitted() -> void:
 	gui.add_child(PAUSE_MENU.instantiate())
 	
 	main_menu.hide()
+	tutorial_node.show()
 	
 	# CONTEXT
 	if play_context:
@@ -78,6 +82,8 @@ func _on_main_menu_quitted() -> void:
 		tutorial()
 
 func try_change_room(next_room_direcion_idx: int) -> void:
+	if tutorial_node:
+		tutorial_node.queue_free()
 	print(to_string() + str(next_room_direcion_idx))
 	#next_room_direcion_idx = clampi(next_room_direcion_idx, 0, 3)
 	set_adj_rooms_active_status(false)
