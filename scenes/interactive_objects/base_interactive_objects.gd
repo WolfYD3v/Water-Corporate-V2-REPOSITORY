@@ -28,19 +28,24 @@ func act() -> void:
 	# CUSTOM CODE HERE
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if Input.is_key_pressed(key_to_press_to_act) and interaction_timer.is_stopped() and player:
+func _process(_delta: float) -> void:
+	if Input.is_key_pressed(key_to_press_to_act):
+		print(player)
+		if GlobalVariables.player:
+			player = GlobalVariables.player
+		if interaction_timer.is_stopped() and player and mouse_focused:
 			interaction_timer.start(interaction_timer_waiting_time)
 			player_focused = not(player_focused)
 			player.can_move = not(player.can_move)
 			player.can_rotate = not(player.can_rotate)
 			
-			print(player.can_move)
-			print(player.can_rotate)
+			print(player_focused)
+			print(mouse_focused)
 			
 			if player_focused and mouse_focused:
 				key_to_press_label.visible = false
+				act()
+				await get_tree().create_timer(0.1).timeout
 				if change_player_position:
 					captured_player_position = player.position
 					print("Player in")
@@ -51,7 +56,6 @@ func _unhandled_input(event: InputEvent) -> void:
 					), true, true)
 					player.can_move = not(player.can_move)
 					player.can_rotate = not(player.can_rotate)
-				act()
 			else:
 				key_to_press_label.visible = true
 				if change_player_position:
@@ -62,19 +66,17 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_player_detection_area_area_entered(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		mouse_focused = true
-		player = area.get_parent()
 
 func _on_player_detection_area_area_exited(area: Area3D) -> void:
 	if area.is_in_group("PlayerMouse"):
 		mouse_focused = false
-		player = null
 
 func _on_player_detection_area_body_entered(body: Node3D) -> void:
 	if body is Player:
-		mouse_focused = true
-		player = body
+		#mouse_focused = true
+		pass
 
 func _on_player_detection_area_body_exited(body: Node3D) -> void:
 	if body is Player:
-		mouse_focused = false
-		player = null
+		#mouse_focused = false
+		pass

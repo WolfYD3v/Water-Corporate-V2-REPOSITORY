@@ -25,6 +25,8 @@ var can_rotate: bool = true
 var _tween
 
 func _ready() -> void:
+	GlobalVariables.player = self
+	
 	animation_player.play("RESET")
 	if free_roam_enable: player_mouse.queue_free()
 	if not debug_top_down_camera_view: debug_top_down_camera.queue_free()

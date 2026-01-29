@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://de0048suotopg"]
+[gd_scene format=4 uid="uid://de0048suotopg"]
 
 [ext_resource type="PackedScene" uid="uid://tv80lgxxkd2e" path="res://scenes/machines/base_machine.tscn" id="1_ivj6n"]
 [ext_resource type="Script" uid="uid://dq6w5r3sjtrm6" path="res://scenes/machines/collection/pumping_station.gd" id="2_k7vsu"]
@@ -33,14 +33,14 @@ size = Vector3(1, 1, 10)
 [sub_resource type="QuadMesh" id="QuadMesh_32qii"]
 size = Vector2(0.65, 0.65)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_32qii"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qkywy"]
 viewport_path = NodePath("ScreenSubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fyxgf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gppde"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_32qii")
+albedo_texture = SubResource("ViewportTexture_qkywy")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_gdjkl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5gs6x"]
 viewport_path = NodePath("WaterSourcePOVSubViewport")
 
 [sub_resource type="SphereMesh" id="SphereMesh_5gs6x"]
@@ -107,7 +107,7 @@ _surfaces = [{
 material = ExtResource("8_5gs6x")
 size = Vector3(0.3, 0.3, 0.3)
 
-[node name="PumpingStation" instance=ExtResource("1_ivj6n")]
+[node name="PumpingStation" unique_id=1276675693 instance=ExtResource("1_ivj6n")]
 script = ExtResource("2_k7vsu")
 player_interaction_allow = false
 allowed_upgrades = Dictionary[int, String]({
@@ -120,22 +120,22 @@ allowed_upgrades = Dictionary[int, String]({
 [node name="CSGCombinerModel" parent="." index="0"]
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombinerModel" index="0"]
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombinerModel" index="0" unique_id=640428403]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, -0.5, 0)
 size = Vector3(0.9, 0.6, 0.8)
 material = ExtResource("3_32qii")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombinerModel" index="1"]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombinerModel" index="1" unique_id=1883266881]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.1, -0.1)
 mesh = SubResource("PrismMesh_56kgv")
 material = ExtResource("3_32qii")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombinerModel" index="2"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombinerModel" index="2" unique_id=2060840154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.3)
 size = Vector3(0.9, 1, 0.3)
 material = ExtResource("3_32qii")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=782253828]
 mesh = SubResource("ArrayMesh_32qii")
 
 [node name="CollisionShape" parent="PlayerDetectionArea" index="0"]
@@ -146,15 +146,15 @@ shape = SubResource("BoxShape3D_56kgv")
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_56kgv")
 
-[node name="Screen" type="MeshInstance3D" parent="." index="5"]
+[node name="Screen" type="MeshInstance3D" parent="." index="5" unique_id=628110405]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -0.1)
 mesh = SubResource("QuadMesh_32qii")
-surface_material_override/0 = SubResource("StandardMaterial3D_fyxgf")
+surface_material_override/0 = SubResource("StandardMaterial3D_gppde")
 
-[node name="ScreenSubViewport" type="SubViewport" parent="." index="7"]
+[node name="ScreenSubViewport" type="SubViewport" parent="." index="7" unique_id=1643129691]
 size = Vector2i(500, 500)
 
-[node name="TextureRect" type="TextureRect" parent="ScreenSubViewport" index="0"]
+[node name="TextureRect" type="TextureRect" parent="ScreenSubViewport" index="0" unique_id=1309401308]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -164,125 +164,125 @@ offset_right = 6.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("ViewportTexture_gdjkl")
+texture = SubResource("ViewportTexture_5gs6x")
 
-[node name="Interface" parent="ScreenSubViewport" index="1" instance=ExtResource("4_o7d0r")]
+[node name="Interface" parent="ScreenSubViewport" index="1" unique_id=400018935 instance=ExtResource("4_o7d0r")]
 offset_right = 283.0
 offset_bottom = 114.0
 
-[node name="WaterSourcePOVSubViewport" type="SubViewport" parent="." index="8"]
+[node name="WaterSourcePOVSubViewport" type="SubViewport" parent="." index="8" unique_id=1255193142]
 transparent_bg = true
 
-[node name="Camera3D" type="Camera3D" parent="WaterSourcePOVSubViewport" index="0"]
+[node name="Camera3D" type="Camera3D" parent="WaterSourcePOVSubViewport" index="0" unique_id=1005307256]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.3, 2.6000001, -13)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterSourcePOVSubViewport/Camera3D" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterSourcePOVSubViewport/Camera3D" index="0" unique_id=1422479887]
 mesh = SubResource("SphereMesh_5gs6x")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="WaterSourcePOVSubViewport/Camera3D" index="1"]
+[node name="SpotLight3D" type="SpotLight3D" parent="WaterSourcePOVSubViewport/Camera3D" index="1" unique_id=1412523047]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 light_energy = 16.0
 spot_range = 10.0
 spot_angle = 50.0
 
-[node name="WaterSource" type="Node3D" parent="." index="9"]
+[node name="WaterSource" type="Node3D" parent="." index="9" unique_id=1444956715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
 script = ExtResource("5_gdjkl")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="WaterSource" index="0"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="WaterSource" index="0" unique_id=2092596658]
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="0"]
+[node name="CSGBox3D" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="0" unique_id=1289191588]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 size = Vector3(3, 3, 0.4)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="1"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="1" unique_id=303457925]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 size = Vector3(3, 3, 0.4)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="2"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="2" unique_id=1940075923]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 0)
 size = Vector3(3, 3, 0.4)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="3"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="3" unique_id=1288950672]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1, 0, 0)
 size = Vector3(3, 3, 0.4)
 
-[node name="Ground" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="4"]
+[node name="Ground" type="CSGBox3D" parent="WaterSource/CSGCombiner3D" index="4" unique_id=425862320]
 transform = Transform3D(1.9106855e-15, 1, -4.371139e-08, 4.371139e-08, -4.371139e-08, -1, -1, 0, -4.371139e-08, 0, -1.5, 0)
 size = Vector3(7, 5, 0.4)
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="WaterSource" index="1"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="WaterSource" index="1" unique_id=2754883]
 mesh = SubResource("ArrayMesh_gppde")
 surface_material_override/0 = ExtResource("6_5gs6x")
 
-[node name="WaterMesh" type="MeshInstance3D" parent="WaterSource" index="2"]
+[node name="WaterMesh" type="MeshInstance3D" parent="WaterSource" index="2" unique_id=38212675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 mesh = SubResource("PlaneMesh_qkywy")
 skeleton = NodePath("../..")
 
-[node name="Pump" type="Node3D" parent="WaterSource" index="3"]
+[node name="Pump" type="Node3D" parent="WaterSource" index="3" unique_id=33593127]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterSource/Pump" index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WaterSource/Pump" index="0" unique_id=1745825216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 mesh = SubResource("CylinderMesh_5gs6x")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="WaterSource/Pump" index="1"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WaterSource/Pump" index="1" unique_id=1522865095]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79999995, 0)
 mesh = SubResource("CylinderMesh_qkywy")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="WaterSource/Pump" index="2"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WaterSource/Pump" index="2" unique_id=1193362632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4000001, 0)
 mesh = SubResource("CylinderMesh_gppde")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="WaterSource/Pump" index="3"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="WaterSource/Pump" index="3" unique_id=1672735729]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6000001, 0)
 mesh = SubResource("CylinderMesh_gppde")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="WaterSource/Pump" index="4"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="WaterSource/Pump" index="4" unique_id=399563746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8000002, 0)
 mesh = SubResource("CylinderMesh_gppde")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="Camera3D" type="Camera3D" parent="." index="10"]
+[node name="Camera3D" type="Camera3D" parent="." index="10" unique_id=1864431772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.4)
 environment = SubResource("Environment_o7d0r")
 
-[node name="Lever" type="Node3D" parent="." index="11"]
+[node name="Lever" type="Node3D" parent="." index="11" unique_id=592714449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, 0.1)
 
-[node name="Model" type="CSGCombiner3D" parent="Lever" index="0"]
+[node name="Model" type="CSGCombiner3D" parent="Lever" index="0" unique_id=614303385]
 visible = false
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Lever/Model" index="0"]
+[node name="CSGBox3D" type="CSGBox3D" parent="Lever/Model" index="0" unique_id=1909731032]
 size = Vector3(0.1, 0.3, 0.1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Lever/Model" index="1"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Lever/Model" index="1" unique_id=1032404615]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0, 0)
 size = Vector3(0.1, 0.3, 0.1)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lever/Model" index="2"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Lever/Model" index="2" unique_id=1876345505]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.15, 0.08, 0)
 radius = 0.05
 height = 0.3
 sides = 20
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Lever" index="1"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="Lever" index="1" unique_id=2105860662]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.3, -0.02, 0.1)
 mesh = SubResource("ArrayMesh_qkywy")
 surface_material_override/0 = ExtResource("3_32qii")
 
-[node name="Base" type="MeshInstance3D" parent="Lever" index="2"]
+[node name="Base" type="MeshInstance3D" parent="Lever" index="2" unique_id=1343290067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.25, 0.1)
 mesh = SubResource("BoxMesh_5gs6x")
 

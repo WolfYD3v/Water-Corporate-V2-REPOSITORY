@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://5oxf1ihj1mcd"]
+[gd_scene format=3 uid="uid://5oxf1ihj1mcd"]
 
 [ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_a2o4x"]
 [ext_resource type="Script" uid="uid://52lruq04s67s" path="res://scenes/context_introduction/context_introduction.gd" id="1_ok3c0"]
 
-[node name="ContextIntroduction" type="Control"]
+[sub_resource type="Animation" id="Animation_a2o4x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_hrm4x"]
+resource_name = "play"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o15sc"]
+_data = {
+&"RESET": SubResource("Animation_a2o4x"),
+&"play": SubResource("Animation_hrm4x")
+}
+
+[node name="ContextIntroduction" type="Control" unique_id=1292942535]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +50,7 @@ grow_vertical = 2
 theme = ExtResource("1_a2o4x")
 script = ExtResource("1_ok3c0")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1444330045]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,14 +59,30 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1026142626]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 35
-text = "xxxxxxxxxx"
+theme_override_font_sizes/font_size = 25
+text = "So, uuummmm...
+We’re at the spot. The WPS... yeah.
+Welcome to your new home! I guess...
+
+So, let me tell you what your job is all about—it’ll be quick.
+The WPS is the company's main and only water source. Its purpose is to pump water and send it over to the data center. You’ll be using the pumping station for that.
+Your computer is your best friend: the emails, your money, everything important related to your work is there. Don’t forget to turn it on and off at the start and end of your shift, okay?
+
+You... your first mission is to go to your office, aaannddd... well, get some rest for the night.
+Tomorrow is your first day to shine, so rest is important.
+Here are your regular hours that you’ll need to follow. Halter an. I... I mean, the boss and the team have put all their trust and faith in you. Don't mess up, got it?
+
+Explore, take a look, and go to your office."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=263491209]
+libraries/ = SubResource("AnimationLibrary_o15sc")

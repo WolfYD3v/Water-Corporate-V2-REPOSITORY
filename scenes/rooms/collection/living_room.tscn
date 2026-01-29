@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dy5b8yqb0fu1b"]
+[gd_scene format=4 uid="uid://dy5b8yqb0fu1b"]
 
 [ext_resource type="PackedScene" uid="uid://tqewyifqimoo" path="res://scenes/rooms/base_room.tscn" id="1_o8hsr"]
 [ext_resource type="PackedScene" uid="uid://bso1diewv0nsv" path="res://assets/models/wall.tscn" id="2_o8hsr"]
@@ -74,72 +74,72 @@ image = SubResource("Image_m48gn")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tslen"]
 albedo_texture = SubResource("ImageTexture_my05x")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4y1co"]
-viewport_path = NodePath("Computer2/SubViewport")
+[sub_resource type="ViewportTexture" id="ViewportTexture_hhmvh"]
+viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpwyp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_douhs"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_4y1co")
+albedo_texture = SubResource("ViewportTexture_hhmvh")
 
-[node name="LivingRoom" instance=ExtResource("1_o8hsr")]
+[node name="LivingRoom" unique_id=804621983 instance=ExtResource("1_o8hsr")]
 
 [node name="Build" parent="." index="0"]
 visible = false
 
-[node name="Wall1" parent="Build" index="2" instance=ExtResource("2_o8hsr")]
+[node name="Wall1" parent="Build" index="2" unique_id=1490034336 instance=ExtResource("2_o8hsr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 2)
 
-[node name="Wall2" parent="Build" index="3" instance=ExtResource("2_o8hsr")]
+[node name="Wall2" parent="Build" index="3" unique_id=1999770698 instance=ExtResource("2_o8hsr")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 2.4, 0)
 
-[node name="Wall3" parent="Build" index="4" instance=ExtResource("2_o8hsr")]
+[node name="Wall3" parent="Build" index="4" unique_id=42856328 instance=ExtResource("2_o8hsr")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3, 2.4, 0)
 
-[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="." index="1"]
+[node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="." index="1" unique_id=2061514102]
 shape = SubResource("ConcavePolygonShape3D_douhs")
 
-[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." index="2" unique_id=349553200]
 mesh = SubResource("ArrayMesh_70nu2")
 
-[node name="IndustrialLight" parent="." index="6" instance=ExtResource("5_hh52i")]
+[node name="IndustrialLight" parent="." index="6" unique_id=175967283 instance=ExtResource("5_hh52i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 4.6, -0.20000005)
 
-[node name="IndustrialLight2" parent="." index="7" instance=ExtResource("5_hh52i")]
+[node name="IndustrialLight2" parent="." index="7" unique_id=989262243 instance=ExtResource("5_hh52i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 4.6, -3.2)
 
-[node name="Mirror" type="Node3D" parent="." index="8"]
+[node name="Mirror" type="Node3D" parent="." index="8" unique_id=1390736611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 1.7)
 script = ExtResource("6_ftlic")
 
-[node name="MirrorMeshInstance" type="MeshInstance3D" parent="Mirror" index="0"]
+[node name="MirrorMeshInstance" type="MeshInstance3D" parent="Mirror" index="0" unique_id=1252537491]
 transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, -0.29999995, 0)
 mesh = SubResource("PlaneMesh_4f3cn")
 surface_material_override/0 = SubResource("StandardMaterial3D_tslen")
 
-[node name="SubViewport" type="SubViewport" parent="Mirror" index="1"]
+[node name="SubViewport" type="SubViewport" parent="Mirror" index="1" unique_id=1492837916]
 render_target_update_mode = 3
 
-[node name="MirrorCamera" type="Camera3D" parent="Mirror/SubViewport" index="0"]
+[node name="MirrorCamera" type="Camera3D" parent="Mirror/SubViewport" index="0" unique_id=922902904]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 1.7)
 fov = 20.0
 
-[node name="SmallDoor" parent="." index="9" instance=ExtResource("11_cpwyp")]
+[node name="SmallDoor" parent="." index="9" unique_id=22689346 instance=ExtResource("11_cpwyp")]
 transform = Transform3D(-4.288087e-08, 0, -1.3, 0, 0.981, 0, 0.981, 0, -5.6824803e-08, 1.6, 1.1999999, 0)
 
-[node name="Speaker" parent="." index="10" instance=ExtResource("10_cpwyp")]
+[node name="Speaker" parent="." index="10" unique_id=1833427122 instance=ExtResource("10_cpwyp")]
 transform = Transform3D(1.3629503e-07, 0, -0.7, 0, 0.7, 0, 0.7, 0, 1.3629503e-07, 1.7, 3.7, -1.0999999)
 
-[node name="AlertLight" parent="." index="11" instance=ExtResource("11_m48gn")]
+[node name="AlertLight" parent="." index="11" unique_id=1163198943 instance=ExtResource("11_m48gn")]
 transform = Transform3D(-2.8412401e-08, 0, 0.65, 0, 0.65, 0, -0.65, 0, -2.8412401e-08, -0.4, 3.6, 1.7)
 
-[node name="WpsBanner" parent="." index="12" instance=ExtResource("12_m48gn")]
+[node name="WpsBanner" parent="." index="12" unique_id=50506568 instance=ExtResource("12_m48gn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.7489998, 1.8, -3.0000002)
 
-[node name="Computer2" parent="." index="13" instance=ExtResource("12_rrudg")]
+[node name="Computer2" parent="." index="13" unique_id=1170887893 instance=ExtResource("12_rrudg")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.3, 1.6, 0)
 
-[node name="ScreenDisplayMeshInstance" parent="Computer2" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_cpwyp")
+[node name="ScreenDisplayMeshInstance" parent="Computer2" index="2" unique_id=841783963]
+surface_material_override/0 = SubResource("StandardMaterial3D_douhs")
 
 [node name="PlayerDetectionArea" parent="Computer2" index="3"]
 transform = Transform3D(0.65, 0, 0, 0, 0.7, 0, 0, 0, 1, 8.742277e-08, 0, -1.8)
@@ -147,7 +147,7 @@ transform = Transform3D(0.65, 0, 0, 0, 0.7, 0, 0, 0, 1, 8.742277e-08, 0, -1.8)
 [node name="PlayerObjPosition" parent="Computer2" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 1)
 
-[node name="SubViewport" parent="Computer2" index="8"]
+[node name="SubViewport" parent="Computer2" index="8" unique_id=1470031579]
 size_2d_override = Vector2i(1152, 648)
 size_2d_override_stretch = true
 

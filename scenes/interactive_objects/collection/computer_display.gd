@@ -46,9 +46,6 @@ func _ready() -> void:
 	nodification_bubble.hide()
 	heat_bar.hide()
 	mail_client.hide()
-	
-	boot_black_fading.hide()
-	boot()
 
 func start() -> void:
 	await get_tree().create_timer(1.0).timeout
@@ -72,6 +69,7 @@ func boot() -> void:
 	await get_tree().create_timer(0.2).timeout
 	heat_bar.show()
 	await get_tree().create_timer(0.2).timeout
+	WorkingDaysManager.start_shift()
 
 func _add_desktop_icon() -> void:
 	if desktop_icons.get_child_count() <= max_desktop_icons_number:

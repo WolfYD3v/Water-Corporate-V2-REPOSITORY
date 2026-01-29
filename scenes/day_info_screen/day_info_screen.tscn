@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://rha1bynaol1s"]
+
+[ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_sltmr"]
+[ext_resource type="Script" uid="uid://det1jfv3allr" path="res://scenes/day_info_screen/day_info_screen.gd" id="1_wx620"]
+
+[node name="DayInfoScreen" type="Control" unique_id=246768865]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sltmr")
+script = ExtResource("1_wx620")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1675185886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DayLabel" type="Label" parent="." unique_id=33918413]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "DAY NB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopupTimer" type="Timer" parent="." unique_id=1986879165]
+one_shot = true

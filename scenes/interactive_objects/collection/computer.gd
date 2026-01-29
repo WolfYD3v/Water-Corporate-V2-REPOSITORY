@@ -18,9 +18,8 @@ func _ready() -> void:
 	if auto_boot:
 		computer_display.start()
 
-func _input(_event: InputEvent) -> void:
-	if not mouse_focused: return
-	if Input.is_key_pressed(key_to_press_to_act) and interaction_timer.is_stopped():
+func thingy() -> void:
+	if mouse_focused:
 		interaction_timer.start(interaction_timer_waiting_time)
 		player_on_computer = not(player_on_computer)
 		gui.visible = not(gui.visible)
@@ -34,6 +33,8 @@ func _input(_event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func act() -> void:
+	print("act")
+	thingy()
 	if player_focused:
 		player.rotation.y = rotation.y
 	if not auto_boot and not computer_booted:

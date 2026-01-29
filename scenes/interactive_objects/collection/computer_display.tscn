@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brj1rmddrqfyr"]
+[gd_scene format=3 uid="uid://brj1rmddrqfyr"]
 
 [ext_resource type="Script" uid="uid://dly05hirbh85x" path="res://scenes/interactive_objects/collection/computer_display.gd" id="1_jt3x0"]
 [ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_osdv1"]
@@ -197,7 +197,7 @@ _data = {
 &"nodification_bubble_anim": SubResource("Animation_jt3x0")
 }
 
-[node name="ComputerDisplay" type="Control"]
+[node name="ComputerDisplay" type="Control" unique_id=1160216137]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -207,7 +207,7 @@ grow_vertical = 2
 theme = ExtResource("1_osdv1")
 script = ExtResource("1_jt3x0")
 
-[node name="Wallpaper" type="TextureRect" parent="."]
+[node name="Wallpaper" type="TextureRect" parent="." unique_id=1603302259]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -217,7 +217,7 @@ grow_vertical = 2
 texture = ExtResource("2_jt3x0")
 expand_mode = 1
 
-[node name="DesktopInterface" type="VBoxContainer" parent="."]
+[node name="DesktopInterface" type="VBoxContainer" parent="." unique_id=417175267]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -225,12 +225,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="DesktopInterface"]
+[node name="ColorRect" type="ColorRect" parent="DesktopInterface" unique_id=1483858013]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 color = Color(1, 1, 1, 0)
 
-[node name="DesktopIcons" type="GridContainer" parent="DesktopInterface"]
+[node name="DesktopIcons" type="GridContainer" parent="DesktopInterface" unique_id=123481749]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -238,7 +238,7 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 9
 
-[node name="UpgradesShopButton" type="Button" parent="DesktopInterface/DesktopIcons"]
+[node name="UpgradesShopButton" type="Button" parent="DesktopInterface/DesktopIcons" unique_id=2116382626]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 text = "Demon Upgrade"
@@ -248,11 +248,11 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="DesktopActionBar" type="Control" parent="DesktopInterface"]
+[node name="DesktopActionBar" type="Control" parent="DesktopInterface" unique_id=912651484]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="Background" type="ColorRect" parent="DesktopInterface/DesktopActionBar"]
+[node name="Background" type="ColorRect" parent="DesktopInterface/DesktopActionBar" unique_id=1410209181]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -261,7 +261,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23921569, 0.59607846, 0, 0.39215687)
 
-[node name="Actions" type="HBoxContainer" parent="DesktopInterface/DesktopActionBar"]
+[node name="Actions" type="HBoxContainer" parent="DesktopInterface/DesktopActionBar" unique_id=1663493468]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -271,7 +271,7 @@ grow_vertical = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="WindowButton" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
+[node name="WindowButton" type="Button" parent="DesktopInterface/DesktopActionBar/Actions" unique_id=449729756]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
@@ -279,13 +279,13 @@ icon = ExtResource("3_etlvh")
 flat = true
 expand_icon = true
 
-[node name="Line" type="ColorRect" parent="DesktopInterface/DesktopActionBar/Actions"]
+[node name="Line" type="ColorRect" parent="DesktopInterface/DesktopActionBar/Actions" unique_id=487122008]
 custom_minimum_size = Vector2(5, 52)
 layout_mode = 2
 size_flags_vertical = 4
 color = Color(0, 0.7019608, 0, 0.39215687)
 
-[node name="OktaMail" type="Button" parent="DesktopInterface/DesktopActionBar/Actions"]
+[node name="OktaMail" type="Button" parent="DesktopInterface/DesktopActionBar/Actions" unique_id=208651780]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 focus_mode = 0
@@ -293,7 +293,7 @@ icon = ExtResource("4_bkr5v")
 flat = true
 expand_icon = true
 
-[node name="NodificationBubble" type="Control" parent="."]
+[node name="NodificationBubble" type="Control" parent="." unique_id=1997954589]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -304,7 +304,7 @@ offset_bottom = -0.00036621094
 grow_vertical = 0
 pivot_offset = Vector2(0, 100)
 
-[node name="Background" type="ColorRect" parent="NodificationBubble"]
+[node name="Background" type="ColorRect" parent="NodificationBubble" unique_id=599134000]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -313,7 +313,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23921569, 0.50980395, 0, 0.78431374)
 
-[node name="Labels" type="VBoxContainer" parent="NodificationBubble"]
+[node name="Labels" type="VBoxContainer" parent="NodificationBubble" unique_id=1083140050]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -321,7 +321,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AppNameRichTextLabel" type="RichTextLabel" parent="NodificationBubble/Labels"]
+[node name="AppNameRichTextLabel" type="RichTextLabel" parent="NodificationBubble/Labels" unique_id=1615802237]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 17
@@ -329,14 +329,14 @@ theme_override_font_sizes/bold_font_size = 17
 bbcode_enabled = true
 text = "[b]APP NAME[/b]"
 
-[node name="TextLabel" type="Label" parent="NodificationBubble/Labels"]
+[node name="TextLabel" type="Label" parent="NodificationBubble/Labels" unique_id=2132757879]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Text"
 autowrap_mode = 3
 
-[node name="MailClient" type="Control" parent="."]
+[node name="MailClient" type="Control" parent="." unique_id=461390770]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -347,7 +347,7 @@ offset_bottom = -68.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="MailClient"]
+[node name="Background" type="ColorRect" parent="MailClient" unique_id=404585020]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -356,7 +356,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23921569, 0.50980395, 0, 0.78431374)
 
-[node name="OktaMailClientRichTextLabel" type="RichTextLabel" parent="MailClient"]
+[node name="OktaMailClientRichTextLabel" type="RichTextLabel" parent="MailClient" unique_id=2008193688]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -369,7 +369,7 @@ text = "[b]OktaMail Client[/b]"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Line" type="ColorRect" parent="MailClient"]
+[node name="Line" type="ColorRect" parent="MailClient" unique_id=601773053]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -380,7 +380,7 @@ offset_bottom = 40.0
 grow_horizontal = 2
 color = Color(0, 1, 0, 1)
 
-[node name="Mails" type="ItemList" parent="MailClient"]
+[node name="Mails" type="ItemList" parent="MailClient" unique_id=1258002319]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -391,7 +391,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
 
-[node name="Line2" type="ColorRect" parent="MailClient"]
+[node name="Line2" type="ColorRect" parent="MailClient" unique_id=986069728]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -402,7 +402,7 @@ offset_bottom = 340.0
 grow_horizontal = 2
 color = Color(0, 0.28235295, 0, 1)
 
-[node name="MailContent" type="RichTextLabel" parent="MailClient"]
+[node name="MailContent" type="RichTextLabel" parent="MailClient" unique_id=645200420]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -414,12 +414,12 @@ theme_override_font_sizes/normal_font_size = 22
 theme_override_font_sizes/bold_font_size = 22
 text = "mail content"
 
-[node name="HeatBar" type="Control" parent="."]
+[node name="HeatBar" type="Control" parent="." unique_id=582266149]
 anchors_preset = 0
 offset_right = 170.0
 offset_bottom = 280.0
 
-[node name="Background" type="ColorRect" parent="HeatBar"]
+[node name="Background" type="ColorRect" parent="HeatBar" unique_id=415462353]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -428,7 +428,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.23921569, 0.50980395, 0, 0.78431374)
 
-[node name="BarsContainer" type="HBoxContainer" parent="HeatBar"]
+[node name="BarsContainer" type="HBoxContainer" parent="HeatBar" unique_id=184798177]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -438,14 +438,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="HeatProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer"]
+[node name="HeatProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer" unique_id=2001525743]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 1
 fill_mode = 3
 
-[node name="PumpingTimeProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer"]
+[node name="PumpingTimeProgressBar" type="ProgressBar" parent="HeatBar/BarsContainer" unique_id=1806862500]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -453,7 +453,7 @@ size_flags_vertical = 1
 fill_mode = 3
 show_percentage = false
 
-[node name="UselessBarButNeededOK" type="ProgressBar" parent="HeatBar/BarsContainer"]
+[node name="UselessBarButNeededOK" type="ProgressBar" parent="HeatBar/BarsContainer" unique_id=901939636]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -463,7 +463,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5souu")
 fill_mode = 3
 show_percentage = false
 
-[node name="WaterPumpedLabel" type="Label" parent="HeatBar"]
+[node name="WaterPumpedLabel" type="Label" parent="HeatBar" unique_id=219072773]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -476,11 +476,11 @@ text = "0.0 / 0.0 L"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="UpgradesShop" parent="." instance=ExtResource("5_nbp6s")]
+[node name="UpgradesShop" parent="." unique_id=1335403027 instance=ExtResource("5_nbp6s")]
 visible = false
 layout_mode = 1
 
-[node name="BootBlackFading" type="ColorRect" parent="."]
+[node name="BootBlackFading" type="ColorRect" parent="." unique_id=435355754]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -490,7 +490,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="OSLogoTextureRect" type="TextureRect" parent="BootBlackFading"]
+[node name="OSLogoTextureRect" type="TextureRect" parent="BootBlackFading" unique_id=732706171]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 8
@@ -507,12 +507,10 @@ grow_vertical = 2
 texture = ExtResource("3_etlvh")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_etlvh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1051411356]
+libraries/ = SubResource("AnimationLibrary_etlvh")
 
-[node name="PumpingTimeTimer" type="Timer" parent="."]
+[node name="PumpingTimeTimer" type="Timer" parent="." unique_id=1833254160]
 
 [connection signal="pressed" from="DesktopInterface/DesktopIcons/UpgradesShopButton" to="." method="_on_upgrades_shop_button_pressed"]
 [connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]

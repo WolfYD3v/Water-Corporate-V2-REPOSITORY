@@ -38,6 +38,7 @@ var actual_room: BaseRoom = null:
 var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
+	#WorkingDaysManager.set_shift_can_start(true) # false de base...
 	tutorial_node.hide()
 	AlertManager.list_nodes_for_alert_from(self)
 	#await AlertManager.scan_finished

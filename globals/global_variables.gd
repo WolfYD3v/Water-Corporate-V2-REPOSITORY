@@ -3,6 +3,8 @@ extends Node
 signal water_quota_updated
 signal water_pumped_updated
 
+var player: Player = null
+
 var water_pumped: float = 0.0:
 	set(value):
 		water_pumped = value

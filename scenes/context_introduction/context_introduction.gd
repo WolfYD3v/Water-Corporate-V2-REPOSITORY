@@ -3,20 +3,20 @@ class_name ContextIntroduction
 
 signal finished
 
-@export var context_lines: Array[String] = []
-
 @onready var label: Label = $Label
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	hide()
+	
+	play()
 
 func play() -> void:
+	label.visible_ratio = 0.0
 	show()
 	
-	for line_str: String in context_lines:
-		label.text = line_str
-		await get_tree().create_timer(3.5).timeout
+	animation_player.play("play")
+	await animation_player.animation_finished
 	
-	await get_tree().create_timer(3.5).timeout
 	hide()
 	finished.emit()
