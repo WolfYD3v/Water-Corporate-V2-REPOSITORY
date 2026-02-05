@@ -7,7 +7,6 @@ class_name BaseInteractiveObjects
 @onready var interaction_timer: Timer = $InteractionTimer
 @onready var key_to_press_label: MeshInstance3D = $KeyToPressLabel
 
-@export var key_to_press_to_act: Key = KEY_E
 @export var interaction_timer_waiting_time: float = 0.1
 
 var captured_player_position: Vector3 = Vector3.ZERO
@@ -29,7 +28,7 @@ func act() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	if Input.is_key_pressed(key_to_press_to_act):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		print(player)
 		if GlobalVariables.player:
 			player = GlobalVariables.player

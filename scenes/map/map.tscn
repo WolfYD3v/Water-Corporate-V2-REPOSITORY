@@ -39,7 +39,7 @@ font_size = 60
 autowrap_mode = 3
 width = 600.0
 
-[node name="Map" type="Node3D" unique_id=1432087780 node_paths=PackedStringArray("starting_room")]
+[node name="ReceptionRoom(2,6)" type="Node3D" unique_id=1432087780 node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
 starting_room = NodePath("Rooms/ReceptionRoom(2,6)")
 play_context = false

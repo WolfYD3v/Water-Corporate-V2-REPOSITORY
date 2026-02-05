@@ -58,7 +58,14 @@ func _ready() -> void:
 	_move_lever(false)
 
 func act() -> void:
-	player_interaction_allow = not(player_interaction_allow)
+	if WorkingDaysManager.is_shift_started():
+		player_interaction_allow = not(player_interaction_allow)
+	else:
+		if GlobalVariables.dialog_scene:
+			await GlobalVariables.dialog_scene.write_text(
+				"You",
+				"My shift is not started yet."
+			)
 
 func set_status(new_status: STATUS) -> void:
 	status = new_status

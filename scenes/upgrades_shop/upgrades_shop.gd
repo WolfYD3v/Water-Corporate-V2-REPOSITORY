@@ -1,24 +1,30 @@
 extends Control
 class_name UpgradesShop
 
-@export var upgrades_avaible: Array[Upgrade] = []
-
 @onready var upgrades_cards_container: HBoxContainer = $NODES/UpgradesCardsContainer
 @onready var money_rich_text_label: RichTextLabel = $NODES/MoneyRichTextLabel
+@onready var automate_update_card: UpgradeCard = $NODES/UpgradesCardsContainer/AutomateUpdateCard
 
 func _ready() -> void:
 	MoneyManager.money_updated.connect(update_money_display)
 	update_money_display()
 	hide()
 	
-	var upg_card_idx: int = 0
-	for upg_card: UpgradeCard in upgrades_cards_container.get_children():
-		upg_card.linked_upgrade = upgrades_avaible[upg_card_idx]
-		upg_card_idx += 1
+	#show()
+	for upgrade_card: UpgradeCard in upgrades_cards_container.get_children():
+		upgrade_card.update_display()
+		automate_update_card.visible = UpgradesData.get_upgrade_data(
+			UpgradesData.UPGRADES.PUMPING_SPEED
+		) >= 2
 
 func update_money_display() -> void:
 	money_rich_text_label.text = "[b][u]" + str(MoneyManager.send_money()) + " $" + "[/u][/b]"
-
+	
+	for upgrade_card: UpgradeCard in upgrades_cards_container.get_children():
+		upgrade_card.update_display()
+		automate_update_card.visible = UpgradesData.get_upgrade_data(
+			UpgradesData.UPGRADES.PUMPING_SPEED
+		) >= 2
 
 func _on_close_button_pressed() -> void:
 	hide()

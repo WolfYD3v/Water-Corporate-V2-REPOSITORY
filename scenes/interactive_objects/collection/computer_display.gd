@@ -1,8 +1,13 @@
 extends Control
 class_name ComputerDisplay
 
+signal quit_computer
+
+
 @export_range(1, 45) var max_desktop_icons_number: int = 45
 @export var mails_list: Dictionary[String, String] = {}
+
+@onready var quit_button: Button = $QuitButton
 
 @onready var boot_black_fading: ColorRect = $BootBlackFading
 @onready var os_logo_texture_rect: TextureRect = $BootBlackFading/OSLogoTextureRect
@@ -29,6 +34,8 @@ class_name ComputerDisplay
 
 @onready var upgrades_shop: UpgradesShop = $UpgradesShop
 
+@onready var hour_area_rich_text_label: RichTextLabel = $DesktopInterface/DesktopActionBar/HourArea/HourAreaRichTextLabel
+
 var heat_bar_tween
 var pumping_time_bar_tween
 
@@ -36,24 +43,33 @@ var computer_scene: Computer = null
 
 func _ready() -> void:
 	computer_scene = get_parent().get_parent()
-	boot_black_fading.show()
-	os_logo_texture_rect.hide()
-	desktop_icons.hide()
 	GlobalVariables.water_quota_updated.connect(_set_water_quota_display)
 	GlobalVariables.water_pumped_updated.connect(_set_water_pumped_display)
 	MoneyManager.balance_is_negative.connect(_low_balance_detected)
+	WorkingDaysManager.time_updated.connect(_set_hour)
+	turn_off_display()
+	_set_hour()
+
+func turn_off_display() -> void:
+	quit_button.disabled = true
+	boot_black_fading.color = Color(0.0, 0.0, 0.0, 1.0)
+	boot_black_fading.show()
+	os_logo_texture_rect.hide()
+	desktop_icons.hide()
 	desktop_action_bar.hide()
 	nodification_bubble.hide()
 	heat_bar.hide()
 	mail_client.hide()
 
 func start() -> void:
+	
 	await get_tree().create_timer(1.0).timeout
 	await boot()
 	_list_mails()
-	#GlobalVariables.water_quota = 80.0
 
 func boot() -> void:
+	quit_button.disabled = true
+	_set_hour()
 	await get_tree().create_timer(1.5).timeout
 	os_logo_texture_rect.show()
 	await get_tree().create_timer(2.5).timeout
@@ -70,6 +86,7 @@ func boot() -> void:
 	heat_bar.show()
 	await get_tree().create_timer(0.2).timeout
 	WorkingDaysManager.start_shift()
+	quit_button.disabled = false
 
 func _add_desktop_icon() -> void:
 	if desktop_icons.get_child_count() <= max_desktop_icons_number:
@@ -138,7 +155,10 @@ func _on_pumping_time_timer_timeout() -> void:
 		print("YOU DID A SHITTY JOB MY FRIEND")
 
 func _on_upgrades_shop_button_pressed() -> void:
-	upgrades_shop.show()
+	if not WorkingDaysManager._shift_can_start:
+		upgrades_shop.show()
+	else:
+		print("NOPE")
 
 func _low_balance_detected() -> void:
 	_add_mail("Management Team", "Low balance detected", "It looks like your balance is negative." + "\n" + "Current amount of money: " + str(MoneyManager.send_money()) + "$. Pump water to get paid, and hopefully having a positive balance." + "\n" + "We put our entire trust in you in your success.")
@@ -155,3 +175,13 @@ func _on_heat_progress_bar_value_changed(value: float) -> void:
 		heat_progress_bar.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		if AlertManager.is_alerting():
 			AlertManager.stop()
+
+#[b]DAY {nb}[/b]
+#{hours}:{minutes}
+func _set_hour() -> void:
+	hour_area_rich_text_label.text = "[b]DAY " + str(WorkingDaysManager.get_working_days_count()) + "[/b]" + "\n"
+	hour_area_rich_text_label.text += WorkingDaysManager.get_time()
+
+func _on_quit_button_pressed() -> void:
+	print("ssss")
+	quit_computer.emit()

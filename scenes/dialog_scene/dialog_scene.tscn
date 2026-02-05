@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmpqoa63q0ibt"]
+[gd_scene format=3 uid="uid://dmpqoa63q0ibt"]
 
 [ext_resource type="Script" uid="uid://c6uhtmqahrg3c" path="res://scenes/dialog_scene/dialog_scene.gd" id="1_bmcln"]
 [ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_phpd2"]
 
-[node name="DialogScene" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phpd2"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
+[node name="DialogScene" type="Control" unique_id=187998556]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 12
@@ -16,24 +19,23 @@ grow_vertical = 0
 theme = ExtResource("1_phpd2")
 script = ExtResource("1_bmcln")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1937798331]
+z_index = 6
+z_as_relative = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -84.0
 grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5882353)
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 25
-text = "xxxxxxxxxxxxxxx
-cc"
+theme_override_styles/normal = SubResource("StyleBoxFlat_phpd2")
+theme_override_styles/focus = SubResource("StyleBoxFlat_phpd2")
+text = "WHO IS TALKIN'
+
+DIALOG LINE"
 horizontal_alignment = 1
 vertical_alignment = 2
+autowrap_mode = 3

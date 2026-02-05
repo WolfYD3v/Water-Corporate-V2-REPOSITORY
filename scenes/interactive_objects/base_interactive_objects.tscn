@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cy7ejyeswywvd"]
+[gd_scene format=3 uid="uid://cy7ejyeswywvd"]
 
 [ext_resource type="Script" uid="uid://b7wfvmflqr5dl" path="res://scenes/interactive_objects/base_interactive_objects.gd" id="1_vrdds"]
 
@@ -10,27 +10,27 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_vrdds"]
 material = SubResource("StandardMaterial3D_vrdds")
-text = "[E] to use"
+text = "Click"
 font_size = 25
 
-[node name="BaseInteractiveObjects" type="Node3D"]
+[node name="BaseInteractiveObjects" type="Node3D" unique_id=599151763]
 script = ExtResource("1_vrdds")
 
-[node name="CSGCombinerModel" type="CSGCombiner3D" parent="."]
+[node name="CSGCombinerModel" type="CSGCombiner3D" parent="." unique_id=642642553]
 
-[node name="PlayerDetectionArea" type="Area3D" parent="."]
+[node name="PlayerDetectionArea" type="Area3D" parent="." unique_id=684466030]
 
-[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDetectionArea"]
+[node name="CollisionShape" type="CollisionShape3D" parent="PlayerDetectionArea" unique_id=1516123848]
 shape = SubResource("BoxShape3D_vrdds")
 
-[node name="PlayerObjPosition" type="Marker3D" parent="."]
+[node name="PlayerObjPosition" type="Marker3D" parent="." unique_id=790640272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
-[node name="KeyToPressLabel" type="MeshInstance3D" parent="."]
+[node name="KeyToPressLabel" type="MeshInstance3D" parent="." unique_id=1470747359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 mesh = SubResource("TextMesh_vrdds")
 
-[node name="InteractionTimer" type="Timer" parent="."]
+[node name="InteractionTimer" type="Timer" parent="." unique_id=111722134]
 one_shot = true
 
 [connection signal="area_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_area_entered"]

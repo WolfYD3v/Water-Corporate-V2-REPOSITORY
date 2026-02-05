@@ -4,6 +4,8 @@ signal water_quota_updated
 signal water_pumped_updated
 
 var player: Player = null
+var map: Map = null
+var dialog_scene: DialogScene = null
 
 var water_pumped: float = 0.0:
 	set(value):
@@ -16,3 +18,5 @@ var water_quota: float = 10.0:
 var pumping_time: float = 300.0
 
 var heating_time: float = 150.0
+
+var tutorial_done: bool = false

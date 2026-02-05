@@ -217,6 +217,15 @@ grow_vertical = 2
 texture = ExtResource("2_jt3x0")
 expand_mode = 1
 
+[node name="QuitButton" type="Button" parent="." unique_id=187566014]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+
 [node name="DesktopInterface" type="VBoxContainer" parent="." unique_id=417175267]
 layout_mode = 1
 anchors_preset = 15
@@ -224,6 +233,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="DesktopInterface" unique_id=1483858013]
 custom_minimum_size = Vector2(0, 15)
@@ -292,6 +302,40 @@ focus_mode = 0
 icon = ExtResource("4_bkr5v")
 flat = true
 expand_icon = true
+
+[node name="HourArea" type="Control" parent="DesktopInterface/DesktopActionBar" unique_id=1600804160]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Background" type="ColorRect" parent="DesktopInterface/DesktopActionBar/HourArea" unique_id=2126330606]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.112781994, 0.31628838, 4.813075e-08, 0.5882353)
+
+[node name="HourAreaRichTextLabel" type="RichTextLabel" parent="DesktopInterface/DesktopActionBar/HourArea" unique_id=1250183949]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "[b]DAY {nb}[/b]
+{hours}:{minutes}"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="NodificationBubble" type="Control" parent="." unique_id=1997954589]
 layout_mode = 1
@@ -512,6 +556,7 @@ libraries/ = SubResource("AnimationLibrary_etlvh")
 
 [node name="PumpingTimeTimer" type="Timer" parent="." unique_id=1833254160]
 
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="DesktopInterface/DesktopIcons/UpgradesShopButton" to="." method="_on_upgrades_shop_button_pressed"]
 [connection signal="pressed" from="DesktopInterface/DesktopActionBar/Actions/WindowButton" to="." method="_on_window_button_pressed"]
 [connection signal="item_selected" from="MailClient/Mails" to="." method="_on_mails_item_selected"]

@@ -38,13 +38,18 @@ var actual_room: BaseRoom = null:
 var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
-	#WorkingDaysManager.set_shift_can_start(true) # false de base...
+	if GlobalVariables.tutorial_done:
+		tutorial_node.queue_free()
+		#WorkingDaysManager.set_shift_can_start(true) # false de base...
+	
 	tutorial_node.hide()
 	AlertManager.list_nodes_for_alert_from(self)
 	#await AlertManager.scan_finished
 	
 	allow_player_walking_sequence = false
 	actual_room = starting_room
+	GlobalVariables.map = self
+	SaveManager.load_save()
 	allow_player_walking_sequence = true
 	
 	for room: BaseRoom in rooms.get_children():
@@ -63,7 +68,7 @@ func _on_main_menu_quitted() -> void:
 	gui.add_child(PAUSE_MENU.instantiate())
 	
 	main_menu.hide()
-	tutorial_node.show()
+	if tutorial_node: tutorial_node.show()
 	
 	# CONTEXT
 	if play_context:
@@ -79,12 +84,14 @@ func _on_main_menu_quitted() -> void:
 	else:
 		intro.queue_free()
 		intro = null
-	if play_starting_dialog:
+	if play_starting_dialog and tutorial_node:
 		tutorial()
 
 func try_change_room(next_room_direcion_idx: int) -> void:
 	if tutorial_node:
 		tutorial_node.queue_free()
+		GlobalVariables.tutorial_done = true
+		SaveManager.override_current_save()
 	print(to_string() + str(next_room_direcion_idx))
 	#next_room_direcion_idx = clampi(next_room_direcion_idx, 0, 3)
 	set_adj_rooms_active_status(false)

@@ -35,7 +35,7 @@ script = ExtResource("2_26xa3")
 auto_boot = false
 interaction_timer_waiting_time = 0.5
 
-[node name="CSGCombinerModel" parent="." index="0"]
+[node name="CSGCombinerModel" parent="." index="0" unique_id=642642553]
 visible = false
 
 [node name="CSGCombinerScreen" type="CSGCombiner3D" parent="CSGCombinerModel" index="0" unique_id=1764017749]
@@ -67,14 +67,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.11)
 mesh = SubResource("QuadMesh_uotha")
 surface_material_override/0 = SubResource("StandardMaterial3D_5jkhf")
 
-[node name="PlayerDetectionArea" parent="." index="3"]
+[node name="PlayerDetectionArea" parent="." index="3" unique_id=684466030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2)
 
-[node name="CollisionShape" parent="PlayerDetectionArea" index="0"]
+[node name="CollisionShape" parent="PlayerDetectionArea" index="0" unique_id=1516123848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00077819824, 0.003112793, 0)
 shape = SubResource("BoxShape3D_lnlbt")
 
-[node name="KeyToPressLabel" parent="." index="5"]
+[node name="KeyToPressLabel" parent="." index="5" unique_id=1470747359]
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_26xa3")
 
@@ -92,3 +92,5 @@ render_target_update_mode = 4
 [node name="ComputerDisplay" parent="SubViewport" index="0" unique_id=1526273636 instance=ExtResource("2_lnlbt")]
 
 [node name="GUI" type="CanvasLayer" parent="." index="9" unique_id=755035431]
+
+[connection signal="quit_computer" from="SubViewport/ComputerDisplay" to="." method="_on_computer_display_quit_computer"]

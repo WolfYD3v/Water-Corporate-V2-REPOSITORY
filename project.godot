@@ -26,6 +26,7 @@ UpgradesData="*res://globals/upgrades_data.gd"
 MoneyManager="*res://globals/money_manager.gd"
 AlertManager="*res://globals/alert_manager.gd"
 WorkingDaysManager="*uid://1hne7fqqgfsq"
+SaveManager="*uid://cks8psem73hst"
 
 [display]
 

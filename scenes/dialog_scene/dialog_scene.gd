@@ -13,6 +13,7 @@ var dialogs_files_folder_path: String = "res://scenes/dialog_scene/dialogs/"
 func _ready() -> void:
 	hide()
 	label.text = ""
+	GlobalVariables.dialog_scene = self
 
 func _load_dialog_file(file_name: String) -> Dictionary:
 	var dialog_file = FileAccess.open(
