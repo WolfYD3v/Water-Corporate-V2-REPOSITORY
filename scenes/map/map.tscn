@@ -39,11 +39,9 @@ font_size = 60
 autowrap_mode = 3
 width = 600.0
 
-[node name="ReceptionRoom(2,6)" type="Node3D" unique_id=1432087780 node_paths=PackedStringArray("starting_room")]
+[node name="Map" type="Node3D" unique_id=1432087780 node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
 starting_room = NodePath("Rooms/ReceptionRoom(2,6)")
-play_context = false
-play_intro = false
 play_starting_dialog = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1626818190]
@@ -193,7 +191,7 @@ south_room = NodePath("../WaterPumpingsRoom(8,3)")
 [node name="Intro" parent="." unique_id=812795228 instance=ExtResource("6_04w0f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
 
-[node name="Camera" parent="Intro" index="0"]
+[node name="Camera" parent="Intro" index="0" unique_id=1606685248]
 transform = Transform3D(-0.81915194, 0, 0.5735764, 0, 1, 0, -0.5735764, 0, -0.81915194, 1, 2, -0.6)
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1549805214]

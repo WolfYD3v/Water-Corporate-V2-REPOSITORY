@@ -4,7 +4,7 @@ class_name LivingRoom
 func _send_change_room_area_trigger() -> void:
 	if next_room_direction_idx >= 0 and $Timer.is_stopped():
 		
-		if not WorkingDaysManager.is_shift_started():
+		if not WorkingDaysManager.is_shift_started() and WorkingDaysManager._shift_can_start:
 			says_smth()
 			return
 		
@@ -15,9 +15,10 @@ func _send_change_room_area_trigger() -> void:
 func says_smth() -> void:
 	GlobalVariables.dialog_scene.stop()
 	GlobalVariables.dialog_scene.show()
-	if GlobalVariables.dialog_scene: await GlobalVariables.dialog_scene.write_text(
-		"You",
-		"My shift is not started yet."
-	)
+	if GlobalVariables.dialog_scene: 
+		await GlobalVariables.dialog_scene.write_text(
+			"You",
+			"My shift is not started yet."
+		)
 	await get_tree().create_timer(2.0).timeout
 	GlobalVariables.dialog_scene.hide()

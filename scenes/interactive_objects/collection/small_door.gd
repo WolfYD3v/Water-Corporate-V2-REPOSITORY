@@ -7,7 +7,7 @@ func _process(_delta: float) -> void:
 			player = GlobalVariables.player
 		if interaction_timer.is_stopped() and player and mouse_focused:
 			interaction_timer.start(interaction_timer_waiting_time)
-			if not WorkingDaysManager.is_shift_started():
+			if not WorkingDaysManager.is_shift_started() and WorkingDaysManager._shift_can_start:
 				says_smth()
 				return
 			
@@ -20,6 +20,8 @@ func _process(_delta: float) -> void:
 			WorkingDaysManager.set_shift_can_start(true)
 
 func says_smth() -> void:
+	player.can_move = false
+	player.can_rotate = false
 	GlobalVariables.dialog_scene.stop()
 	GlobalVariables.dialog_scene.show()
 	if GlobalVariables.dialog_scene:
@@ -33,10 +35,7 @@ func says_smth() -> void:
 				"You",
 				"My shift is not done yet."
 			)
-		if not WorkingDaysManager._shift_can_start:
-			await GlobalVariables.dialog_scene.write_text(
-				"You",
-				"I should go to sleep."
-			)
 	await get_tree().create_timer(2.0).timeout
 	GlobalVariables.dialog_scene.hide()
+	player.can_move = true
+	player.can_rotate = true

@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://duvvtwp2krpbj" path="res://assets/themes/computer_theme.tres" id="1_sltmr"]
 [ext_resource type="Script" uid="uid://det1jfv3allr" path="res://scenes/day_info_screen/day_info_screen.gd" id="1_wx620"]
+[ext_resource type="PackedScene" uid="uid://du00q04nxmij3" path="res://scenes/pixalation_shader_overlay.tscn" id="3_5dcfs"]
+[ext_resource type="AudioStream" uid="uid://v27mmdluq2vi" path="res://assets/sfxs/new_day_sfx.wav" id="3_bknyy"]
 
 [node name="DayInfoScreen" type="Control" unique_id=246768865]
 layout_mode = 3
@@ -49,6 +51,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 35
 text = "07:00"
+
+[node name="PixalationShaderOverlay" parent="." unique_id=2001711004 instance=ExtResource("3_5dcfs")]
+layout_mode = 1
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2011235745]
+stream = ExtResource("3_bknyy")
+volume_db = -5.0
+pitch_scale = 0.2
 
 [node name="PopupTimer" type="Timer" parent="." unique_id=1986879165]
 one_shot = true

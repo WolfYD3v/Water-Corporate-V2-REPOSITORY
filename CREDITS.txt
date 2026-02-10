@@ -36,3 +36,13 @@ Gemini conversation done: https://gemini.google.com/share/8726c3c3a8bb
 Water shader:
 https://godotshaders.com/shader/simple-water/
 BY dairycultist [ https://godotshaders.com/author/dairycultist/ ]
+
+Computer nodification SFX:
+Base nodification sound installed in a normal Linux Mint installation copied
+
+GUI button clicked SFX:
+Made with JSFXR [ https://sfxr.me/ ]
+
+2D pixalation shader:
+"2D – Post Process – Pixelate" [ https://godotshaders.com/shader/2d-post-process-pixelate/ ]
+BY thearchive [ https://godotshaders.com/author/thearchive/ ]

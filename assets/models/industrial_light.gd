@@ -4,11 +4,8 @@ class_name IndustrialLight
 @export var can_flicker: bool = true:
 	set(value):
 		can_flicker = value
-		if value:
-			#turn_on()
-			flicker()
-		else:
-			turn_off()
+		if value: flicker()
+		else: turn_off()
 @export var min_random_flickering_time: float = 50.0
 @export var max_random_flickering_time: float = 150.0
 

@@ -8,8 +8,6 @@ signal finished
 
 func _ready() -> void:
 	hide()
-	
-	play()
 
 func play() -> void:
 	label.visible_ratio = 0.0
@@ -17,6 +15,5 @@ func play() -> void:
 	
 	animation_player.play("play")
 	await animation_player.animation_finished
-	
-	hide()
+
 	finished.emit()

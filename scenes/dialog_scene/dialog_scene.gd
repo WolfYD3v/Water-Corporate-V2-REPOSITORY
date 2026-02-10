@@ -63,7 +63,6 @@ func play_dialog(_dialog_name: String) -> void:
 func stop() -> void:
 	if _tween:
 		_tween.kill()
-	
 	hide()
 	label.text = ""
 	_running = false

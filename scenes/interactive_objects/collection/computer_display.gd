@@ -109,7 +109,7 @@ func _push_nodification(app_name: String, nod_text: String) -> void:
 	nodification_bubble_app_name_rich_text_label.text = "[b]" + app_name + "[/b]"
 	nodification_bubble_text_label.text = nod_text
 	animation_player.play("nodification_bubble_anim")
-	computer_scene.speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", -25.0, 1.0)
+	computer_scene.speaker_play_sound("res://assets/sfxs/computer_nodification_sfx.mp3", 10.0, 1.0)
 
 
 func _on_window_button_pressed() -> void:

@@ -8,6 +8,7 @@ signal finished
 @onready var black_fading: ColorRect = $CanvasLayer/BlackFading
 @onready var text_label: Label = $CanvasLayer/TextLabel
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var context_introduction: ContextIntroduction = $CanvasLayer/ContextIntroduction
 
 enum TEXT_LABEL_POSITIONS {
 	TOP_LEFT = 1,
@@ -20,10 +21,10 @@ func _ready() -> void:
 	hide()
 	canvas_layer.hide()
 	black_fading.hide()
+	context_introduction.hide()
 	
-	print(camera.current)
-	#process_mode = Node.PROCESS_MODE_ALWAYS
-	#play()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	play()
 
 func play() -> void:
 	show()
@@ -33,6 +34,11 @@ func play() -> void:
 	animation_player.play("intro")
 	await animation_player.animation_finished
 	get_tree().paused = false
+	await get_tree().create_timer(2.5).timeout
+	context_introduction.show()
+	context_introduction.play()
+	await context_introduction.finished
+	await get_tree().create_timer(2.5).timeout
 	process_mode = Node.PROCESS_MODE_INHERIT
 	finished.emit()
 	queue_free()

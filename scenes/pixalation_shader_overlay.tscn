@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://du00q04nxmij3"]
+
+[ext_resource type="Material" uid="uid://dtdgsx58vma8o" path="res://assets/materials/2d_pixalation_material.tres" id="1_6rtf1"]
+[ext_resource type="Script" uid="uid://bvu2e42tqiawj" path="res://scenes/pixalation_shader_overlay.gd" id="2_3iyxt"]
+
+[node name="PixalationShaderOverlay" type="ColorRect" unique_id=2001711004]
+material = ExtResource("1_6rtf1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3iyxt")

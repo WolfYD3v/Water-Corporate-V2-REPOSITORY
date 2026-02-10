@@ -19,9 +19,6 @@ func add_money(amount: float) -> void:
 func remove_money(amount: float) -> bool:
 	if _money >= 0.0:
 		_money = snappedf(_money - amount, 0.01)
-		
-		if _money < 0.0:
-			balance_is_negative.emit()
-		
+		if _money < 0.0: balance_is_negative.emit()
 		return true
 	return false

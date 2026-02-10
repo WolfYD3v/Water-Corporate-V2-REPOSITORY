@@ -13,8 +13,7 @@ enum UPGRADES {
 var _upgrades_data: Dictionary[UPGRADES, int] = {}
 
 func get_upgrade_data(upgrade: UPGRADES) -> int:
-	if _upgrades_data.has(upgrade):
-		return _upgrades_data.get(upgrade)
+	if _upgrades_data.has(upgrade): return _upgrades_data.get(upgrade)
 	return -1
 
 func override_or_add_upgrade_data(upgrade: UPGRADES, new_value: int) -> void:

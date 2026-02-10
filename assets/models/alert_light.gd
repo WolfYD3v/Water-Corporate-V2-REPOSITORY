@@ -13,12 +13,10 @@ func _ready() -> void:
 	spot_light.hide()
 
 func _start() -> void:
-	if active:
-		spot_light.show()
-		await get_tree().create_timer(0.6).timeout
-		spot_light.hide()
-		await get_tree().create_timer(0.6).timeout
-		_start()
+	for loop: int in range(2):
+		spot_light.visible = not(spot_light.visible)
+		await get_tree().create_timer(randf_range(0.5, 0.65)).timeout
+	if active: _start()
 
 func _stop() -> void:
 	spot_light.hide()

@@ -31,7 +31,5 @@ func _ready() -> void:
 
 func _set_texture() -> void:
 	var material: StandardMaterial3D = get_surface_override_material(0).duplicate()
-	material.albedo_texture = load(
-		frames_file_path.get(frame_content)
-	)
+	material.albedo_texture = load(frames_file_path.get(frame_content))
 	set_surface_override_material(0, material)

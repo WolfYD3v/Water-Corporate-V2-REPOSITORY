@@ -26,12 +26,9 @@ func set_working_days_count(value: int) -> void:
 
 func get_time() -> String:
 	var str_hour: String = str(_hour)
-	if str_hour.length() < 2:
-		str_hour = "0" + str_hour
+	if str_hour.length() < 2: str_hour = "0" + str_hour
 	var str_minute: String = str(_minute)
-	if str_minute.length() < 2:
-		str_minute = "0" + str_minute
-	
+	if str_minute.length() < 2: str_minute = "0" + str_minute
 	return str_hour + ":" + str_minute
 
 func _clock_time() -> void:
@@ -60,8 +57,7 @@ func start_shift() -> void:
 	if _shift_can_start:
 		_shift_started = true
 		_working_days_count += 1
-		if day_info_screen_scene:
-			day_info_screen_scene.popup()
+		if day_info_screen_scene: day_info_screen_scene.popup()
 		_hour = 7
 		_clock_time()
 		return

@@ -4,7 +4,6 @@ class_name Map
 @export var starting_room: BaseRoom = null
 
 @export_category("SCENES ACTIVATION")
-@export var play_context: bool = true
 @export var play_intro: bool = true
 @export var play_starting_dialog: bool = true
 
@@ -14,7 +13,6 @@ class_name Map
 @onready var intro: Intro = $Intro
 @onready var main_menu: MainMenu = $GUI/MainMenu
 @onready var dialog_scene: DialogScene = $GUI/DialogScene
-@onready var context_introduction: ContextIntroduction = $GUI/ContextIntroduction
 
 @onready var tutorial_node: Node3D = $"Rooms/ReceptionRoom(2,6)/Tutorial"
 
@@ -38,19 +36,27 @@ var actual_room: BaseRoom = null:
 var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
-	if GlobalVariables.tutorial_done:
-		tutorial_node.queue_free()
-		#WorkingDaysManager.set_shift_can_start(true) # false de base...
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	tutorial_node.hide()
-	AlertManager.list_nodes_for_alert_from(self)
-	#await AlertManager.scan_finished
-	
+	# Variables initialization Section:
+	GlobalVariables.map = self
 	allow_player_walking_sequence = false
 	actual_room = starting_room
-	GlobalVariables.map = self
+	
+	# Save Loading Section:
 	SaveManager.load_save()
 	allow_player_walking_sequence = true
+	
+	# Alert Manager Node Listing Section:
+	AlertManager.list_nodes_for_alert_from(self)
+	
+	# Tutorial Section:
+	# Tutorial done [DELETE TUTORIAL NODES]
+	# Tutorial not done [SHIFT CANNOT START BEFORE SLEEPING, TUTORIAL NOT FINISHED]
+	if GlobalVariables.tutorial_done: tutorial_node.queue_free()
+	else: WorkingDaysManager.set_shift_can_start(false)
+	
+	tutorial_node.hide()
 	
 	for room: BaseRoom in rooms.get_children():
 		room.change_room.connect(try_change_room)
@@ -58,6 +64,19 @@ func _ready() -> void:
 	
 	actual_room.active = true
 	set_adj_rooms_active_status(true)
+	
+	# INTRO SCENE
+	if play_intro:
+		intro.process_mode = Node.PROCESS_MODE_ALWAYS
+		intro.play()
+		await intro.finished
+		play_intro = true
+		SaveManager.override_current_save()
+	intro.queue_free()
+	intro = null
+	
+	await main_menu.open()
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 # FORCE QUIT BABY !!!!!!!!!§§§§!!!!!!!!!!§§§!!!!!!!
 func _input(_event: InputEvent) -> void:
@@ -66,37 +85,24 @@ func _input(_event: InputEvent) -> void:
 
 func _on_main_menu_quitted() -> void:
 	gui.add_child(PAUSE_MENU.instantiate())
-	
 	main_menu.hide()
+	
 	if tutorial_node: tutorial_node.show()
-	
-	# CONTEXT
-	if play_context:
-		context_introduction.play()
-		await context_introduction.finished
-	else: context_introduction.queue_free()
-	
-	# INTRO SCENE
-	if play_intro:
-		intro.process_mode = Node.PROCESS_MODE_ALWAYS
-		intro.play()
-		await intro.finished
-	else:
-		intro.queue_free()
-		intro = null
 	if play_starting_dialog and tutorial_node:
 		tutorial()
 
 func try_change_room(next_room_direcion_idx: int) -> void:
 	if tutorial_node:
 		tutorial_node.queue_free()
-		GlobalVariables.tutorial_done = true
-		SaveManager.override_current_save()
 	print(to_string() + str(next_room_direcion_idx))
 	#next_room_direcion_idx = clampi(next_room_direcion_idx, 0, 3)
 	set_adj_rooms_active_status(false)
 	if actual_room.check_if_adj_have_room(next_room_direcion_idx):
 		actual_room = actual_room.adj_rooms_array[next_room_direcion_idx]
+		
+		if actual_room.name == "LivingRoom(5,1)":
+			GlobalVariables.tutorial_done = true
+			SaveManager.override_current_save()
 
 func set_adj_rooms_active_status(value: bool = true) -> void:
 	for _adj_room_direction: String in actual_room.adj_rooms_directions:

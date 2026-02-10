@@ -20,13 +20,15 @@ func _ready() -> void:
 		computer_display.start()
 
 func _process(_delta: float) -> void:
-	if not WorkingDaysManager._shift_can_start:
-		return
-	
+	if not mouse_focused: return
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		print(player)
 		if GlobalVariables.player:
 			player = GlobalVariables.player
+		if not WorkingDaysManager._shift_can_start:
+			if not WorkingDaysManager.is_shift_started():
+				says_smth()
+			return
+		print(player)
 		if interaction_timer.is_stopped() and player and mouse_focused:
 			interaction_timer.start(interaction_timer_waiting_time)
 			player_focused = not(player_focused)
@@ -66,12 +68,13 @@ func thingy() -> void:
 
 func act() -> void:
 	print("act")
+	
 	if player_focused:
 		player.rotation.y = rotation.y
 	if not auto_boot and not computer_booted:
 		computer_booted = true
 		await get_tree().create_timer(1.5).timeout
-		speaker_play_sound("res://assets/sfxs/CMPTMisc_Demarrage d un ibook g4 (ID 0157)_LS.mp3", -25.0, 1.0) # SON TEMP
+		speaker_play_sound("res://assets/sfxs/computer_button_pressed_sfx.wav", 20.0, 1.5) # SON TEMP
 		computer_display.start()
 
 func speaker_play_sound(sound_stream_path: String, volume_db: float = 0.0, pitch_scale: float = 1.0) -> void:
@@ -95,15 +98,15 @@ func _on_computer_display_quit_computer() -> void:
 	gui.visible = false
 	if change_player_position:
 		print("Player out")
-		player.change_position(captured_player_position)
+		player.change_position(captured_player_position, true, true)
 	
-	if not WorkingDaysManager.is_shift_started() and not WorkingDaysManager._shift_can_start:
-		says_smth()
 	computer_display.reparent(sub_viewport, false)
 	computer_display = get_node("SubViewport/ComputerDisplay")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func says_smth() -> void:
+	player.can_move = false
+	player.can_rotate = false
 	GlobalVariables.dialog_scene.stop()
 	GlobalVariables.dialog_scene.show()
 	if GlobalVariables.dialog_scene:
@@ -113,3 +116,5 @@ func says_smth() -> void:
 		)
 	await get_tree().create_timer(2.0).timeout
 	GlobalVariables.dialog_scene.hide()
+	player.can_move = true
+	player.can_rotate = true

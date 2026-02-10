@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://4jwk3ra7xx7a"]
+[gd_scene format=3 uid="uid://4jwk3ra7xx7a"]
 
 [ext_resource type="Script" uid="uid://blei1xfr8if4m" path="res://scenes/intro/intro.gd" id="1_qeukb"]
+[ext_resource type="Material" uid="uid://b62mh30laios8" path="res://assets/materials/room_ground_material.tres" id="2_1rrv8"]
 [ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="2_iatiw"]
+[ext_resource type="AudioStream" uid="uid://c2ckqpreeb15x" path="res://assets/intro_tv_audio_file.mp3" id="3_8twl8"]
 [ext_resource type="FontFile" uid="uid://docala5lt2gue" path="res://assets/fonts/Special_Elite/SpecialElite-Regular.ttf" id="3_teox7"]
+[ext_resource type="PackedScene" uid="uid://5oxf1ihj1mcd" path="res://scenes/context_introduction/context_introduction.tscn" id="6_8yty6"]
+[ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="7_8yty6"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_8twl8"]
 
 [sub_resource type="Animation" id="Animation_iatiw"]
 length = 0.001
@@ -21,38 +27,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position")
+tracks/1/path = NodePath("MusicAudioStreamPlayer:volume_db")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2, -0.6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Camera:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 2.5307274, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera:fov")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [20.0]
+"values": [-80.0]
 }
 
 [sub_resource type="Animation" id="Animation_qeukb"]
@@ -60,7 +42,7 @@ resource_name = "intro"
 length = 15.0
 tracks/0/type = "audio"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("MusicAudioStreamPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -85,49 +67,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Camera:fov")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [10.0, 75.0, 75.0, 75.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Camera:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 2, -0.6), Vector3(0.8, -0.3, 0), Vector3(0.8, -0.29999995, 0), Vector3(-1.5, -0.4, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Camera:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 7.2, 7.334169, 7.3419027),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -0.34906584, 0), Vector3(0, 4.712389, 0), Vector3(0, 4.712389, 0), Vector3(0, 1.5707964, 0)]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 2.5, 6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
@@ -141,6 +87,33 @@ tracks/5/keys = {
 "method": &"write_text"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VoiceAudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_8twl8")
+}],
+"times": PackedFloat32Array(0.5)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("MusicAudioStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -15.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iatiw"]
 _data = {
@@ -148,23 +121,28 @@ _data = {
 &"intro": SubResource("Animation_qeukb")
 }
 
-[node name="Intro" type="Node3D"]
+[node name="Intro" type="Node3D" unique_id=1659877530]
 script = ExtResource("1_qeukb")
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(-0.81915206, 0, 0.57357645, 0, 1, 0, -0.57357645, 0, -0.81915206, 1, 2, -0.6)
-fov = 20.0
+[node name="Camera" type="Camera3D" parent="." unique_id=1606685248]
+transform = Transform3D(-0.8324113, 0, 0.55415833, 0, 1, 0, -0.55415833, 0, -0.8324113, 1, 2, -0.6)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_iatiw")
-}
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera" unique_id=549199459]
+transform = Transform3D(0.30440384, 0.94704455, 0.10219945, -0.5352758, 0.25881904, -0.8040475, -0.78792, 0.19005027, 0.58571565, 0.41855296, 0, -3.8826296)
+mesh = SubResource("PrismMesh_8twl8")
+surface_material_override/0 = ExtResource("2_1rrv8")
 
-[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=899928447]
+libraries/ = SubResource("AnimationLibrary_iatiw")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1936866447]
+volume_db = -80.0
 
-[node name="BlackFading" type="ColorRect" parent="CanvasLayer"]
+[node name="VoiceAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=63980807]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1671199245]
+
+[node name="BlackFading" type="ColorRect" parent="CanvasLayer" unique_id=1728991039]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -172,7 +150,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextLabel" type="Label" parent="CanvasLayer"]
+[node name="TextLabel" type="Label" parent="CanvasLayer" unique_id=1163535485]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -182,3 +160,21 @@ offset_bottom = 0.00012207031
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_teox7")
 theme_override_font_sizes/font_size = 40
+
+[node name="ContextIntroduction" parent="CanvasLayer" unique_id=1292942535 instance=ExtResource("6_8yty6")]
+
+[node name="TODOLabel" type="Label" parent="CanvasLayer" unique_id=1443334483]
+modulate = Color(1, 1, 1, 0.5882353)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_8yty6")
+theme_override_font_sizes/font_size = 15
+text = "[TODO]
+Fully animated intro scene + Edited video + Proper not TTS voice over"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=284449022]

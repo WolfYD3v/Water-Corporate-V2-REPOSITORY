@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1absskdpac15"]
+[gd_scene format=3 uid="uid://d1absskdpac15"]
 
 [ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="1_0ebjn"]
 [ext_resource type="Script" uid="uid://c7ugmud65b1fs" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
 [ext_resource type="Texture2D" uid="uid://ced6fqocappi4" path="res://icon.svg" id="3_ob46e"]
 [ext_resource type="AudioStream" uid="uid://b0pidt0myvuxe" path="res://assets/musics/Nightsscare-(intro).mp3" id="4_uqeha"]
-[ext_resource type="AudioStream" uid="uid://crpjepqp6vy2v" path="res://assets/sfxs/walking-sound-effect-272246.mp3" id="5_wem23"]
+[ext_resource type="AudioStream" uid="uid://cjeco5yxlbl1t" path="res://assets/sfxs/gui_button_pressed_sfx.wav" id="5_wem23"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wem23"]
+bg_color = Color(0, 0, 0, 0.78431374)
 
 [sub_resource type="Animation" id="Animation_uqeha"]
 length = 0.001
@@ -275,7 +278,7 @@ _data = {
 &"OpenMenu": SubResource("Animation_0ebjn")
 }
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1469144288]
 process_mode = 3
 clip_contents = true
 layout_mode = 3
@@ -287,7 +290,7 @@ grow_vertical = 2
 theme = ExtResource("1_0ebjn")
 script = ExtResource("1_fsom3")
 
-[node name="BlackOverlay" type="ColorRect" parent="."]
+[node name="BlackOverlay" type="ColorRect" parent="." unique_id=1868759080]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -296,7 +299,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5882353)
 
-[node name="Buttons" type="HBoxContainer" parent="."]
+[node name="Buttons" type="HBoxContainer" parent="." unique_id=975111529]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 12
@@ -310,7 +313,7 @@ grow_vertical = 0
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="Buttons"]
+[node name="PlayButton" type="Button" parent="Buttons" unique_id=1037985485]
 custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -319,7 +322,7 @@ text = "PLAY"
 icon = ExtResource("3_ob46e")
 expand_icon = true
 
-[node name="CreditsButton" type="Button" parent="Buttons"]
+[node name="CreditsButton" type="Button" parent="Buttons" unique_id=2124954106]
 custom_minimum_size = Vector2(250, 90)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -328,7 +331,7 @@ text = "CREDITS"
 icon = ExtResource("3_ob46e")
 expand_icon = true
 
-[node name="QuitButton" type="Button" parent="Buttons"]
+[node name="QuitButton" type="Button" parent="Buttons" unique_id=1958018692]
 custom_minimum_size = Vector2(200, 90)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -337,7 +340,7 @@ text = "QUIT"
 icon = ExtResource("3_ob46e")
 expand_icon = true
 
-[node name="GameNameArea" type="ColorRect" parent="."]
+[node name="GameNameArea" type="ColorRect" parent="." unique_id=1707986844]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 10
@@ -347,7 +350,7 @@ offset_bottom = 276.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="GameNameLabel" type="Label" parent="GameNameArea"]
+[node name="GameNameLabel" type="Label" parent="GameNameArea" unique_id=2061342161]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -362,21 +365,32 @@ Corporate"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wem23"),
-&"MainMenuAnims": SubResource("AnimationLibrary_uqeha")
-}
+[node name="CreditsLabel" type="RichTextLabel" parent="." unique_id=1168482459]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_wem23")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wem23")
+theme_override_styles/background = SubResource("StyleBoxFlat_wem23")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wem23")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=780091528]
+libraries/ = SubResource("AnimationLibrary_wem23")
+libraries/MainMenuAnims = SubResource("AnimationLibrary_uqeha")
 speed_scale = 4.0
 
-[node name="AmbianceAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AmbianceAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=306565777]
 stream = ExtResource("4_uqeha")
 volume_db = -80.0
 
-[node name="ButtonClickedSFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ButtonClickedSFXAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=498656150]
 stream = ExtResource("5_wem23")
-volume_db = 24.0
-pitch_scale = 0.5
+volume_db = -5.0
+pitch_scale = 2.0
 
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
