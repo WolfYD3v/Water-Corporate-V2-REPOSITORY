@@ -46,3 +46,9 @@ Made with JSFXR [ https://sfxr.me/ ]
 2D pixalation shader:
 "2D – Post Process – Pixelate" [ https://godotshaders.com/shader/2d-post-process-pixelate/ ]
 BY thearchive [ https://godotshaders.com/author/thearchive/ ]
+
+Day info screen sfx:
+Made with JSFXR [ https://sfxr.me/ ]
+
+Main menu ambiance song:
+{none}

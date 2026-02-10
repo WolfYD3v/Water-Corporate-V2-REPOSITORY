@@ -17,6 +17,7 @@ func set_animated(new_value: bool) -> void:
 	_animated = new_value
 
 func _animate() -> void:
+	_set_pixelation_param(pixelation_shader_values_array[-1])
 	for pixelation_shader_param: float in pixelation_shader_values_array:
 		_set_pixelation_param(pixelation_shader_param)
 		await get_tree().create_timer(animation_waiting_time).timeout
