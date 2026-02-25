@@ -340,6 +340,17 @@ text = "QUIT"
 icon = ExtResource("3_ob46e")
 expand_icon = true
 
+[node name="DeleteSaveButton" type="Button" parent="." unique_id=1735884828]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -199.0
+offset_bottom = 39.0
+grow_horizontal = 0
+focus_mode = 0
+text = "DELETE SAVE"
+
 [node name="GameNameArea" type="ColorRect" parent="." unique_id=1707986844]
 clip_contents = true
 layout_mode = 1
@@ -381,6 +392,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_wem23")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=780091528]
 libraries/ = SubResource("AnimationLibrary_wem23")
 libraries/MainMenuAnims = SubResource("AnimationLibrary_uqeha")
+speed_scale = 2.0
 
 [node name="AmbianceAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=306565777]
 stream = ExtResource("4_wem23")
@@ -394,3 +406,4 @@ pitch_scale = 2.0
 [connection signal="pressed" from="Buttons/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]

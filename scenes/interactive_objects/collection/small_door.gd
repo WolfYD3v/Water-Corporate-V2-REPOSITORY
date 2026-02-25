@@ -12,6 +12,7 @@ func _process(_delta: float) -> void:
 				return
 			
 			print("DEV NOTE - End day here...")
+			SaveManager.override_current_save()
 			player.can_move = false
 			player.can_rotate = false
 			await get_tree().create_timer(2.5).timeout

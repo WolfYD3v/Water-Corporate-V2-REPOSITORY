@@ -7,6 +7,7 @@ class_name UpgradesShop
 
 func _ready() -> void:
 	MoneyManager.money_updated.connect(update_money_display)
+	UpgradesData.upgrade_value_changed.connect(a)
 	update_money_display()
 	hide()
 	
@@ -28,3 +29,6 @@ func update_money_display() -> void:
 
 func _on_close_button_pressed() -> void:
 	hide()
+
+func a(_a, _b) -> void:
+	update_money_display()

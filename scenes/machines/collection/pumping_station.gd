@@ -31,7 +31,7 @@ var water_litters_pump_per_cession: float = 0.0:
 		water_litters_pump_per_cession = value
 		water_pump_rich_text_label.text = "[b][u]Water Pump:[/u][/b]" + "\n" + str(value) + " L"
 var _water_litters_max_pump_per_cession: float = 1.5
-var _pumping_speed: float = 5.0
+var _pumping_speed: float = 10.0
 var _power_bank_capacity_per_cession: float = 150.0
 var _power_bank_filling_speed: float = 8.0
 #var _power_bank_ergonomy: float = 350.0 # | Garder ou pas?
@@ -58,8 +58,7 @@ func _ready() -> void:
 	_move_lever(false)
 
 func act() -> void:
-	if WorkingDaysManager.is_shift_started():
-		player_interaction_allow = not(player_interaction_allow)
+	if WorkingDaysManager.is_shift_started(): player_interaction_allow = not(player_interaction_allow)
 	else:
 		player.can_move = false
 		player.can_rotate = false
@@ -87,8 +86,7 @@ func _pump_water() -> void:
 	set_status(STATUS.PUMPING)
 	water_litters_pump_per_cession = 0.0
 	do_something = true
-	if _tween:
-		_tween.kill()
+	if _tween: _tween.kill()
 	_tween = get_tree().create_tween()
 	_tween.finished.connect(_stop_pumping)
 	_tween.finished.connect(water_source.lower_water_level)
@@ -101,16 +99,14 @@ func _pump_water() -> void:
 func _stop_pumping() -> void:
 	if status in inactivity_status_array: return
 	do_something = false
-	if _tween:
-		_tween.kill()
+	if _tween: _tween.kill()
 
 func _free_water_in_pipes() -> void:
 	if status in inactivity_status_array or water_pump_progress_bar.value <= 0 or do_something: return
 	
 	set_status(STATUS.FREEING)
 	do_something = true
-	if _tween:
-		_tween.kill()
+	if _tween: _tween.kill()
 	_tween = get_tree().create_tween()
 	_tween.finished.connect(_load_power_bank)
 	_tween.tween_property(water_pump_progress_bar, "value", 0.0, _pumping_speed)
@@ -120,8 +116,7 @@ func _free_water_in_pipes() -> void:
 func _load_power_bank() -> void:
 	set_status(STATUS.LOADING)
 	do_something = true
-	if _tween:
-		_tween.kill()
+	if _tween: _tween.kill()
 	_tween = get_tree().create_tween()
 	_tween.finished.connect(_stop_pumping)
 	_tween.tween_property(power_bank_progress_bar, "value", _power_bank_capacity_per_cession, _power_bank_filling_speed)
@@ -143,23 +138,18 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_power_bank_progress_bar_value_changed(value: float) -> void:
-	if value <= 0:
-		_stop_pumping()
-	if value >= 100.0:
-		set_status(STATUS.READY)
+	if value <= 0: _stop_pumping()
+	if value >= 100.0: set_status(STATUS.READY)
 
 func _move_lever(turning_up: bool) -> void:
 	if status in [STATUS.FREEING, STATUS.LOADING] and do_something: return
 	do_something = true
 	
 	var rot_value: float = 0.0
-	if turning_up:
-		rot_value = -25
-	else:
-		rot_value = 25
+	if turning_up: rot_value = -25
+	else: rot_value = 25
 	
-	if _tween:
-		_tween.kill()
+	if _tween: _tween.kill()
 	_tween = get_tree().create_tween()
 	_tween.tween_property(lever.get_node("CSGBakedMeshInstance3D"), "rotation:x", deg_to_rad(rot_value), 1.0)
 	await _tween.finished
@@ -172,13 +162,38 @@ func change_values(upgrade_sended: UpgradesData.UPGRADES, upgrade_value: int) ->
 		print(upgrade_value)
 		print(get(allowed_upgrades.get(upgrade_sended)))
 		
+		MoneyManager.add_money(4500.0)
+		
 		match upgrade_sended:
 			UpgradesData.UPGRADES.PUMPING_SPEED:
-				_pumping_speed -= 0.1
+				_pumping_speed = clampf(
+					10.0 - (0.5 * upgrade_value),
+					1.5,
+					10.0
+				)
+				print(_pumping_speed)
 				return
 			UpgradesData.UPGRADES.WATER_PUMP_MAX:
+				_water_litters_max_pump_per_cession = clampf(
+					1.5 + (0.5 * upgrade_value),
+					1.5,
+					15.0
+				)
+				print(_water_litters_max_pump_per_cession)
 				return
 			UpgradesData.UPGRADES.POWER_BANK_CAPACITY:
+				_power_bank_capacity_per_cession = clampf(
+					150.0 + (35.0 * upgrade_value),
+					150.0,
+					500.0
+				)
+				print(_power_bank_capacity_per_cession)
 				return
 			UpgradesData.UPGRADES.POWER_BANK_FILLING_SPEED:
+				_power_bank_filling_speed = clampf(
+					8.0 - (0.5 * upgrade_value),
+					1.5,
+					8.0
+				)
+				print(_power_bank_filling_speed)
 				return

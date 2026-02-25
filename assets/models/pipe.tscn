@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cqjjutqfb3laa"]
+
+[ext_resource type="Material" uid="uid://b1mdqtm3jegjo" path="res://assets/materials/pipe_material.tres" id="1_2ke4c"]
+
+[node name="Pipe" type="CSGCylinder3D" unique_id=388361165]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+radius = 0.3
+height = 10.0
+sides = 50
+material = ExtResource("1_2ke4c")

@@ -11,7 +11,9 @@ var base_save_data: Dictionary = {
 	"tutorial_done": false,
 	"days_count": 0,
 	"actual_room_name": "ReceptionRoom(2,6)",
-	"intro_played": false}
+	"play_intro": true,
+	"upgrades_data": {}
+}
 
 func _ready() -> void:
 	#delete_save_file()
@@ -33,7 +35,8 @@ func load_save() -> void:
 	GlobalVariables.map.actual_room = GlobalVariables.map.rooms.get_node(save_file_data_loaded["actual_room_name"])
 	GlobalVariables.player.global_position = GlobalVariables.map.actual_room.player_position_marker.global_position
 	GlobalVariables.player.global_position.y = 0.35
-	GlobalVariables.map.play_intro = not(save_file_data_loaded["intro_played"])
+	GlobalVariables.map.play_intro = save_file_data_loaded["play_intro"]
+	UpgradesData.set_upgrades_data(save_file_data_loaded["upgrades_data"])
 	
 	save_loaded.emit()
 	print(save_file_data_loaded)
@@ -48,7 +51,8 @@ func override_current_save() -> void:
 	save_data_to_write.set("tutorial_done", GlobalVariables.tutorial_done)
 	save_data_to_write.set("days_count", WorkingDaysManager.get_working_days_count())
 	save_data_to_write.set("actual_room_name", str(GlobalVariables.map.actual_room.name))
-	save_data_to_write.set("intro_played", not(GlobalVariables.map.play_intro))
+	save_data_to_write.set("play_intro", GlobalVariables.map.play_intro)
+	save_data_to_write.set("upgrades_data", UpgradesData.get_upgrades_data_dictionnary())
 	
 	for _current_data in save_data_to_write:
 		save_file_config.set_value("SAVE_DATA", _current_data, save_data_to_write.get(_current_data))

@@ -8,17 +8,19 @@ signal quitted
 @onready var ambiance_audio_stream_player: AudioStreamPlayer = $AmbianceAudioStreamPlayer
 @onready var button_clicked_sfx_audio_stream_player: AudioStreamPlayer = $ButtonClickedSFXAudioStreamPlayer
 @onready var credits_label: RichTextLabel = $CreditsLabel
+@onready var delete_save_button: Button = $DeleteSaveButton
+
+@export var show_delete_save_button: bool = true
 
 func _ready() -> void:
+	delete_save_button.visible = show_delete_save_button
+	
 	credits_label.hide()
 	load_credits()
 	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 	hide()
-	
-	
-	open()
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and credits_label.visible:
@@ -62,3 +64,8 @@ func load_credits() -> void:
 	var creadits_file = FileAccess.open("res://CREDITS.txt", FileAccess.READ)
 	credits_label.text = creadits_file.get_as_text()
 	creadits_file.close()
+
+
+func _on_delete_save_button_pressed() -> void:
+	SaveManager.delete_save_file()
+	get_tree().quit()

@@ -10,6 +10,7 @@ class_name UpgradeCard
 @onready var buy_button: Button = $BuyButton
 
 func _ready() -> void:
+	UpgradesData.upgrade_value_changed.connect(_update_upgrade_resource_level)
 	if upgrade: update_display()
 
 func update_display() -> void:
@@ -29,4 +30,9 @@ func update_data() -> void:
 		upgrade.upgrade_scope,
 		upgrade.get_level()
 	)
-	print(UpgradesData._upgrades_data)
+	print(UpgradesData.get_upgrades_data())
+
+func _update_upgrade_resource_level(upgrade_targeted: UpgradesData.UPGRADES, level_to_set: int) -> void:
+	if upgrade_targeted == upgrade.upgrade_scope:
+		upgrade.set_level(level_to_set)
+		print("Upgrade " + str(upgrade.upgrade_scope) + " | LEVEL " + str(upgrade.get_level()))

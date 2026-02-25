@@ -16,5 +16,4 @@ func _process(_delta: float) -> void:
 			mirror_material = mirror_mesh_instance.get_surface_override_material(0)
 		var sub_viewport_texture: Image = sub_viewport.get_texture().get_image()
 		var mirror_material_albed_texture: ImageTexture = ImageTexture.create_from_image(sub_viewport_texture)
-		#print(sub_viewport_texture)
 		mirror_material.albedo_texture = mirror_material_albed_texture

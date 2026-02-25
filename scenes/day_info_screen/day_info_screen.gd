@@ -13,8 +13,6 @@ func _ready() -> void:
 	hide()
 	WorkingDaysManager.day_info_screen_scene = self
 	WorkingDaysManager.time_updated.connect(_update_hour_label)
-	
-	popup()
 
 func _update_hour_label() -> void:
 	if visible:
@@ -24,7 +22,7 @@ func _update_infos() -> void:
 	day_label.text = "DAY " + str(WorkingDaysManager.get_working_days_count())
 
 func popup() -> void:
-	pixalation_shader_overlay.set_animated(true)
+	pixalation_shader_overlay.animated = true
 	_update_infos()
 	show()
 	
@@ -33,5 +31,5 @@ func popup() -> void:
 	await popup_timer.timeout
 	sfx_audio_stream_player.stop()
 	
-	pixalation_shader_overlay.set_animated(false)
+	pixalation_shader_overlay.animated = false
 	hide()

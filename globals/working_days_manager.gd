@@ -41,7 +41,7 @@ func _clock_time() -> void:
 		_hour += 1
 	
 	time_updated.emit()
-	if _shift_started and _hour < _end_shift_hour: _clock_time()
+	if _shift_started and not shift_can_end(): _clock_time()
 	else:
 		_shift_can_start = false
 		end_shift()
@@ -64,10 +64,13 @@ func start_shift() -> void:
 	push_warning("Shift cannot start")
 
 func end_shift() -> bool:
-	if _hour >= _end_shift_hour:
+	if shift_can_end():
 		print("DONE!")
 		_shift_started = false
 		shift_ended.emit()
 		SaveManager.override_current_save()
 		return true
 	return false
+
+func shift_can_end() -> bool:
+	return _hour >= _end_shift_hour

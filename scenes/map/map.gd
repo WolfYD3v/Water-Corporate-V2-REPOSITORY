@@ -13,6 +13,7 @@ class_name Map
 @onready var intro: Intro = $Intro
 @onready var main_menu: MainMenu = $GUI/MainMenu
 @onready var dialog_scene: DialogScene = $GUI/DialogScene
+@onready var new_day_color_rect: ColorRect = $GUI/NewDayColorRect
 
 @onready var tutorial_node: Node3D = $"Rooms/ReceptionRoom(2,6)/Tutorial"
 
@@ -36,6 +37,8 @@ var actual_room: BaseRoom = null:
 var allow_player_walking_sequence: bool = true
 
 func _ready() -> void:
+	new_day_color_rect.hide()
+	WorkingDaysManager.shift_ended.connect(gui_new_day)
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	# Variables initialization Section:
@@ -70,7 +73,7 @@ func _ready() -> void:
 		intro.process_mode = Node.PROCESS_MODE_ALWAYS
 		intro.play()
 		await intro.finished
-		play_intro = true
+		play_intro = false
 		SaveManager.override_current_save()
 	intro.queue_free()
 	intro = null
@@ -120,3 +123,8 @@ func tutorial() -> void:
 	
 	player.can_move = true
 	player.can_rotate = true
+
+func gui_new_day() -> void:
+	new_day_color_rect.show()
+	await get_tree().create_timer(2.5).timeout
+	new_day_color_rect.hide()

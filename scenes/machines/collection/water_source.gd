@@ -34,8 +34,7 @@ func lower_water_level() -> void:
 	water_mesh.position.y = lerpf(empty_water_mesh_y_position, filled_water_mesh_y_position, water_level_value)
 	
 	# TEMP
-	if water_level_value <= 0.0:
-		reset_water()
+	if water_level_value <= 0.0: reset_water()
 
 func is_empty() -> bool:
 	return empty

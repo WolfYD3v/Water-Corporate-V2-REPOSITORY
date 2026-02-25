@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cy7ejyeswywvd" path="res://scenes/interactive_objects/base_interactive_objects.tscn" id="1_uotha"]
 [ext_resource type="Script" uid="uid://croeabp7thib7" path="res://scenes/interactive_objects/collection/computer.gd" id="2_26xa3"]
 [ext_resource type="PackedScene" uid="uid://brj1rmddrqfyr" path="res://scenes/interactive_objects/collection/computer_display.tscn" id="2_lnlbt"]
+[ext_resource type="Texture2D" uid="uid://cb6km2jgcgcw" path="res://assets/textures/instructions_postit_computer_texture.png" id="4_5jkhf"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_26xa3"]
 _surfaces = [{
@@ -29,6 +30,11 @@ albedo_texture = SubResource("ViewportTexture_26xa3")
 size = Vector3(2.4, 1.4, 4.7616577)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26xa3"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_7s30t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vpfd"]
+albedo_texture = ExtResource("4_5jkhf")
 
 [node name="Computer" unique_id=2096953379 instance=ExtResource("1_uotha")]
 script = ExtResource("2_26xa3")
@@ -78,19 +84,24 @@ shape = SubResource("BoxShape3D_lnlbt")
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_26xa3")
 
-[node name="SpeakerAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="6" unique_id=1841552084]
+[node name="Post-it" type="MeshInstance3D" parent="." index="6" unique_id=1890278989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5000001, 0, 0.2)
+mesh = SubResource("QuadMesh_7s30t")
+surface_material_override/0 = SubResource("StandardMaterial3D_5vpfd")
+
+[node name="SpeakerAudioStreamPlayer" type="AudioStreamPlayer3D" parent="." index="7" unique_id=1841552084]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 volume_db = -50.0
 emission_angle_enabled = true
 emission_angle_filter_attenuation_db = -30.0
 
-[node name="SubViewport" type="SubViewport" parent="." index="8" unique_id=1470031579]
+[node name="SubViewport" type="SubViewport" parent="." index="9" unique_id=1470031579]
 physics_object_picking = true
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="ComputerDisplay" parent="SubViewport" index="0" unique_id=1526273636 instance=ExtResource("2_lnlbt")]
 
-[node name="GUI" type="CanvasLayer" parent="." index="9" unique_id=755035431]
+[node name="GUI" type="CanvasLayer" parent="." index="10" unique_id=755035431]
 
 [connection signal="quit_computer" from="SubViewport/ComputerDisplay" to="." method="_on_computer_display_quit_computer"]

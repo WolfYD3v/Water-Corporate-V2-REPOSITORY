@@ -64,7 +64,9 @@ func scan_adj_rooms() -> void:
 	#print(to_string() + " adj rooms scanned | RESULT: " + str(adj_rooms_array))
 
 func get_player_position_in_room() -> Vector3:
-	return player_position_marker.global_position
+	var pos_sended: Vector3 = player_position_marker.global_position
+	pos_sended.y = 0.35
+	return pos_sended
 
 func _send_change_room_area_trigger() -> void:
 	if next_room_direction_idx >= 0 and $Timer.is_stopped():

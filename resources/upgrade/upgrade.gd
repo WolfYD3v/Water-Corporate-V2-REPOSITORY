@@ -21,6 +21,8 @@ func level_up() -> void:
 			print(to_string(), " is automated now")
 			_automation_enable = true
 
+func set_level(value: int) -> void:
+	_level = value
 func get_level() -> int:
 	return _level
 

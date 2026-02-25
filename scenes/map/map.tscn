@@ -19,7 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://di1muj33di57g" path="res://scenes/rooms/collection/water_pumping_room.tscn" id="12_mgs8m"]
 [ext_resource type="PackedScene" uid="uid://dmpqoa63q0ibt" path="res://scenes/dialog_scene/dialog_scene.tscn" id="15_rqo2c"]
 [ext_resource type="PackedScene" uid="uid://5oxf1ihj1mcd" path="res://scenes/context_introduction/context_introduction.tscn" id="16_e07uo"]
+[ext_resource type="PackedScene" uid="uid://du00q04nxmij3" path="res://scenes/pixalation_shader_overlay.tscn" id="17_30ska"]
+[ext_resource type="Theme" uid="uid://be0hqd80yp6ll" path="res://assets/themes/2d_menus_theme.tres" id="17_tmgcv"]
 [ext_resource type="PackedScene" uid="uid://rha1bynaol1s" path="res://scenes/day_info_screen/day_info_screen.tscn" id="18_uclq6"]
+[ext_resource type="Shader" uid="uid://s8hpebn0oyb2" path="res://assets/shaders/2d_pixalation_shader.gdshader" id="19_omedl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uclq6"]
 
@@ -38,6 +41,11 @@ font = ExtResource("10_nykyp")
 font_size = 60
 autowrap_mode = 3
 width = 600.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xi6f"]
+shader = ExtResource("19_omedl")
+shader_parameter/pixelation = 0.0030000001425
+shader_parameter/opacity = 1.0
 
 [node name="Map" type="Node3D" unique_id=1432087780 node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_tqkkf")
@@ -196,6 +204,40 @@ transform = Transform3D(-0.81915194, 0, 0.5735764, 0, 1, 0, -0.5735764, 0, -0.81
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1549805214]
 layer = 99
+
+[node name="NewDayColorRect" type="ColorRect" parent="GUI" unique_id=648761748]
+z_index = 998
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_tmgcv")
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="GUI/NewDayColorRect" unique_id=2045771012]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.5
+offset_top = -51.5
+offset_right = 255.5
+offset_bottom = 51.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "TODO:
+Make post day scene"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PixalationShaderOverlay" parent="GUI" unique_id=2001711004 instance=ExtResource("17_30ska")]
+z_index = 999
+material = SubResource("ShaderMaterial_3xi6f")
+script = null
 
 [node name="DialogScene" parent="GUI" unique_id=2052455894 instance=ExtResource("15_rqo2c")]
 visible = false

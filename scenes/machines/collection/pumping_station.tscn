@@ -117,7 +117,7 @@ allowed_upgrades = Dictionary[int, String]({
 3: "_power_bank_filling_speed"
 })
 
-[node name="CSGCombinerModel" parent="." index="0"]
+[node name="CSGCombinerModel" parent="." index="0" unique_id=642642553]
 visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombinerModel" index="0" unique_id=640428403]
@@ -138,11 +138,11 @@ material = ExtResource("3_32qii")
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=782253828]
 mesh = SubResource("ArrayMesh_32qii")
 
-[node name="CollisionShape" parent="PlayerDetectionArea" index="0"]
+[node name="CollisionShape" parent="PlayerDetectionArea" parent_id_path=PackedInt32Array(684466030) index="0" unique_id=1516123848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
 shape = SubResource("BoxShape3D_56kgv")
 
-[node name="KeyToPressLabel" parent="." index="4"]
+[node name="KeyToPressLabel" parent="." index="4" unique_id=1470747359]
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_56kgv")
 

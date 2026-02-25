@@ -13,7 +13,7 @@ var player_on_computer: bool = false
 var computer_booted: bool = false
 
 func _ready() -> void:
-	WorkingDaysManager.shift_ended.connect(turn_off)
+	#WorkingDaysManager.shift_ended.connect(turn_off)
 	key_to_press_label.hide()
 	gui.hide()
 	if auto_boot:
@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 		if GlobalVariables.player:
 			player = GlobalVariables.player
 		if not WorkingDaysManager._shift_can_start:
-			if not WorkingDaysManager.is_shift_started():
+			if not WorkingDaysManager.is_shift_started() and not computer_booted:
 				says_smth()
 			return
 		print(player)
@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 			print(player_focused)
 			print(mouse_focused)
 			
-			if player_focused and mouse_focused:
+			if player_focused and mouse_focused and not player_on_computer:
 				key_to_press_label.visible = false
 				act()
 				await get_tree().create_timer(0.1).timeout
@@ -87,7 +87,6 @@ func speaker_play_sound(sound_stream_path: String, volume_db: float = 0.0, pitch
 func turn_off() -> void:
 	computer_booted = false
 	computer_display.turn_off_display()
-	_on_computer_display_quit_computer()
 
 
 func _on_computer_display_quit_computer() -> void:
@@ -98,11 +97,13 @@ func _on_computer_display_quit_computer() -> void:
 	gui.visible = false
 	if change_player_position:
 		print("Player out")
-		player.change_position(captured_player_position, true, true)
+		player.change_position(GlobalVariables.map.actual_room.get_player_position_in_room(), true, true)
 	
 	computer_display.reparent(sub_viewport, false)
 	computer_display = get_node("SubViewport/ComputerDisplay")
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if WorkingDaysManager.shift_can_end(): turn_off()
 
 func says_smth() -> void:
 	player.can_move = false

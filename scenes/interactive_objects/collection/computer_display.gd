@@ -65,7 +65,12 @@ func start() -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	await boot()
-	_list_mails()
+	await _list_mails()
+	
+	await get_tree().create_timer(
+		randf_range(3.5, 8.0)
+	).timeout
+	GlobalVariables.water_quota = GlobalVariables.shadox_ai_infos.calculate_water_quota()
 
 func boot() -> void:
 	quit_button.disabled = true
@@ -153,6 +158,44 @@ func _on_pumping_time_timer_timeout() -> void:
 		print("WATER QUOTA NOT FULL!")
 	else:
 		print("YOU DID A SHITTY JOB MY FRIEND")
+	
+	MoneyManager.add_money(calculate_money_given())
+	
+	#e
+	GlobalVariables.shadox_ai_infos.user_count += int(
+		0.05 * GlobalVariables.shadox_ai_infos.user_count
+	)
+	GlobalVariables.shadox_ai_infos.gpu_count += int(
+		0.02 * GlobalVariables.shadox_ai_infos.gpu_count
+	)
+	GlobalVariables.shadox_ai_infos.ai_complexity += 0.1
+	#/e
+	if not WorkingDaysManager.shift_can_end():
+		GlobalVariables.water_pumped = GlobalVariables.shadox_ai_infos.calculate_water_quota()
+
+func calculate_money_given() -> float:
+	'''
+	Calculate the pourcentage of the water goal:
+	
+	water_pumped * 100
+	------------------ = water_pumped_pourcentage (%)
+	   water_quota    
+	'''
+	var water_pumped_pourcentage: float = GlobalVariables.water_pumped * 100
+	water_pumped_pourcentage /= GlobalVariables.water_quota
+	
+	'''
+	Calculate the money given, by using the pourcentage calculated up there:
+	
+	water_pumped_pourcentage
+	------------------------ * total_money_given = water_pumped_pourcentage ($)
+	          100    
+	'''
+	var total_money_given: float = 60.0 # TODO: Move this variable inside the GlobalVariables Singleton
+	var money_given: float = water_pumped_pourcentage / 100
+	money_given *= total_money_given
+	
+	return money_given
 
 func _on_upgrades_shop_button_pressed() -> void:
 	if not WorkingDaysManager._shift_can_start:
